@@ -64,6 +64,12 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+    <% flash.each do |key, value| %>
+      <br>
+      <%= content_tag(:div, value, class: "alert alert-#{key}", role: "alert") %>
+    <% end %>
+
+
     <div class="container">
       <%= yield %>
     </div>
