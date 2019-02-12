@@ -9,9 +9,16 @@ class ProtsController < ApplicationController
   end
 
   def new
+    @prot = Prot.new
   end
 
   def create
+    @prot = Prot.new(prot_params)
+    if @prot.save
+      redirect_to @prot, notice: "プロットの作成に成功しました"
+    else
+      render :new
+    end
   end
 
   def edit
