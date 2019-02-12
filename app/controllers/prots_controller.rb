@@ -14,7 +14,7 @@ class ProtsController < ApplicationController
   end
 
   def create
-    @prot = Prot.new(prot_params)
+    @prot = current_user.prots.new(prot_params)
     if @prot.save
       redirect_to @prot
       flash[:success] = "プロットの作成に成功しました"
