@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'prot#index'
-  resources :prots, exceps: [:index]
+  root to: 'prots#index'
+  resources :prots, except: [:index]
 end
