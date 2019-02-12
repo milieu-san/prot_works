@@ -57,7 +57,7 @@
                 <li><a href="#">prot all</a></li>
                 <li><a href="#">review all</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">logout</a></li>
+                <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
               </ul>
             </li>
           </ul>
