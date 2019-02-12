@@ -1,6 +1,8 @@
+<h1>Prot Index</h1>
 <% @prots.each do |prot| %>
-
-  <%= prot.title%><br>
-  <%= prot.content%>
-
+  <br>
+  <br>
+  <p><%= link_to prot.title, prot %>: <%= prot.content%></p>
+  <hr>
+  <br>
 <% end %>
