@@ -15,7 +15,8 @@ class ProtsController < ApplicationController
   def create
     @prot = Prot.new(prot_params)
     if @prot.save
-      redirect_to @prot, notice: "プロットの作成に成功しました"
+      redirect_to @prot
+      flash[:success] = "プロットの作成に成功しました"
     else
       render :new
     end
@@ -26,7 +27,8 @@ class ProtsController < ApplicationController
 
   def update
     if @prot.update(prot_params)
-      redirect_to @prot, notice: "プロットの編集に成功しました"
+      redirect_to @prot
+      flash[:success] = "プロットの編集に成功しました"
     else
       render :edit
     end

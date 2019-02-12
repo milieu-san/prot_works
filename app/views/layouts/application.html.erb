@@ -65,7 +65,6 @@
     </nav>
 
     <% flash.each do |key, value| %>
-      <br>
       <%= content_tag(:div, value, class: "alert alert-#{key}", role: "alert") %>
     <% end %>
 
