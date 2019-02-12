@@ -1,5 +1,6 @@
 class ProtsController < ApplicationController
   before_action :set_prot, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index]
 
   def index
     @prots = Prot.all
