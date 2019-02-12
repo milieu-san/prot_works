@@ -25,6 +25,11 @@ class ProtsController < ApplicationController
   end
 
   def update
+    if @prot.update(prot_params)
+      redirect_to @prot, notice: "プロットの編集に成功しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
