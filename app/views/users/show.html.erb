@@ -9,6 +9,9 @@
 <% current_user.prots.each do |prot| %>
 
   <h4><%= link_to prot.title, prot_path(prot) %></h4>
+  <h6><%= link_to "概要編集", edit_prot_path(prot) %></h6>
+  <p>ノード編集・閲覧</p>
+  <p>レビュー一覧</p>
   <br>
   <hr>
 
