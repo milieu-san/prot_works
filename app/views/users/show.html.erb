@@ -1,0 +1,19 @@
+<h1><%= current_user.name %></h1>
+<h2><%= current_user.nick_name %></h2>
+<p>email: <%= current_user.email %></p>
+
+<br>
+<br>
+<h2>全てのプロット</h2>
+<br>
+<% current_user.prots.each do |prot| %>
+
+  <h4><%= link_to prot.title, prot_path(prot) %></h4>
+  <h6><%= link_to "概要編集", edit_prot_path(prot) %></h6>
+  <p>ノード編集・閲覧</p>
+  <p>レビュー一覧</p>
+  <br>
+  <hr>
+
+
+<% end %>

@@ -1,8 +1,11 @@
 class ProtsController < ApplicationController
   before_action :set_prot, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index]
+  before_action :correct_user_check, only: %i[edit update destroy]
+  before_action :private_prot_protect, only: %i[show edit update destroy]
 
   def index
-    @prots = Prot.all
+    @prots = Prot.all.where(private: false)
   end
 
   def show
@@ -13,7 +16,7 @@ class ProtsController < ApplicationController
   end
 
   def create
-    @prot = Prot.new(prot_params)
+    @prot = current_user.prots.new(prot_params)
     if @prot.save
       redirect_to @prot
       flash[:success] = "プロットの作成に成功しました"
@@ -45,6 +48,14 @@ class ProtsController < ApplicationController
                 :content,
                 :private,
                 :accepts_review)
+  end
+
+  def correct_user_check
+    raise StandardError if @prot.user_id != current_user.id
+  end
+
+  def private_prot_protect
+    raise StandardError if @prot.private == true && @prot.user_id != current_user.id
   end
 
   def set_prot
