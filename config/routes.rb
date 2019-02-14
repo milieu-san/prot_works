@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :users, only: [:edit]
   resources :prots
 
+  get '/prots/:id/node/', to: 'nodes#show'
+  get '/prots/:id/node/edit', to: 'nodes#edit'
+
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
