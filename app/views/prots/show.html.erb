@@ -6,6 +6,7 @@
 <p>private: <%= @prot.private %></p>
 <p>reveiw: <%= @prot.accepts_review %></p>
 <hr>
-<h2>Nodeへ</h2>
+<h3><%= link_to "Node編集", prot_nodes_path(@prot) %></h3>
+<h3><%= link_to "Node閲覧", prot_node_path(@prot) %></h3>
 <hr>
 <h2>review一覧</h2>
