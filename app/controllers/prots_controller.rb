@@ -2,9 +2,10 @@ class ProtsController < ApplicationController
   before_action :set_prot, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index]
   before_action :correct_user_check, only: %i[edit update destroy]
+  before_action :private_prot_protect, only: %i[show edit update destroy]
 
   def index
-    @prots = Prot.all
+    @prots = Prot.all.where(private: false)
   end
 
   def show
@@ -50,7 +51,11 @@ class ProtsController < ApplicationController
   end
 
   def correct_user_check
-    raise root_path if @prot.user_id != current_user.id
+    raise StandardError if @prot.user_id != current_user.id
+  end
+
+  def private_prot_protect
+    raise StandardError if @prot.private == true && @prot.user_id != current_user.id
   end
 
   def set_prot
