@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_091650) do
+ActiveRecord::Schema.define(version: 2019_02_14_072358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nodes", force: :cascade do |t|
+    t.string "title", default: "new node", null: false
+    t.text "body", default: "", null: false
+    t.integer "position", null: false
+    t.integer "parent_id"
+    t.bigint "prot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prot_id"], name: "index_nodes_on_prot_id"
+  end
 
   create_table "prots", force: :cascade do |t|
     t.string "title", null: false
