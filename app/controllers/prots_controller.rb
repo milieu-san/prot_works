@@ -1,6 +1,7 @@
 class ProtsController < ApplicationController
   before_action :set_prot, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index]
+  before_action :correct_user_check, only: %i[edit update destroy]
 
   def index
     @prots = Prot.all
@@ -46,6 +47,10 @@ class ProtsController < ApplicationController
                 :content,
                 :private,
                 :accepts_review)
+  end
+
+  def correct_user_check
+    raise root_path if @prot.user_id != current_user.id
   end
 
   def set_prot
