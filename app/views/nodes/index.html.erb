@@ -2,8 +2,7 @@
   <script>
     REGISTRY = { prot_id: "<%= @prot.id %>" }
   </script>
-  <h1><%= @prot.title %></h1>
-    <br>
+  <h3><%= @prot.title %></h3>
     <hr>
     <br>
     <button type="button" id="make_node" class="btn btn-success">create</button>
@@ -18,6 +17,7 @@
 
         <div class="col-6">
           <div id="jstree_nodes"></div>
+          <br>
         </div>
 
         <div class="col-6">
