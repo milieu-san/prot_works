@@ -1,9 +1,9 @@
-.divide_editor_container{
+/* .divide_editor_container{
   overflow: hidden;
-}
+} */
 
-/* clearfix */
-.divide_editor_container:before,
+                                  /* clearfix */
+/* .divide_editor_container:before,
 .divide_editor_container:after {
     content: "";
     display: table;
@@ -24,4 +24,4 @@
   float: left;
   width: 50%;
 
-}
+} */
