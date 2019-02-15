@@ -1,5 +1,6 @@
 class NodesController < ApplicationController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
+  before_action :author_check
 
   # GET /nodes
   # GET /nodes.json
@@ -73,13 +74,15 @@ class NodesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_node
       @prot = Prot.find(params[:prot_id])
       @node = @prot.nodes.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def author_check
+      raise StandardError if Prot.find(params[:prot_id]).user_id != current_user.id
+    end
+
     def node_params
       params.require(:node)
             .permit(:title,
