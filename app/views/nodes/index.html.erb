@@ -1,0 +1,61 @@
+<div class="container">
+  <script>
+    REGISTRY = { prot_id: "<%= @prot.id %>" }
+  </script>
+  <h3><%= @prot.title %></h3>
+    <hr>
+    <br>
+    <button type="button" id="make_node" class="btn btn-success">create</button>
+    <button type="button" id="rename_node" class="btn btn-warning">rename</button>
+    <button type="button" id="delete_node" class="btn btn-danger">delete</button>
+    <button type="button" id="edit_node" class="btn btn-info">edit</button>
+    <button type="button" id="view_node" class="btn btn-info" style="display: none;">show</button>
+    <br>
+    <br>
+
+  <div class="row">
+
+        <div class="col-6">
+          <div id="jstree_nodes"></div>
+          <br>
+        </div>
+
+        <div class="col-6">
+          <!-- 本文の閲覧 -->
+          <div id="show_node" style="word-wrap: break-word; white-space: pre-wrap;"></div>
+
+          <!-- 本文の編集 -->
+          <div id="edit_form" style="display: none;">
+            <!-- jsTreeからその都度ノードデータをフォームのバリューに与えたあげられれば完成 -->
+            <% if @node %>
+              <%= form_with(model: @node, local: true, url: prot_node_path(@node.id, @prot.id)) do |f| %>
+                <% if @node.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@node.errors.count, "error") %> prohibited this node from being saved:</h2>
+
+                    <ul>
+                    <% @node.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <div class="actions">
+                  <%= f.submit %>
+                </div>
+
+                <div class="id_field">
+                  <%= f.hidden_field :id %>
+                </div>
+
+                <div class="body_field">
+                  <%= f.text_area :body ,cols: 70, rows: 40 %>
+                </div>
+
+                <% end %>
+              <% end %>
+          </div>
+        </div>
+
+  </div>
+</div>

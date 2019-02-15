@@ -1,11 +1,16 @@
 <h1><%= @prot.title %></h1>
 <br>
-<h3>紹介：</h3>
-<p><%= @prot.content %></p>
-<hr>
-<p>private: <%= @prot.private %></p>
-<p>reveiw: <%= @prot.accepts_review %></p>
-<hr>
-<h2>Nodeへ</h2>
+<% unless @prot.content.blank? %>
+  <h3>紹介：</h3>
+  <p><%= @prot.content %></p>
+<% end %>
+  <hr>
+<% if @prot.user_id == current_user.id %>
+  <p>private: <%= @prot.private %></p>
+  <p>reveiw: <%= @prot.accepts_review %></p>
+  <hr>
+<% end %>
+<h3><%= link_to "Node編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %></h3>
+<h3><%= link_to "Node閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %></h3>
 <hr>
 <h2>review一覧</h2>
