@@ -7,11 +7,10 @@ Rails.application.routes.draw do
   resources :prots do
     resources :nodes
   end
-  
-  # resources :nodes
 
-  # get '/prots/:id/node', to: 'nodes#show'
-  # get '/prots/:id/node/edit', to: 'nodes#index'
+  namespace :preview do
+    resources :nodes, only: [:index]
+  end
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
