@@ -13,13 +13,6 @@ class NodesController < ApplicationController
   # GET /nodes/1
   # GET /nodes/1.json
   def show
-    # edit ボタンでノードをロードする。いらない？
-    # respond_to do |format|
-    #   format.json {
-    #     @node = Node.find(params[:id])
-    #     render nodes_path
-    #   }
-    # end
   end
 
   # GET /nodes/new
