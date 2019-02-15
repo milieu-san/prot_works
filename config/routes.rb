@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  get 'homes/index'
   devise_for :users
-  root to: 'prots#index'
+
+  unauthenticated do
+     root to: 'homes#index'
+  end
+
+  authenticated do
+    root to: 'users#show'
+  end
+
   resource  :user
   resources :users, only: [:edit]
 

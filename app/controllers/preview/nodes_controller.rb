@@ -8,6 +8,7 @@ class Preview::NodesController < ApplicationController
   end
 
   private
+  
   def private_protect
     prot = Prot.find(params[:prot_id])
     raise StandardError if prot.private == true && prot.user_id != current_user.id
