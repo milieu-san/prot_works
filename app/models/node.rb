@@ -15,7 +15,7 @@ class Node < ApplicationRecord
 
   # positionの管理
   def new_position=(new_position)
-    roots = Prot.find(11).nodes
+    roots = Prot.find(prot_id).nodes
                 .where(parent_id: parent_id)
                 .order(position: :asc)
 

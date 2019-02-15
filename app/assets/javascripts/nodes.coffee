@@ -10,7 +10,7 @@ $ ->
       'state' : { key : "demo2" },
       'data' : {
         'url' : (node) ->
-          return 'nodes.json' # GET /categoris.json を実行する
+          return "/prots/#{REGISTRY.prot_id}/nodes.json" # GET /categoris.json を実行する
       }
     },
     "plugins" : [ "dnd", "state" ]
@@ -37,7 +37,9 @@ $ ->
   $('#jstree_nodes').on "select_node.jstree", (e, node) ->
     body = node.node.data
     id   = node.node.id
-    $("#edit_form form").attr('action', "/nodes/#{id}")
+    prot_id = REGISTRY.prot_id
+
+    $("#edit_form form").attr('action', "/prots/#{prot_id}/nodes/#{id}")
     $("#show_node").text("#{body}")
     $(".body_field textarea").val("#{body}")
     $(".id_field input").val("#{id}")
@@ -53,7 +55,7 @@ $ ->
     $.ajax({
       'type'    : 'PATCH',
       'data'    : { 'node' : { 'parent_id' : parent_id, 'new_position' : new_position } },
-      'url'     : "/nodes/#{id}.json"
+      'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
     })
 
 
@@ -63,12 +65,13 @@ $ ->
     selected = jstree.get_selected()
     return false if (!selected.length)
     selected = selected[0]
+    prot_id = REGISTRY.prot_id
 
     # POST /categories.json
     $.ajax({
       'type'    : 'POST',
-      'data'    : { 'node' : { 'title' : 'New node', 'parent_id' : selected , 'prot_id' : 11 , 'new_position' : 0 , 'content' : "本文だよ" } },
-      'url'     : '/nodes.json',
+      'data'    : { 'node' : { 'title' : 'New node', 'parent_id' : selected , 'prot_id' : prot_id , 'new_position' : 0 , 'body' : "本文だよ" } },
+      'url'     : "/prots/#{REGISTRY.prot_id}/nodes.json",
       'success' : (res) ->
         selected = jstree.create_node(selected, res)
         jstree.edit(selected) if (selected)
@@ -94,7 +97,7 @@ $ ->
     $.ajax({
       'type'    : 'PATCH',
       'data'    : { 'node' : { 'title' : renamed_name } },
-      'url'     : "/nodes/#{id}.json"
+      'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
     })
 
 
@@ -112,9 +115,9 @@ $ ->
     if conf == true
       $.ajax({
         'type'    : 'DELETE',
-        'url'     : "/nodes/#{id}.json",
+        'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json",
         'success' : ->
           jstree.delete_node(selected)
       })
     else
-      return 'nodes.json'
+      return "/prots/#{REGISTRY.prot_id}/nodes.json"

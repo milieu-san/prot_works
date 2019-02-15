@@ -1,8 +1,10 @@
 <div class="container">
+  <script>
+    REGISTRY = { prot_id: "<%= @prot.id %>" }
+  </script>
 
   <div class="row">
-    <p id="notice"><%= notice %></p>
-    <h1>Nodes</h1>
+    <h1><%= @prot.title %></h1>
       <br>
       <hr>
       <br>
@@ -27,7 +29,7 @@
           <div id="edit_form" style="display: none;">
             <!-- jsTreeからその都度ノードデータをフォームのバリューに与えたあげられれば完成 -->
             <% if @node %>
-              <%= form_with(model: @node, local: true) do |f| %>
+              <%= form_with(model: @node, local: true, url: prot_node_path(@node.id, @prot.id)) do |f| %>
                 <% if @node.errors.any? %>
                   <div id="error_explanation">
                     <h2><%= pluralize(@node.errors.count, "error") %> prohibited this node from being saved:</h2>
@@ -48,7 +50,7 @@
                 </div>
 
                 <div class="body_field">
-                  <%= f.text_area :content ,cols: 80, rows: 30 %>
+                  <%= f.text_area :body ,cols: 80, rows: 30 %>
                 </div>
 
                 <% end %>
