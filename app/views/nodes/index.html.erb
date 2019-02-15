@@ -2,26 +2,25 @@
   <script>
     REGISTRY = { prot_id: "<%= @prot.id %>" }
   </script>
+  <h1><%= @prot.title %></h1>
+    <br>
+    <hr>
+    <br>
+    <button type="button" id="make_node" class="btn btn-success">create</button>
+    <button type="button" id="rename_node" class="btn btn-warning">rename</button>
+    <button type="button" id="delete_node" class="btn btn-danger">delete</button>
+    <button type="button" id="edit_node" class="btn btn-info">edit</button>
+    <button type="button" id="view_node" class="btn btn-info" style="display: none;">show</button>
+    <br>
+    <br>
 
   <div class="row">
-    <h1><%= @prot.title %></h1>
-      <br>
-      <hr>
-      <br>
-      <button type="button" id="make_node" class="btn btn-success">create</button>
-      <button type="button" id="rename_node" class="btn btn-warning">rename</button>
-      <button type="button" id="delete_node" class="btn btn-danger">delete</button>
-      <button type="button" id="edit_node" class="btn btn-info">edit</button>
-      <button type="button" id="view_node" class="btn btn-info" style="display: none;">show</button>
-      <br>
-      <br>
-      <div class="divide_editor_container">
 
-        <div class="divide_editor_left">
-          <div id="jstree_nodes" style="width: 100%;height:40%;overflow:auto;"></div>
+        <div class="col-6">
+          <div id="jstree_nodes"></div>
         </div>
 
-        <div class="divide_editor_right">
+        <div class="col-6">
           <!-- 本文の閲覧 -->
           <div id="show_node" style="word-wrap: break-word; white-space: pre-wrap;"></div>
 
@@ -50,14 +49,13 @@
                 </div>
 
                 <div class="body_field">
-                  <%= f.text_area :body ,cols: 80, rows: 30 %>
+                  <%= f.text_area :body ,cols: 70, rows: 40 %>
                 </div>
 
                 <% end %>
               <% end %>
           </div>
         </div>
-      </div>
 
   </div>
 </div>
