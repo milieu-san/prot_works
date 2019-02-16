@@ -1,12 +1,13 @@
 <div class="jumbotron">
-  <h3><%= @reivew.title %></h3>
+  <h3><%= @review.title %></h3>
   <br>
+  <hr>
+
     <p><%= @review.content %></p>
-    <hr>
-  <br><br>
-  <% if @review.user_id == current_user.id %>
-    <div class="text-right">
-      <%= link_to "レビュー削除", prot_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
-    </div>
-  <% end %>
+  <br><br><br><br><br>
 </div>
+<% if @review.user_id == current_user.id %>
+  <div class="text-right">
+    <%= link_to "レビュー削除", prot_review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
+  </div>
+<% end %>

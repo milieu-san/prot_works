@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.new(review_params)
     if @review.save
-      redirect_to @review
+      redirect_to prot_review_path(@review.prot_id, @review.id)
       flash[:success] = "レビューの投稿に成功しました！"
     else
       render :new
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to @review
+      redirect_to prot_review_path(@review.prot_id, @review.id)
       flash[:success] = "レビューの編集に成功しました！"
     else
       render :edit
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     flash[:success] = "レビューの削除に成功しました！"
-    redirect_to root_path
+    redirect_to prot_path(@review.prot_id)
   end
 
   private

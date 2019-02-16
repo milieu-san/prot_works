@@ -15,13 +15,13 @@ Rails.application.routes.draw do
 
   resources :prots do
     resources :nodes
+    resources :reviews
   end
 
   namespace :preview do
     resources :nodes, only: [:index]
   end
 
-  resources :reviews
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
