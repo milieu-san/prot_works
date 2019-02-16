@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
+  before_action :accepts_review_protect
+  before_action :correct_user, only: %i[edit update]
+  before_action :prot_review_owner_can_destroy, only: [:destroy]
 
   def index
     @reviews = Review.all
@@ -53,5 +56,20 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def accepts_review_protect
+    if Prot.find(params[:prot_id]).accepts_review == false
+      redirect_to prot_path(params[:prot_id])
+      flash[:danger] = "プロットはレビューを受け付けていません"
+    end
+  end
+
+  def correct_user
+    raise StandardError if @review.user_id != current_user.id
+  end
+
+  def prot_review_owner_can_destroy
+    raise StandardError if @review.user_id != current_user.id || @review.prot.user_id != current_user.id
   end
 end

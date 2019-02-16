@@ -24,7 +24,21 @@
   </div>
 
   <br>
-  <h3>レビュー一覧</h3>
-  <hr>
+  <% if current_user.reviews.present? %>
+    <h3>レビュー一覧</h3>
+    <hr>
+    <div class="row">
+      <% current_user.reviews.each do |review| %>
+        <div class="col-lg-3 col-sm-12 col-md-6">
+          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-light" %></div>
+            <div class="card-body">
+              <p class="card-text"><%= review.content%></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>
