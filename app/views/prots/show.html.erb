@@ -22,7 +22,7 @@
 </div>
 
 <br>
-<%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id %>
+<%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
 
 <% if @prot.reviews.present? %>
   <div class="jumbotron">
