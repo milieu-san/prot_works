@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get 'reviews/index'
-  get 'reviews/show'
-  get 'reviews/new'
-  get 'reviews/create'
-  get 'reviews/edit'
-  get 'reviews/update'
-  get 'reviews/destroy'
   get 'homes/index'
   devise_for :users
 
@@ -27,6 +20,8 @@ Rails.application.routes.draw do
   namespace :preview do
     resources :nodes, only: [:index]
   end
+
+  resources :reviews
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"

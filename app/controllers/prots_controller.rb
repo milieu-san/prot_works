@@ -18,6 +18,7 @@ class ProtsController < ApplicationController
   def create
     @prot = current_user.prots.new(prot_params)
     if @prot.save
+      # 要トランザクション
       @prot.nodes.create(title: "#{@prot.title}", body: "本文", position: 0)
       redirect_to @prot
       flash[:success] = "プロットの作成に成功しました"
@@ -40,7 +41,7 @@ class ProtsController < ApplicationController
 
   def destroy
     @prot.destroy
-    flash[:success] = 'タスクの削除に成功しました'
+    flash[:success] = 'プロットの削除に成功しました'
     redirect_to root_path
   end
 

@@ -13,15 +13,32 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @review = current_user.reviews.new(review_params)
+    if @review.save
+      redirect_to @review
+      flash[:success] = "レビューの投稿に成功しました！"
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
+    if @review.update(review_params)
+      redirect_to @review
+      flash[:success] = "レビューの編集に成功しました！"
+    else
+      render :edit
+    end
+
   end
 
   def destroy
+    @review.destroy
+    flash[:success] = "レビューの削除に成功しました！"
+    redirect_to root_path
   end
 
   private
