@@ -22,9 +22,15 @@
 </div>
 
 <br>
+<%= link_to "レビューを書く", new_review_path, class: "btn btn-success" if @prot.user_id != current_user.id %>
 
-<div class="jumbotron">
-  <h2>review一覧</h2>
-  <hr>
-
-</div>
+<% if @prot.reviews.present? %>
+  <div class="jumbotron">
+    <h2>review一覧</h2>
+    <hr>
+    <% @prot.reviews.each do |review| %>
+      <%= review.title %><br>
+      <%= review.content %>
+    <% end %>
+  </div>
+<% end %>
