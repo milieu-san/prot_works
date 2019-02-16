@@ -8,7 +8,7 @@
 </div>
 <% if @review.user_id == current_user.id %>
   <div class="text-right">
-    <%= link_to "レビュー編集", edit_prot_review_path(@review), class: "btn btn-success" %>
-    <%= link_to "レビュー削除", prot_review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
+    <%= link_to "レビュー編集", edit_prot_review_path(@review.prot_id, @review), class: "btn btn-success" %>
+    <%= link_to "レビュー削除", prot_review_path(@review.prot_id, @review), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
   </div>
 <% end %>

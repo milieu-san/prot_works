@@ -70,6 +70,6 @@ class ReviewsController < ApplicationController
   end
 
   def prot_review_owner_can_destroy
-    raise StandardError if @review.user_id != current_user.id || @review.prot.user_id != current_user.id
+    raise StandardError if @review.user_id != current_user.id && @review.prot.user_id != current_user.id
   end
 end
