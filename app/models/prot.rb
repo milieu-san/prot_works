@@ -1,6 +1,7 @@
 class Prot < ApplicationRecord
   belongs_to :user
   has_many :nodes
+  has_many :reviews
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :content, length: { maximum: 6000 }

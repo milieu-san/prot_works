@@ -47,11 +47,11 @@ class ProtsController < ApplicationController
   private
 
   def prot_params
-  params.require(:prot)
-        .permit(:title,
-                :content,
-                :private,
-                :accepts_review)
+    params.require(:prot)
+          .permit(:title,
+                  :content,
+                  :private,
+                  :accepts_review)
   end
 
   def correct_user_check
