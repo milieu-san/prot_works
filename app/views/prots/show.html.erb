@@ -1,16 +1,30 @@
-<h1><%= @prot.title %></h1>
+<div class="jumbotron">
+  <h3><%= @prot.title %></h3>
+  <br>
+  <% unless @prot.content.blank? %>
+    <h6>説明：</h6>
+    <p><%= @prot.content %></p>
+  <% end %>
+    <hr>
+  <% if @prot.user_id == current_user.id %>
+    <p>private: <%= @prot.private %></p>
+    <p>reveiw: <%= @prot.accepts_review %></p>
+    <hr>
+  <% end %>
+  <%= link_to "Node閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %>
+  <%= link_to "Node編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %>
+  <br><br>
+  <% if @prot.user_id == current_user.id %>
+    <div class="text-right">
+      <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
+    </div>
+  <% end %>
+</div>
+
 <br>
-<% unless @prot.content.blank? %>
-  <h3>紹介：</h3>
-  <p><%= @prot.content %></p>
-<% end %>
+
+<div class="jumbotron">
+  <h2>review一覧</h2>
   <hr>
-<% if @prot.user_id == current_user.id %>
-  <p>private: <%= @prot.private %></p>
-  <p>reveiw: <%= @prot.accepts_review %></p>
-  <hr>
-<% end %>
-<h3><%= link_to "Node編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %></h3>
-<h3><%= link_to "Node閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %></h3>
-<hr>
-<h2>review一覧</h2>
+
+</div>

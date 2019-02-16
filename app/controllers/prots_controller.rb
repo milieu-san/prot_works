@@ -39,6 +39,9 @@ class ProtsController < ApplicationController
   end
 
   def destroy
+    @prot.destroy
+    flash[:success] = 'タスクの削除に成功しました'
+    redirect_to root_path
   end
 
   private

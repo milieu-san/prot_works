@@ -47,7 +47,7 @@ class NodesController < ApplicationController
     @prot = Prot.find(params[:prot_id])
     respond_to do |format|
       if @node.update(node_params)
-        format.html { redirect_to prot_nodes_path(@prot), notice: 'Node was successfully updated.' }
+        format.html { redirect_to prot_nodes_path(@prot), notice: 'ノードの編集に成功しました！' }
         format.json { render :show, status: :ok, location: [@prot, @node] }
       else
         format.html { render :index }
@@ -67,22 +67,23 @@ class NodesController < ApplicationController
   end
 
   private
-    def set_node
-      @prot = Prot.find(params[:prot_id])
-      @node = @prot.nodes.find(params[:id])
-    end
 
-    def author_check
-      raise StandardError if Prot.find(params[:prot_id]).user_id != current_user.id
-    end
+  def set_node
+    @prot = Prot.find(params[:prot_id])
+    @node = @prot.nodes.find(params[:id])
+  end
 
-    def node_params
-      params.require(:node)
-            .permit(:title,
-                    :body,
-                    :parent_id,
-                    :prot_id,
-                    :position,
-                    :new_position)
-    end
+  def author_check
+    raise StandardError if Prot.find(params[:prot_id]).user_id != current_user.id
+  end
+
+  def node_params
+    params.require(:node)
+          .permit(:title,
+                  :body,
+                  :parent_id,
+                  :prot_id,
+                  :position,
+                  :new_position)
+  end
 end
