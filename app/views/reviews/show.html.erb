@@ -16,16 +16,18 @@
   </div>
 <% end %>
 
-<% if @review.comments.present? %>
+<% if @review.comments.length > 1 %>
   <h3>コメント</h3>
   <hr>
   <div class="jumbotron">
     <% @review.comments.each do |comment| %>
-      <div class="alert alert-light">
-        <%= comment.user.nick_name %>:<br>
-        <h4><%= comment.body %></h4>
-      </div>
-      <hr>
+      <% unless comment.body.blank? %>
+        <div class="alert alert-light">
+          <%= comment.user.nick_name %>:<br>
+          <p><%= comment.body %></p>
+        </div>
+        <hr>
+      <% end %>
     <% end %>
   </div>
 <% end %>
@@ -45,11 +47,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :body, class: "form-control" %>
+    <%= f.text_area :body,rows: 10, class: "form-control" %>
   </div>
 
+  <div class="field">
+    <%= f.hidden_field :review_id, value: params[:id],class: "form-control" %>
+  </div>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-<br>
+<br><br><br>
