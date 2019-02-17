@@ -1,4 +1,4 @@
-<%= form_with(model: review, local: true, url: prot_reviews_path(params[:prot_id])) do |f| %>
+<%= form_with(model: review, local: true, url: prot_review_path(params[:prot_id])) do |f| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %>件のエラーがあります</h2>
