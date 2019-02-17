@@ -16,8 +16,40 @@
   </div>
 <% end %>
 
-<h3>コメント</h3>
-<hr>
-<div class="jumbotron">
-  
-</div>
+<% if @review.comments.present? %>
+  <h3>コメント</h3>
+  <hr>
+  <div class="jumbotron">
+    <% @review.comments.each do |comment| %>
+      <div class="alert alert-light">
+        <%= comment.user.nick_name %>:<br>
+        <h4><%= comment.body %></h4>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+<% end %>
+
+
+<%= form_with(model: @comment, local: true, url: prot_review_comments_path(params[:prot_id], params[:id]) ) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %>件のエラーがあります</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :body, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br>

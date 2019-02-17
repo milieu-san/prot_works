@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   resources :prots do
     resources :nodes
-    resources :reviews
+    resources :reviews do
+      resources :comments
+    end
   end
 
   namespace :preview do
