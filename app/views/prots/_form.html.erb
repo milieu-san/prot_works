@@ -20,18 +20,23 @@
     <%= f.label :content %><br>
     <%= f.text_area :content,rows: 15, class: "form-control" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= f.label :private %><br>
-    <%= f.check_box :private, checked_value: true, unchecked_value: false, class: "form-control" %>
+  <div class="row">
+    <div class="field col-6">
+      <%= f.label :private %><br>
+      <%= f.check_box :private, checked_value: true, unchecked_value: false, class: "form-control" %>
+    </div>
+
+    <div class="field col-6">
+      <%= f.label :accepts_review %><br>
+      <%= f.check_box :accepts_review, checked_value: true, unchecked_value: false, class: "form-control" %>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= f.label :accepts_review %><br>
-    <%= f.check_box :accepts_review, checked_value: true, unchecked_value: false, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions text-center">
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+<br><br>

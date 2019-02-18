@@ -1,10 +1,18 @@
 
 <h4>プロット：<%= link_to @review.prot.title, prot_path(@review.prot)%></h4>
 <hr>
-<div class="box1">
-  <br>
-  <h3><%= @review.title %></h3>
-  <br>
+<div class="box2">
+  <div class="row">
+    <div class="col-6">
+      <br>
+      <h4><%= @review.title %></h4>
+    </div>
+    <div class=" offset-3 col-3 text-center">
+      <%= image_tag("gorilla.jpg", height: 50, width: 50, style: "border-radius: 50%;" ) %><br>
+      <%= link_to @review.user.nick_name, user_path(@review.user) %>
+    </div>
+
+  </div>
   <hr>
 
     <p><%= @review.content %></p>
@@ -23,8 +31,16 @@
   <% @review.comments.each do |comment| %>
     <% unless comment.body.blank? %>
       <div class="box2">
-        <%= comment.user.nick_name %>:<br>
-        <p><%= comment.body %></p>
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag("gorilla.jpg", height: 50, width: 50, style: "border-radius: 50%;" ) %><br>
+            <%= link_to comment.user.nick_name, user_path(comment.user) %>
+          </div>
+          <div class="col-10">
+            <br>
+            <h5><%= comment.body %></h5>
+          </div>
+        </div>
       </div>
     <% end %>
   <% end %>
@@ -56,7 +72,7 @@
   </div>
   <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success", value: "投稿する" %>
   </div>
 <% end %>
 <br><br><br>
