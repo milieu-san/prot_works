@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    models:
+      prot: "ブログ"
+      user: "ユーザー"
+      node: "ノード"
+      review: "レビュー"
+      comment: "コメント"
+    attributes:
+      prot:
+        title: "タイトル"
+        content: "概要"
+      user:
+        name: "名前"
+        nick_name: "表示名"
+        email: "メールアドレス"
+        profile: "プロフィール"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+      node:
+        title: "タイトル"
+        body: "本文"
+        position: "ポジション"
+        parent_id: "親ノードID"
+      review:
+        title: "議題"
+        content: "本文"
+      comment:
+        body: "本文"
