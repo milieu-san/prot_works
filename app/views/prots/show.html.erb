@@ -22,9 +22,24 @@
 </div>
 
 <br>
+<%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
 
-<div class="jumbotron">
-  <h2>review一覧</h2>
-  <hr>
-
-</div>
+<% if @prot.reviews.present? %>
+  <div class="jumbotron">
+    <h2>review一覧</h2>
+    <hr>
+    <div class="row">
+      <% @prot.reviews.each do |review| %>
+        <div class="col-3">
+          <%= review.user.nick_name %>
+          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header"><%= link_to review.title, prot_review_path(@prot, review),class: "text-light" %></div>
+            <div class="card-body">
+              <p class="card-text"><%= review.content%></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
