@@ -1,7 +1,8 @@
 
 <h4>プロット：<%= link_to @review.prot.title, prot_path(@review.prot)%></h4>
 <hr>
-<div class="jumbotron">
+<div class="box1">
+  <br>
   <h3><%= @review.title %></h3>
   <br>
   <hr>
@@ -19,17 +20,14 @@
 <% if @review.comments.length > 1 %>
   <h3>コメント</h3>
   <hr>
-  <div class="jumbotron">
-    <% @review.comments.each do |comment| %>
-      <% unless comment.body.blank? %>
-        <div class="alert alert-light">
-          <%= comment.user.nick_name %>:<br>
-          <p><%= comment.body %></p>
-        </div>
-        <hr>
-      <% end %>
+  <% @review.comments.each do |comment| %>
+    <% unless comment.body.blank? %>
+      <div class="box2">
+        <%= comment.user.nick_name %>:<br>
+        <p><%= comment.body %></p>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 <% end %>
 
 <br><br>

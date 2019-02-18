@@ -1,15 +1,17 @@
 <h1>Prot Pickup!</h1>
 <hr>
-<div class="row jumbotron">
+<div class="row box2">
+  <br>
   <% @prots.each do |prot| %>
     <div class="col-3">
       <%= prot.user.nick_name %>
-      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header"><%= link_to prot.title, prot ,class: "text-light" %></div>
+      <div class="card border-info mb-3" style="max-width: 18rem;">
+        <div class="card-header"><%= link_to prot.title, prot ,class: "text-info" %></div>
         <div class="card-body">
           <p class="card-text"><%= prot.content%></p>
         </div>
       </div>
     </div>
   <% end %>
+  <br>
 </div>
