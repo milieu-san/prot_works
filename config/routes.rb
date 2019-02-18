@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     root to: 'users#show'
   end
 
-  resource  :user
-  resources :users, only: [:edit]
+  get 'mypage', to: 'users#mypage'
+  get 'mypage/edit', to: 'users#edit'
+  resources :users, only: [:show]
 
   resources :prots do
     resources :nodes

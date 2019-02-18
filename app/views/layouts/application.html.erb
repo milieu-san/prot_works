@@ -28,7 +28,7 @@
               <%= current_user.nick_name %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <%= link_to "Mypage", user_path, class: "dropdown-item" %>
+              <%= link_to "Mypage", mypage_path, class: "dropdown-item" %>
               <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
