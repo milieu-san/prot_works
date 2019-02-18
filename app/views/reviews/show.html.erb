@@ -32,6 +32,9 @@
   </div>
 <% end %>
 
+<br><br>
+<h3>コメント投稿</h3>
+<hr>
 
 <%= form_with(model: @comment, local: true, url: prot_review_comments_path(params[:prot_id], params[:id]) ) do |f| %>
   <% if @comment.errors.any? %>

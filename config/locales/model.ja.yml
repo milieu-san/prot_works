@@ -10,6 +10,8 @@ ja:
       prot:
         title: "タイトル"
         content: "概要"
+        private: "非公開"
+        accepts_review: "レビュー受付"
       user:
         name: "名前"
         nick_name: "表示名"
