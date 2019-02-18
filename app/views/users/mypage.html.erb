@@ -1,14 +1,18 @@
+<div class="container-fluid">
+  <%= link_to "プロフィール編集", mypage_edit_path %>　/　
+  <%= link_to "プロフィール確認", user_path(current_user)%>
+</div>
 
   <div class="box11">
     <br>
     <div class="row">
-      <div class="offset-1 col-8">
+      <div class="offset-1 col-7">
         <h1><%= current_user.name %></h1>
         <h2><%= current_user.nick_name %></h2>
         <p>email: <%= current_user.email %></p>
         <br>
       </div>
-      <div class="col-3">
+      <div class="col-4">
         <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
       </div>
     </div>
