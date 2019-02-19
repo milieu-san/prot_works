@@ -1,7 +1,11 @@
-.bg-default {
+/* .bg-default {
   background-color: #0c5ba9;
-}
+  background-color: #0e0e0eb0;
+} */
 
+body {
+  background-color: #fdfdfd !important; 
+}
 
 .box11{
     padding: 0.5em 1em;
@@ -51,4 +55,91 @@
 .box2 p {
     margin: 0;
     padding: 0;
+}
+
+.box17{
+    margin:2em 0;
+    position: relative;
+    padding: 0.5em 1.5em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+.box17:before, .box17:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.box17:before {left: 10px;}
+.box17:after {right: 10px;}
+.box17 p {
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+  min-height: 670px;
+}
+
+#wrapper {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  width: 100%;
+  line-height: 70px;
+}
+
+#wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 2px;
+  height: 50px;
+  margin: auto;
+  background-color: #353a3f;
+}
+
+#wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 40px;
+  margin: auto;
+  background-color: #353a3f;
+}
+
+.halfCircle {
+    height: 70px;
+    width: 100%;
+    border-radius: 90px 90px 0 0;
+    -moz-border-radius: 90px 90px 0 0;
+    -webkit-border-radius: 90px 90px 0 0;
+    background: #353a3f;
+}
+
+.halfCircleBottom {
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 90px 90px;
+    -moz-border-radius: 0 0 90px 90px;
+    -webkit-border-radius: 0 0 90px 90px;
+    background:#4c5054;
+}
+
+.circle {
+    height: 100%;
+    width: 100%;
+    border-radius: 45px;
+    -moz-border-radius: 45px;
+    -webkit-border-radius: 45px;
+    background:#4c5054;
 }

@@ -1,24 +1,22 @@
 
-  <div class="box11">
+  <div class="halfCircleBottom text-light text-center">
     <br>
     <div class="row">
-      <div class="offset-1 col-7">
-        <h1><%= @user.name %></h1>
+      <div class="col-12">
+        <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
         <h2><%= @user.nick_name %></h2>
         <br>
       </div>
-      <div class="col-4">
-        <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
-      </div>
     </div>
-    <div class="offset-1 col-10">
+    <br>
+    <div class="col-12">
       <%= @user.profile if @user.profile.present? %>
     </div>
     <br>
   </div>
 
   <br>
-  <div class="box2">
+  <div class="circle text-light text-center">
     <br>
     <h3>プロット一覧</h3>
 
@@ -38,18 +36,20 @@
   </div>
   <br>
     <% if @user.reviews.present? %>
-      <div class="box2">
+      <div class="circle text-light text-center">
       <br>
         <h3>レビュー一覧</h3>
         <hr>
-        <div class="row">
-          <% @user.reviews.each do |review| %>
-            <div class="col-lg-3 col-sm-12 col-md-6">
-              <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %></div>
+        <div class="container">
+          <div class="row">
+            <% @user.reviews.each do |review| %>
+              <div class="col-lg-3 col-sm-12 col-md-6">
+                <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
+                  <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %></div>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
