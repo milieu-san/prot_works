@@ -8,12 +8,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(current_user.id)
   end
 
   def update
-    @user = User.find(current_user.id)
-    if @user.update(user_params)
+    if current_user.update(user_params)
+      sign_in(current_user, bypass: true)
       redirect_to mypage_path
     else
       render :edit
@@ -26,6 +25,7 @@ class UsersController < ApplicationController
     params.require(:user)
           .permit(:name,
                   :nick_name,
-                  :profile)
+                  :profile,
+                  :password)
   end
 end

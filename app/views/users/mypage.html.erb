@@ -40,20 +40,19 @@
     </div>
   </div>
   <br>
+  <% if current_user.reviews.present? %>
   <div class="box2">
-    <% if current_user.reviews.present? %>
-    <br>
-      <h3>レビュー一覧</h3>
-      <hr>
-      <div class="row">
-        <% current_user.reviews.each do |review| %>
-          <div class="col-lg-3 col-sm-12 col-md-6">
-            <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %></div>
-            </div>
+  <br>
+    <h3>レビュー一覧</h3>
+    <hr>
+    <div class="row">
+      <% current_user.reviews.each do |review| %>
+        <div class="col-lg-3 col-sm-12 col-md-6">
+          <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %></div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-
+        </div>
+      <% end %>
+    </div>
   </div>
+  <% end %>

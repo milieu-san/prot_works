@@ -1,10 +1,10 @@
-<%= form_with(model: @user, local: true, url: "/mypage/update") do |f| %>
-  <% if @user.errors.any? %>
+<%= form_with(model: current_user, local: true, url: "/mypage/update") do |f| %>
+  <% if current_user.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@user.errors.count, "件のエラー") %>があります</h2>
+      <h2><%= pluralize(current_user.errors.count, "件のエラー") %>があります</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |message| %>
+      <% current_user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -26,6 +26,10 @@
     <%= f.text_area :profile,rows: 15, class: "form-control" %>
   </div>
 
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
 <br>
   <div class="actions">
     <%= f.submit %>
