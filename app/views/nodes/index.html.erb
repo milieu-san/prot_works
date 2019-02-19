@@ -1,3 +1,4 @@
+<br>
 <div class="container">
   <script>
     REGISTRY = { prot_id: "<%= @prot.id %>" }
@@ -22,7 +23,7 @@
 
         <div class="col-6">
           <!-- 本文の閲覧 -->
-          <div id="show_node" class="box11" style="word-wrap: break-word; white-space: pre-wrap;"></div>
+          <div id="show_node" class="box11" style="word-wrap: break-word; white-space: pre-wrap; min-height: 50px;"></div>
           <!-- 本文の編集 -->
           <div id="edit_form" style="display: none;">
             <!-- jsTreeからその都度ノードデータをフォームのバリューに与えたあげられれば完成 -->
@@ -49,10 +50,11 @@
                 </div>
 
                 <div class="body_field">
-                  <%= f.text_area :body ,cols: 70, rows: 40 , class: "form-control" %>
+                  <%= f.text_area :body, cols: 70, rows: 30, class: "form-control" %>
                 </div>
 
                 <% end %>
+                <br>
               <% end %>
           </div>
         </div>

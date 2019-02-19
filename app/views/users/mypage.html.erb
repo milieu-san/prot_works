@@ -6,7 +6,7 @@
     <br>
     <div class="row">
       <div class="col-lg-6">
-        <h1><%= current_user.name %></h1>
+        <h4><%= current_user.name %></h4>
         <h2><%= current_user.nick_name %></h2>
         <p>email: <%= current_user.email %></p>
         <br>
@@ -20,8 +20,7 @@
   <br>
   <div class="circle text-light text-center">
     <br>
-    <h3>プロット一覧</h3>
-
+    <h5>プロット一覧</h5>
     <hr>
     <br>
     <div class="container">
@@ -44,7 +43,7 @@
   <% if current_user.reviews.present? %>
   <div class="circle text-light text-center">
   <br>
-    <h3>レビュー一覧</h3>
+    <h5>レビュー一覧</h5>
     <hr>
     <div class="container">
       <div class="row">
