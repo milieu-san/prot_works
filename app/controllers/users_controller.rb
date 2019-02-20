@@ -26,6 +26,7 @@ class UsersController < ApplicationController
           .permit(:name,
                   :nick_name,
                   :profile,
+                  :icon,
                   :password)
   end
 end

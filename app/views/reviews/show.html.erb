@@ -8,7 +8,12 @@
       <h4><%= @review.title %></h4>
     </div>
     <div class=" offset-3 col-3 text-center">
-      <%= image_tag("gorilla.jpg", height: 50, width: 50, style: "border-radius: 50%;" ) %><br>
+      <% if @review.user.icon.blank? %>
+        <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
+      <% else %>
+        <%= image_tag @review.user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
+      <% end %>
+      <br>
       <%= link_to @review.user.nick_name, user_path(@review.user), class: "text-light" %>
     </div>
 
@@ -42,7 +47,12 @@
       <div class="container">
         <div class="row">
           <div class="offset-1 col-1">
-            <%= image_tag("gorilla.jpg", height: 50, width: 50, style: "border-radius: 50%;" ) %><br>
+            <% if comment.user.icon.blank? %>
+              <%= image_tag("gorilla.jpg", height: 70, width: 70, style: "border-radius: 50%;" ) %>
+            <% else %>
+              <%= image_tag comment.user.icon.url, height: 70, width: 70, style: "border-radius: 50%;" %>
+            <% end %>
+            <br>
             <%= link_to comment.user.nick_name, user_path(comment.user), class: "text-light" %>
           </div>
           <div class="col-9">

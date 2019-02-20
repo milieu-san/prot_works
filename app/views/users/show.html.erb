@@ -3,7 +3,11 @@
     <br>
     <div class="row">
       <div class="col-12">
-        <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
+        <% if @user.icon.blank? %>
+          <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
+        <% else %>
+          <%= image_tag @user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
+        <% end %>
         <h2><%= @user.nick_name %></h2>
         <br>
       </div>
