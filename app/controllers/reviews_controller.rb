@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @comment = @review.comments.new(user_id: current_user.id)
   end
 
   def new

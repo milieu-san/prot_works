@@ -1,14 +1,100 @@
-<div class="jumbotron">
-  <h3><%= @review.title %></h3>
+<div class="halfCircleBottom text-light text-center">
   <br>
+  <h5><%= link_to @review.prot.title, prot_path(@review.prot), class: "text-light"%></h5>
   <hr>
+  <div class="row">
+    <div class="col-6">
+      <br>
+      <h4><%= @review.title %></h4>
+    </div>
+    <div class=" offset-3 col-3 text-center">
+      <% if @review.user.icon.blank? %>
+        <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
+      <% else %>
+        <%= image_tag @review.user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
+      <% end %>
+      <br>
+      <%= link_to @review.user.nick_name, user_path(@review.user), class: "text-light" %>
+    </div>
 
-    <p><%= @review.content %></p>
-  <br><br><br><br><br>
+  </div>
+  <hr>
+  <div class="container text-left">
+    <div class="row">
+      <div class="offset-1 col-10">
+        <p style="word-wrap: break-word; white-space: pre-wrap;"><%= @review.content %></p>
+      </div>
+    </div>
+  </div>
+  <% if @review.user_id == current_user.id %>
+    <div class="text-right">
+      <%= link_to "レビュー編集", edit_prot_review_path(@review.prot_id, @review), class: "btn btn-success" %>
+      <%= link_to "レビュー削除", prot_review_path(@review.prot_id, @review), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>　　
+    </div>
+  <% end %>
+  <br>
+  <br>
 </div>
-<% if @review.user_id == current_user.id %>
-  <div class="text-right">
-    <%= link_to "レビュー編集", edit_prot_review_path(@review.prot_id, @review), class: "btn btn-success" %>
-    <%= link_to "レビュー削除", prot_review_path(@review.prot_id, @review), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
+<br><br>
+
+<div class="circle text-light">
+  <br>
+  <% if @review.comments.length > 1 %>
+    <h5>　　コメント</h5>
+    <hr>
+    <% @review.comments.each do |comment| %>
+      <% unless comment.body.blank? %>
+      <div class="container">
+        <div class="row">
+          <div class="offset-1 col-1">
+            <% if comment.user.icon.blank? %>
+              <%= image_tag("gorilla.jpg", height: 70, width: 70, style: "border-radius: 50%;" ) %>
+            <% else %>
+              <%= image_tag comment.user.icon.url, height: 70, width: 70, style: "border-radius: 50%;" %>
+            <% end %>
+            <br>
+            <%= link_to comment.user.nick_name, user_path(comment.user), class: "text-light" %>
+          </div>
+          <div class="col-9">
+            <div class="balloon1-left">
+              <p style="word-wrap: break-word; white-space: pre-wrap;"><%= comment.body %></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<br><br>
+<h5>コメント投稿</h5>
+<hr>
+
+<%= form_with(model: @comment, local: true, url: prot_review_comments_path(params[:prot_id], params[:id]) ) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %>件のエラーがあります</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :body,rows: 10, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :review_id, value: params[:id],class: "form-control" %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit class: "btn btn-success", value: "投稿する" %>
   </div>
 <% end %>
+<br><br><br>

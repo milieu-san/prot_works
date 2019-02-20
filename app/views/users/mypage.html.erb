@@ -1,0 +1,64 @@
+
+  <div class="halfCircleBottom text-light text-center">
+    <%= link_to "プロフィール編集", mypage_edit_path, class:"text-light" %>　/　
+    <%= link_to "プロフィール確認", user_path(current_user), class:"text-light"%>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-lg-6">
+        <h4><%= current_user.name %></h4>
+        <h2><%= current_user.nick_name %></h2>
+        <p>email: <%= current_user.email %></p>
+        <br>
+      </div>
+      <div class="col-lg-6">
+        <% if current_user.icon.blank? %>
+          <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
+        <% else %>
+          <%= image_tag current_user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="circle text-light text-center">
+    <br>
+    <h5>プロット一覧</h5>
+    <hr>
+    <br>
+    <div class="container">
+      <div class="row">
+        <% current_user.prots.each do |prot| %>
+          <div class="col-lg-3 col-sm-12 col-md-6">
+            <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
+              <div class="card-header"><%= link_to prot.title, prot ,class: "text-secondary" %></div>
+              <div class="card-body">
+                  <%= link_to "Edit Prot", edit_prot_path(prot), class: "btn btn-success" %>
+                  <%= link_to "Edit Node", prot_nodes_path(prot), class: "btn btn-info" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <% if current_user.reviews.present? %>
+  <div class="circle text-light text-center">
+  <br>
+    <h5>レビュー一覧</h5>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <% current_user.reviews.each do |review| %>
+          <div class="col-lg-3 col-sm-12 col-md-6">
+            <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
+              <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>

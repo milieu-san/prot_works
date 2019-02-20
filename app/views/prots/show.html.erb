@@ -1,8 +1,8 @@
-<div class="jumbotron">
+<div class="halfCircleBottom text-light text-center">
+  <br>
   <h3><%= @prot.title %></h3>
   <br>
   <% unless @prot.content.blank? %>
-    <h6>説明：</h6>
     <p><%= @prot.content %></p>
   <% end %>
     <hr>
@@ -16,30 +16,34 @@
   <br><br>
   <% if @prot.user_id == current_user.id %>
     <div class="text-right">
-      <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %>
+      <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %> 　　
     </div>
+    <br>
   <% end %>
 </div>
 
 <br>
-<%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
-
+<div class="text-center">
+  <%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
+</div>
+<br>
 <% if @prot.reviews.present? %>
-  <div class="jumbotron">
+  <div class="circle text-light text-center">
+    <br>
     <h2>review一覧</h2>
     <hr>
     <div class="row">
-      <% @prot.reviews.each do |review| %>
-        <div class="col-3">
-          <%= review.user.nick_name %>
-          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header"><%= link_to review.title, prot_review_path(@prot, review),class: "text-light" %></div>
-            <div class="card-body">
-              <p class="card-text"><%= review.content%></p>
+      <div class="container">
+        <% @prot.reviews.each do |review| %>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <%= review.user.nick_name %>
+            <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
+              <div class="card-header"><%= link_to review.title, prot_review_path(@prot, review),class: "text-secondary" %></div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+    <br>
   </div>
 <% end %>

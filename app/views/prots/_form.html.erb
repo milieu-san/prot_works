@@ -1,7 +1,7 @@
 <%= form_with(model: prot, local: true) do |f| %>
   <% if prot.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(prot.errors.count, "error") %>件のエラーがあります</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(prot.errors.count, "件のエラー") %>があります</h2>
 
       <ul>
       <% prot.errors.full_messages.each do |message| %>
@@ -18,20 +18,25 @@
 
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content, class: "form-control" %>
+    <%= f.text_area :content,rows: 15, class: "form-control" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= f.label :private %><br>
-    <%= f.check_box :private, checked_value: true, unchecked_value: false, class: "form-control" %>
+  <div class="row">
+    <div class="field col-6">
+      <%= f.label :private %><br>
+      <%= f.check_box :private, checked_value: true, unchecked_value: false, class: "form-control" %>
+    </div>
+
+    <div class="field col-6">
+      <%= f.label :accepts_review %><br>
+      <%= f.check_box :accepts_review, checked_value: true, unchecked_value: false, class: "form-control" %>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= f.label :accepts_review %><br>
-    <%= f.check_box :accepts_review, checked_value: true, unchecked_value: false, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions text-center">
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+<br><br>
