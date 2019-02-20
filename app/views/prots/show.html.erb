@@ -3,7 +3,13 @@
   <h3><%= @prot.title %></h3>
   <br>
   <% unless @prot.content.blank? %>
-    <p><%= @prot.content %></p>
+    <div class="container">
+      <div class="row text-left">
+        <div class="offset-2 col-9">
+          <p style="word-wrap: break-word; white-space: pre-wrap;"><%= @prot.content %></p>
+        </div>
+      </div>
+    </div>
   <% end %>
     <hr>
   <% if @prot.user_id == current_user.id %>
