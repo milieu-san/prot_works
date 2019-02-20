@@ -2,7 +2,14 @@
   <div class="halfCircleBottom text-light text-center">
     <br>
     <div class="row">
-      <div class="col-12">
+      <div class="col-3">
+        <% if star_giving?(@user.id) %>
+          <%= link_to "星", star_path(take_user_id: @user.id), method: :delete, class: "btn btn-warning" %>
+        <% else %>
+          <%= link_to "星", stars_path(take_user_id: @user.id), method: :post, class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+      <div class="col-6">
         <% if @user.icon.blank? %>
           <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
         <% else %>
@@ -10,6 +17,10 @@
         <% end %>
         <h2><%= @user.nick_name %></h2>
         <br>
+      </div>
+
+      <div class="col-3">
+          星：<%= @user.taking_stars.length %>
       </div>
     </div>
     <br>

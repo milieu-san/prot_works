@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_030312) do
+ActiveRecord::Schema.define(version: 2019_02_20_041216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2019_02_20_030312) do
   end
 
   create_table "stars", force: :cascade do |t|
-    t.integer "give_user_id"
-    t.integer "take_user_id"
+    t.integer "give_user_id", null: false
+    t.integer "take_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["give_user_id", "take_user_id"], name: "index_stars_on_give_user_id_and_take_user_id", unique: true

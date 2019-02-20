@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'homes/index'
   devise_for :users
-  
+
   unauthenticated do
      root to: 'homes#index'
   end
@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   namespace :preview do
     resources :nodes, only: [:index]
   end
+
+  resources :stars, only: [:create, :destroy]
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
