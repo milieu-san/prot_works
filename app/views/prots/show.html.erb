@@ -26,13 +26,14 @@
     </div>
     <br>
   <% end %>
+  writed by <%=link_to @prot.user.nick_name, @prot.user, class: "text-light" %>
+  <br>
 </div>
 
 <br>
-<div class="text-center">
+<div class="text-left">
   <%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
 </div>
-<br>
 <% if @prot.reviews.present? %>
   <div class="circle text-light text-center">
     <br>
