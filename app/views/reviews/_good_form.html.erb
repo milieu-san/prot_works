@@ -1,0 +1,14 @@
+
+<% if current_user.goods.find_by(review_id: review.id) %>
+  <%= link_to good_path(current_user.goods.find_by(review_id: review.id)), method: :delete, remote: true do %>
+    <i class="fa fa-thumbs-up fa-2x" style="color: #3dff1e;"></i>
+  <% end %>
+  <h5><%= review.goods.length %></h5>
+
+<% else %>
+
+  <%= link_to goods_path(review_id: review.id), method: :post, remote: true do %>
+    <i class="fa fa-thumbs-up fa-2x" style="color: white;"></i>
+  <% end %>
+  <h5><%= review.goods.length %></h5>
+<% end %>
