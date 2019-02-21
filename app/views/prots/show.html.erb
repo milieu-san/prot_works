@@ -1,6 +1,18 @@
 <div class="halfCircleBottom text-light text-center">
   <br>
-  <h3><%= @prot.title %></h3>
+  <div class="row">
+    <div class="col-3" id="heart_form">
+      <%= render 'heart_form', prot: @prot %>
+    </div>
+
+    <div class="col-6">
+      <h3><%= @prot.title %></h3>
+    </div>
+
+    <div class="col-3" id="heart_counter">
+      <%= render 'heart_counter', prot: @prot %>
+    </div>
+  </div>
   <br>
   <% unless @prot.content.blank? %>
     <div class="container">

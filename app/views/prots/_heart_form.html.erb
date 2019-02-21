@@ -1,0 +1,12 @@
+
+<% if current_user.hearts.find_by(prot_id: prot.id) %>
+  <%= link_to heart_path(current_user.hearts.find_by(prot_id: prot.id)), method: :delete, remote: true do %>
+    <i class="fa fa-heart fa-2x" style="color: #ff7676;"></i>
+  <% end %>
+
+<% else %>
+
+  <%= link_to hearts_path(prot_id: prot.id), method: :post, remote: true do %>
+    <i class="fa fa-heart fa-2x" style="color: white;"></i>
+  <% end %>
+<% end %>

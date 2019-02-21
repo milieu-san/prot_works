@@ -6,6 +6,10 @@ class User < ApplicationRecord
   has_many :giving_stars, foreign_key: 'give_user_id', class_name: 'Star', dependent: :destroy
   has_many :taking_stars, foreign_key: 'take_user_id', class_name: 'Star', dependent: :destroy
 
+  has_many :hearts
+  has_many :fav_prots, through: :hearts, source: :prot
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,15 +21,4 @@ class User < ApplicationRecord
   validates :nick_name, presence: true, uniqueness: true, length: { maximum: 30 }, format: { with: /\A[a-z0-9]+\z/i }
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
-
-
-  #指定のユーザをフォローする
-  def follow!(other_user)
-    active_relationships.create!(followed_id: other_user.id)
-  end
-
-  #フォローしているかどうかを確認する
-  def following?(other_user)
-    active_relationships.find_by(followed_id: other_user.id)
-  end
 end
