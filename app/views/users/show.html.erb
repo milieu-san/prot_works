@@ -15,8 +15,8 @@
         <br>
       </div>
 
-      <div class="col-3">
-        <%= fa_icon "star" %>　<%= @user.taking_stars.length %>
+      <div class="col-3" id="star_counter_<%= @user.id%>">
+        <%= render 'star_counter', user: @user %>
       </div>
     </div>
     <br>
