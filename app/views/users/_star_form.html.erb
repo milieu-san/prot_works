@@ -4,6 +4,7 @@
     <% end %>
 
   <% else %>
+  
     <%= link_to stars_path(take_user_id: user.id), method: :post, remote: true do %>
       <i class="fa fa-star fa-2x" style="color: white;"></i>
     <% end %>

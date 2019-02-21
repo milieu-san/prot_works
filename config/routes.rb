@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :stars, only: [:create, :destroy]
+  resources :hearts, only: [:create, :destroy]
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"

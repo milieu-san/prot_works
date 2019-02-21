@@ -1,0 +1,3 @@
+$("#heart_form").html("<%= escape_javascript(render partial: 'prots/heart_form', locals: { prot: @prot } ) %>")
+
+$("#heart_counter").html("<%= escape_javascript(render partial: 'prots/heart_counter', locals: { prot: @prot } ) %>")
