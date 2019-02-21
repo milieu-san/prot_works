@@ -17,4 +17,15 @@ class User < ApplicationRecord
   validates :nick_name, presence: true, uniqueness: true, length: { maximum: 30 }, format: { with: /\A[a-z0-9]+\z/i }
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
+
+
+  #指定のユーザをフォローする
+  def follow!(other_user)
+    active_relationships.create!(followed_id: other_user.id)
+  end
+
+  #フォローしているかどうかを確認する
+  def following?(other_user)
+    active_relationships.find_by(followed_id: other_user.id)
+  end
 end

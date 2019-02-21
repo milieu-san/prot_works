@@ -2,16 +2,8 @@
   <div class="halfCircleBottom text-light text-center">
     <br>
     <div class="row">
-      <div class="col-3">
-        <% if star_giving?(@user.id) %>
-          <%= link_to star_path(take_user_id: @user.id), method: :delete do %>
-            <i class="fa fa-star fa-2x" style="color: yellow;"></i>
-          <% end %>
-        <% else %>
-          <%= link_to stars_path(take_user_id: @user.id), method: :post do %>
-            <i class="fa fa-star fa-2x" style="color: white;"></i>
-          <% end %>
-        <% end %>
+      <div class="col-3" id="star_form_<%= @user.id %>">
+        <%= render 'star_form', user: @user %>
       </div>
       <div class="col-6">
         <% if @user.icon.blank? %>
@@ -24,7 +16,7 @@
       </div>
 
       <div class="col-3">
-        <%= fa_icon "star"%>　<%= @user.taking_stars.length %>
+        <%= fa_icon "star" %>　<%= @user.taking_stars.length %>
       </div>
     </div>
     <br>
