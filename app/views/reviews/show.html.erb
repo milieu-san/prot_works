@@ -1,13 +1,17 @@
 <div class="halfCircleBottom text-light text-center">
   <br>
+
   <h5><%= link_to @review.prot.title, prot_path(@review.prot), class: "text-light"%></h5>
   <hr>
   <div class="row">
+    <div class="col-3" id="good_review_form">
+      <%= render 'good_form', review: @review %>
+    </div>
     <div class="col-6">
       <br>
       <h4><%= @review.title %></h4>
     </div>
-    <div class=" offset-3 col-3 text-center">
+    <div class="col-3 text-center">
       <% if @review.user.icon.blank? %>
         <%= image_tag("f_f_object_115_s512_f_object_115_0bg.png", height: 100, width: 100, style: "border-radius: 50%;" ) %>
       <% else %>

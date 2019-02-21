@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :stars, only: [:create, :destroy]
   resources :hearts, only: [:create, :destroy]
+  resources :goods, only: [:create, :destroy]
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
