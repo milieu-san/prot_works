@@ -2,14 +2,21 @@
   <div class="halfCircleBottom text-light text-center">
     <br>
     <div class="row">
-      <div class="col-12">
+      <div class="col-3" id="star_form_<%= @user.id %>">
+        <%= render 'star_form', user: @user %>
+      </div>
+      <div class="col-6">
         <% if @user.icon.blank? %>
-          <%= image_tag("gorilla.jpg", height: 100, width: 100, style: "border-radius: 50%;" ) %>
+          <%= image_tag("f_f_object_115_s512_f_object_115_0bg.png", height: 100, width: 100, style: "border-radius: 50%;" ) %>
         <% else %>
           <%= image_tag @user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
         <% end %>
         <h2><%= @user.nick_name %></h2>
         <br>
+      </div>
+
+      <div class="col-3" id="star_counter_<%= @user.id%>">
+        <%= render 'star_counter', user: @user %>
       </div>
     </div>
     <br>

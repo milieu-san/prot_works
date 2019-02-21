@@ -1,0 +1,10 @@
+  <% if star_giving?(user.id) %>
+    <%= link_to star_path(Star.find_by(give_user_id: current_user.id, take_user_id: user.id)), method: :delete, remote: true do %>
+      <i class="fa fa-star fa-2x" style="color: yellow;"></i>
+    <% end %>
+
+  <% else %>
+    <%= link_to stars_path(take_user_id: user.id), method: :post, remote: true do %>
+      <i class="fa fa-star fa-2x" style="color: white;"></i>
+    <% end %>
+  <% end %>
