@@ -40,10 +40,9 @@
   <br>
 </div>
 <br><br>
-
-<div class="circle text-light">
+<% if @review.comments.length > 1 %>
+  <div class="circle text-light">
   <br>
-  <% if @review.comments.length > 1 %>
     <h5>　　コメント</h5>
     <hr>
     <% @review.comments.includes(:user).each do |comment| %>
@@ -69,8 +68,8 @@
       </div>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <br><br>
 <h5>コメント投稿</h5>
