@@ -13,11 +13,11 @@ class ProtsController < ApplicationController
 
   def new
     @prot = Prot.new
+    @prot.genres.build
   end
 
   def create
     @prot = current_user.prots.new(prot_params)
-    find_already_exist_for_genre
     if @prot.save
       # 要トランザクション
       @prot.nodes.create(title: "#{@prot.title}", body: "本文", position: 0)
@@ -25,19 +25,21 @@ class ProtsController < ApplicationController
       flash[:success] = "プロットの作成に成功しました"
     else
       render :new
+      @prot.genres.build
     end
   end
 
   def edit
+    @prot.genres.build
   end
 
   def update
-    find_already_exist_for_genre
     if @prot.update(prot_params)
       redirect_to @prot
       flash[:success] = "プロットの編集に成功しました"
     else
       render :edit
+      @prot.genres.build
     end
   end
 
@@ -60,7 +62,8 @@ class ProtsController < ApplicationController
           .permit(:title,
                   :content,
                   :private,
-                  :accepts_review)
+                  :accepts_review,
+                  genres_attributes: [:id, :name])
   end
 
   def correct_user_check
@@ -73,17 +76,5 @@ class ProtsController < ApplicationController
 
   def set_prot
     @prot = Prot.find(params[:id])
-  end
-
-  def find_already_exist_for_genre
-    if params[:genre_name]
-      if already_genre = Genre.find_by(name: params[:prot][:genre_name])
-        @prot.prot_genres.build(genre_id: already_genre.id)
-      else
-        @prot.genres.build(name: params[:prot][:genre_name])
-      end
-    else
-      params.delete(:genre_name)
-    end
   end
 end

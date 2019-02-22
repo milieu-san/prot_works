@@ -17,4 +17,14 @@ class Prot < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :private, inclusion: {in: [true, false]}
   validates :accepts_review, inclusion: {in: [true, false]}
+
+  before_save :find_or_create_genre
+
+  private
+
+  def find_or_create_genre
+    self.genres = self.genres.map do |genre|
+      Genre.find_or_create_by(name: genre.name)
+    end
+  end
 end

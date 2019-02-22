@@ -22,19 +22,23 @@
   </div>
   <br>
 
-  <div class="field">
-    <%= f.label "ジャンル" %><br>
-    <%= f.text_field :genre_name , class: "form-control" %>
+  <div id="field_form">
+    <%= f.fields_for :genres do |ff| %>
+      <div class="genre_form">
+        <%= ff.label "ジャンル" %>
+        <%= ff.text_field :name %>
+      </div>
+    <% end %>
   </div>
-
-  <% if prot.genres %>
+  <% if prot.genres.length > 1 %>
+    <br>
     現在のジャンル：
     <% prot.genres.each do |genre| %>
-      <%= link_to genre.name, prot_path(genre_id: genre.id), method: :delete, data: { confirm: "ジャンルを削除します。\n編集中の項目を先に保存してください。"} %>
+      <%= link_to genre.name, prot_path(genre_id: genre.id), method: :delete, data: { confirm: "ジャンルを削除します。\n編集中の項目を先に保存してください。"} if genre.id.present? %>
     <% end %>
+    <br>
+    <br>
   <% end %>
-  <!-- <a class="btn btn-info" id="add_item_button">ラベルを追加する</a> -->
-  <br>
 
   <div class="row">
     <div class="field col-6">
