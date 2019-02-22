@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'prot/search', to: 'prots#search'
+
   namespace :preview do
     resources :nodes, only: [:index]
   end

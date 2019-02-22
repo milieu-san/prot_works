@@ -18,6 +18,54 @@ class Prot < ApplicationRecord
   validates :accepts_review, inclusion: {in: [true, false]}
 
   before_save :find_or_create_genre
+  before_save :find_or_create_media_type
+
+  scope :title_search, ->(search) { where(['title LIKE ?', "%#{search}%"]) if search.present? }
+  scope :genre_search, lambda { |genre|
+    if genre.present?
+      num = []
+      point = Genre.find_by(name: genre)
+      unless point.nil?
+        point.prot_genres.each do |relation|
+          num << relation.prot_id
+        end
+      end
+      where(id: num)
+    end
+  }
+  scope :media_type_search, lambda { |media_type|
+    if media_type.present?
+      number = []
+      point_media = MediaType.find_by(name: media_type)
+      unless point_media.nil?
+        point_media.prot_media_types.each do |relation|
+          number << relation.prot_id
+        end
+      end
+      where(id: number)
+    end
+  }
+  scope :user_search, lambda { |nick_name|
+    if nick_name.present?
+      number_names = []
+      point_name = User.find_by(nick_name: nick_name)
+      unless point_name.nil?
+        point_name.prots.each do |prot|
+          number_names << prot.id
+        end
+      end
+      where(id: number_names)
+    end
+  }
+  scope :heart_order, lambda { |heart|
+    if heart == 'ハートが多い順'
+      includes(:hearts).sort_by { |prot| -prot.hearts.length }
+    elsif heart == 'ハートが少ない順'
+      includes(:hearts).sort_by { |prot| prot.hearts.length }
+    else
+      order(created_at: :desc)
+    end
+  }
 
   private
 

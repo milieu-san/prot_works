@@ -23,6 +23,11 @@
           </li>
         </ul>
         <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to "Search", prot_search_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= current_user.nick_name %>

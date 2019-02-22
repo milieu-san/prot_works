@@ -11,6 +11,20 @@ class ProtsController < ApplicationController
   def show
   end
 
+  def search
+    if params[:prot]
+      @prot = Prot.where(private: false).includes(:user)
+                  .title_search(params[:prot][:title])
+                  .genre_search(params[:prot][:genre])
+                  .media_type_search(params[:prot][:media_type])
+                  .user_search(params[:prot][:nick_name])
+                  .heart_order(params[:prot][:heart])
+    else
+      @prot = Prot.where(private: false).includes(:user)
+    end
+    @form_default = params[:prot]
+  end
+
   def new
     @prot = Prot.new
     set_prot_builds
