@@ -1,5 +1,4 @@
 class Prot < ApplicationRecord
-
   belongs_to :user
   has_many :nodes, dependent: :destroy
   has_many :reviews, dependent: :destroy
@@ -25,6 +24,12 @@ class Prot < ApplicationRecord
   def find_or_create_genre
     self.genres = self.genres.map do |genre|
       Genre.find_or_create_by(name: genre.name)
+    end
+  end
+
+  def find_or_create_media_type
+    self.media_types = self.media_types.map do |genre|
+      MediaType.find_or_create_by(name: genre.name)
     end
   end
 end

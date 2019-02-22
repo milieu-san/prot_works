@@ -30,12 +30,27 @@
           <div class="offset-2">
             ジャンル:　
             <% @prot.genres.each do |genre| %>
-              <%= genre.name %> /
+              <%= genre.name %>　
             <% end %>
           </div>
         </div>
     </div>
   <% end %>
+
+  <% if @prot.media_types.present? %>
+    <hr>
+    <div class="container">
+        <div class="row">
+          <div class="offset-2">
+            メディア:　
+            <% @prot.media_types.each do |media_type| %>
+              <%= media_type.name %>　
+            <% end %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+
     <hr>
   <% if @prot.user_id == current_user.id %>
     <p>private: <%= @prot.private %></p>

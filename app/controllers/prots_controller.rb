@@ -13,7 +13,7 @@ class ProtsController < ApplicationController
 
   def new
     @prot = Prot.new
-    @prot.genres.build
+    set_prot_builds
   end
 
   def create
@@ -25,12 +25,12 @@ class ProtsController < ApplicationController
       flash[:success] = "プロットの作成に成功しました"
     else
       render :new
-      @prot.genres.build
+      set_prot_builds
     end
   end
 
   def edit
-    @prot.genres.build
+    set_prot_builds
   end
 
   def update
@@ -39,7 +39,7 @@ class ProtsController < ApplicationController
       flash[:success] = "プロットの編集に成功しました"
     else
       render :edit
-      @prot.genres.build
+      set_prot_builds
     end
   end
 
@@ -63,7 +63,8 @@ class ProtsController < ApplicationController
                   :content,
                   :private,
                   :accepts_review,
-                  genres_attributes: [:id, :name])
+                  genres_attributes: [:id, :name],
+                  media_types_attributes: [:id, :name])
   end
 
   def correct_user_check
@@ -76,5 +77,10 @@ class ProtsController < ApplicationController
 
   def set_prot
     @prot = Prot.find(params[:id])
+  end
+
+  def set_prot_builds
+    @prot.genres.build
+    @prot.media_types.build
   end
 end
