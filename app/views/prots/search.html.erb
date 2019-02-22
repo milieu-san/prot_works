@@ -41,7 +41,19 @@
 <br>
 <% end %>
 
-<% @prot.includes(:hearts).each do |prot| %>
-  <%= link_to prot.title, prot, class: "text-dark" %>：<%= prot.user.nick_name %> <%= prot.hearts.length %>
+<% @prot.each do |prot| %>
+  「<%= link_to prot.title, prot, class: "text-dark" %>」by <%= link_to prot.user.nick_name, user_path(prot.user), class: "text-dark" %> <%= fa_icon "heart" %> <%= prot.hearts.length %>
+  <% if prot.genres.present? %>
+     　【ジャンル: <% prot.genres.each do |genre| %>
+                  <%= genre.name %>
+                 <% end %>
+          】
+  <% end %>
+  <% if prot.media_types.present? %>
+     　【メディア: <% prot.media_types.each do |media_type| %>
+                  <%= media_type.name %>
+                <% end %>
+          】
+  <% end %>
   <hr>
 <% end %>

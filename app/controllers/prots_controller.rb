@@ -13,14 +13,11 @@ class ProtsController < ApplicationController
 
   def search
     if params[:prot]
-      @prot = Prot.where(private: false).includes(:user)
-                  .title_search(params[:prot][:title])
-                  .genre_search(params[:prot][:genre])
-                  .media_type_search(params[:prot][:media_type])
-                  .user_search(params[:prot][:nick_name])
-                  .heart_order(params[:prot][:heart])
+      @prot = Prot.where(private: false)
+                  .includes_all
+                  .search_order(params[:prot])
     else
-      @prot = Prot.where(private: false).includes(:user)
+      @prot = Prot.where(private: false).includes_all
     end
     @form_default = params[:prot]
   end

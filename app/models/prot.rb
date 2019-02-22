@@ -67,6 +67,23 @@ class Prot < ApplicationRecord
     end
   }
 
+  def self.search_order(prot)
+     title_search(prot[:title])
+    .genre_search(prot[:genre])
+    .media_type_search(prot[:media_type])
+    .user_search(prot[:nick_name])
+    .heart_order(prot[:heart])
+  end
+
+  def self.includes_all
+     includes(:user)
+    .includes(:hearts)
+    .includes(:genres)
+    .includes(:prot_genres)
+    .includes(:media_types)
+    .includes(:prot_media_types)
+  end
+
   private
 
   def find_or_create_genre
