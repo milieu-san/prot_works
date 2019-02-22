@@ -32,9 +32,8 @@ class ProtsController < ApplicationController
   end
 
   def update
-    @prot = current_user.prots.new(prot_params)
     find_already_exist_for_genre
-    if @prot.save
+    if @prot.update(prot_params)
       redirect_to @prot
       flash[:success] = "プロットの編集に成功しました"
     else
@@ -43,9 +42,15 @@ class ProtsController < ApplicationController
   end
 
   def destroy
-    @prot.destroy
-    flash[:success] = 'プロットの削除に成功しました'
-    redirect_to root_path
+    if params[:genre_id]
+      @prot.prot_genres.find_by(genre_id: params[:genre_id]).destroy
+      flash[:success] = 'ジャンルの削除に成功しました'
+      redirect_to edit_prot_path
+    else
+      @prot.destroy
+      flash[:success] = 'プロットの削除に成功しました'
+      redirect_to root_path
+    end
   end
 
   private
@@ -71,10 +76,14 @@ class ProtsController < ApplicationController
   end
 
   def find_already_exist_for_genre
-    if already_genre = Genre.find_by(name: params[:prot][:genre_name])
-      @prot.prot_genres.build(genre_id: already_genre.id)
+    if params[:genre_name]
+      if already_genre = Genre.find_by(name: params[:prot][:genre_name])
+        @prot.prot_genres.build(genre_id: already_genre.id)
+      else
+        @prot.genres.build(name: params[:prot][:genre_name])
+      end
     else
-      @prot.genres.build(name: params[:prot][:genre_name])
+      params.delete(:genre_name)
     end
   end
 end

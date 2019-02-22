@@ -23,6 +23,19 @@
       </div>
     </div>
   <% end %>
+  <% if @prot.genres.present? %>
+    <hr>
+    <div class="container">
+        <div class="row">
+          <div class="offset-2">
+            ジャンル:　
+            <% @prot.genres.each do |genre| %>
+              <%= genre.name %> /
+            <% end %>
+          </div>
+        </div>
+    </div>
+  <% end %>
     <hr>
   <% if @prot.user_id == current_user.id %>
     <p>private: <%= @prot.private %></p>
@@ -34,6 +47,7 @@
   <br><br>
   <% if @prot.user_id == current_user.id %>
     <div class="text-right">
+      <%= link_to "プロット編集", edit_prot_path(@prot), class: "btn btn-success" %>
       <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %> 　　
     </div>
     <br>

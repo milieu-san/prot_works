@@ -23,9 +23,16 @@
   <br>
 
   <div class="field">
-    <%= f.label :genre_name %><br>
+    <%= f.label "ジャンル" %><br>
     <%= f.text_field :genre_name , class: "form-control" %>
   </div>
+
+  <% if prot.genres %>
+    現在のジャンル：
+    <% prot.genres.each do |genre| %>
+      <%= link_to genre.name, prot_path(genre_id: genre.id), method: :delete, data: { confirm: "ジャンルを削除します。\n編集中の項目を先に保存してください。"} %>
+    <% end %>
+  <% end %>
   <!-- <a class="btn btn-info" id="add_item_button">ラベルを追加する</a> -->
   <br>
 
