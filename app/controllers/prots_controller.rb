@@ -5,7 +5,7 @@ class ProtsController < ApplicationController
   before_action :private_prot_protect, only: %i[show edit update destroy]
 
   def index
-    @prots = Prot.all.where(private: false)
+    @prots = Prot.all.where(private: false).includes(:user)
   end
 
   def show
