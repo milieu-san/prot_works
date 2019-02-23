@@ -25,6 +25,12 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'bullet'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem "launchy"
 end
 
 group :development do
