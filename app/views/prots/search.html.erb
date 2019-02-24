@@ -1,0 +1,59 @@
+<%= form_with(model: Prot.new, local: true, method: :get, url: prot_search_path) do |f| %>
+<% @form_default = {title: "", genre: "", media_type: "", heart: "", nick_name: ""} if @form_default.nil? %>
+<br>
+<div class="table-responsive">
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <th>ジャンル</th>
+      <th>メディア</th>
+      <th>ニックネーム</th>
+      <th>ハートで並び替え</th>
+      <th> 　　　　　</th>
+      <th> 　　　　　</th>
+    </tr>
+
+    <tr>
+      <td>
+        <%= f.text_field :title, value: "#{@form_default[:title]}" %>
+      </td>
+      <td>
+        <%= f.text_field :genre, value: "#{@form_default[:genre]}" %>
+      </td>
+      <td>
+        <%= f.text_field :media_type, value: "#{@form_default[:media_type]}" %>
+      </td>
+      <td>
+        <%= f.text_field :nick_name, value: "#{@form_default[:nick_name]}" %>
+      </td>
+      <td>
+        <%= f.select :heart, options_for_select(["ハートが多い順", "ハートが少ない順"], selected: "#{@form_default[:heart]}"), include_blank: true %>
+      </td>
+      <td>
+        <%= f.submit 'Search', :name => nil %>
+      </td>
+      <td>
+        <%= link_to("検索初期化", prot_search_path) %>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+<% end %>
+
+<% @prot.each do |prot| %>
+  「<%= link_to prot.title, prot, class: "text-dark" %>」by <%= link_to prot.user.nick_name, user_path(prot.user), class: "text-dark" %> <%= fa_icon "heart" %> <%= prot.hearts.length %>
+  <% if prot.genres.present? %>
+     　【ジャンル: <% prot.genres.each do |genre| %>
+                  <%= genre.name %>
+                 <% end %>
+          】
+  <% end %>
+  <% if prot.media_types.present? %>
+     　【メディア: <% prot.media_types.each do |media_type| %>
+                  <%= media_type.name %>
+                <% end %>
+          】
+  <% end %>
+  <hr>
+<% end %>

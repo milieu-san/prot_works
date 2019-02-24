@@ -23,6 +23,34 @@
       </div>
     </div>
   <% end %>
+  <% if @prot.genres.present? %>
+    <hr>
+    <div class="container">
+        <div class="row">
+          <div class="offset-2">
+            ジャンル:　
+            <% @prot.genres.each do |genre| %>
+              <%= genre.name %>　
+            <% end %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+
+  <% if @prot.media_types.present? %>
+    <hr>
+    <div class="container">
+        <div class="row">
+          <div class="offset-2">
+            メディア:　
+            <% @prot.media_types.each do |media_type| %>
+              <%= media_type.name %>　
+            <% end %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+
     <hr>
   <% if @prot.user_id == current_user.id %>
     <p>private: <%= @prot.private %></p>
@@ -34,6 +62,7 @@
   <br><br>
   <% if @prot.user_id == current_user.id %>
     <div class="text-right">
+      <%= link_to "プロット編集", edit_prot_path(@prot), class: "btn btn-success" %>
       <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %> 　　
     </div>
     <br>
@@ -53,7 +82,7 @@
     <hr>
     <div class="row">
       <div class="container">
-        <% @prot.reviews.each do |review| %>
+        <% @prot.reviews.includes(:user).each do |review| %>
           <div class="col-lg-3 col-md-6 col-sm-12">
             <%= review.user.nick_name %>
             <div class="card text-white border-dark mb-3" style="max-width: 18rem;">

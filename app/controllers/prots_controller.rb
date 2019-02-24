@@ -5,14 +5,26 @@ class ProtsController < ApplicationController
   before_action :private_prot_protect, only: %i[show edit update destroy]
 
   def index
-    @prots = Prot.all.where(private: false)
+    @prots = Prot.all.where(private: false).includes(:user)
   end
 
   def show
   end
 
+  def search
+    if params[:prot]
+      @prot = Prot.where(private: false)
+                  .includes_all
+                  .search_order(params[:prot])
+    else
+      @prot = Prot.where(private: false).includes_all
+    end
+    @form_default = params[:prot]
+  end
+
   def new
     @prot = Prot.new
+    set_prot_builds
   end
 
   def create
@@ -24,10 +36,12 @@ class ProtsController < ApplicationController
       flash[:success] = "プロットの作成に成功しました"
     else
       render :new
+      set_prot_builds
     end
   end
 
   def edit
+    set_prot_builds
   end
 
   def update
@@ -36,13 +50,20 @@ class ProtsController < ApplicationController
       flash[:success] = "プロットの編集に成功しました"
     else
       render :edit
+      set_prot_builds
     end
   end
 
   def destroy
-    @prot.destroy
-    flash[:success] = 'プロットの削除に成功しました'
-    redirect_to root_path
+    if params[:genre_id]
+      @prot.prot_genres.find_by(genre_id: params[:genre_id]).destroy
+      flash[:success] = 'ジャンルの削除に成功しました'
+      redirect_to edit_prot_path
+    else
+      @prot.destroy
+      flash[:success] = 'プロットの削除に成功しました'
+      redirect_to root_path
+    end
   end
 
   private
@@ -52,7 +73,9 @@ class ProtsController < ApplicationController
           .permit(:title,
                   :content,
                   :private,
-                  :accepts_review)
+                  :accepts_review,
+                  genres_attributes: [:id, :name],
+                  media_types_attributes: [:id, :name])
   end
 
   def correct_user_check
@@ -65,5 +88,10 @@ class ProtsController < ApplicationController
 
   def set_prot
     @prot = Prot.find(params[:id])
+  end
+
+  def set_prot_builds
+    @prot.genres.build
+    @prot.media_types.build
   end
 end

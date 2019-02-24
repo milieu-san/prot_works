@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_21_064029) do
+ActiveRecord::Schema.define(version: 2019_02_22_031609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 2019_02_21_064029) do
     t.datetime "updated_at", null: false
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "goods", force: :cascade do |t|
@@ -45,6 +51,12 @@ ActiveRecord::Schema.define(version: 2019_02_21_064029) do
     t.index ["user_id"], name: "index_hearts_on_user_id"
   end
 
+  create_table "media_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "nodes", force: :cascade do |t|
     t.string "title", default: "new node", null: false
     t.text "body", default: "", null: false
@@ -54,6 +66,24 @@ ActiveRecord::Schema.define(version: 2019_02_21_064029) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prot_id"], name: "index_nodes_on_prot_id"
+  end
+
+  create_table "prot_genres", force: :cascade do |t|
+    t.bigint "prot_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_prot_genres_on_genre_id"
+    t.index ["prot_id"], name: "index_prot_genres_on_prot_id"
+  end
+
+  create_table "prot_media_types", force: :cascade do |t|
+    t.bigint "prot_id", null: false
+    t.bigint "media_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["media_type_id"], name: "index_prot_media_types_on_media_type_id"
+    t.index ["prot_id"], name: "index_prot_media_types_on_prot_id"
   end
 
   create_table "prots", force: :cascade do |t|
@@ -114,6 +144,10 @@ ActiveRecord::Schema.define(version: 2019_02_21_064029) do
   add_foreign_key "goods", "users"
   add_foreign_key "hearts", "prots"
   add_foreign_key "hearts", "users"
+  add_foreign_key "prot_genres", "genres"
+  add_foreign_key "prot_genres", "prots"
+  add_foreign_key "prot_media_types", "media_types"
+  add_foreign_key "prot_media_types", "prots"
   add_foreign_key "prots", "users"
   add_foreign_key "reviews", "prots"
   add_foreign_key "reviews", "users"
