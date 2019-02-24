@@ -5,7 +5,10 @@ class ProtsController < ApplicationController
   before_action :private_prot_protect, only: %i[show edit update destroy]
 
   def index
-    @prots = Prot.all.where(private: false).includes(:user)
+    @prots = Prot.limit(20)
+                 .where(private: false)
+                 .includes_all
+                 .includes(:hearts).sort_by { |prot| -prot.hearts.length }
   end
 
   def show

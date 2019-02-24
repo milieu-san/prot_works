@@ -6,7 +6,7 @@ $ ->
       'state' : { key : "demo2" },
       'data' : {
         'url' : (node) ->
-          return "/preview/nodes.json?prot_id=#{REGISTRY.prot_id}" # GET /categoris.json を実行する
+          return "/preview/nodes.json?prot_id=#{REGISTRY.prot_id}"
       }
     },
     "plugins" : [ "state" ]

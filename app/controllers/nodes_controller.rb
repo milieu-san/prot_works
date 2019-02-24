@@ -1,4 +1,5 @@
 class NodesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_node, only: [:show, :edit, :update, :destroy]
   before_action :author_check
 
