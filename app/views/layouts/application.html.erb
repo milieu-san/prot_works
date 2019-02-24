@@ -32,6 +32,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <%= link_to "Mypage", mypage_path, class: "dropdown-item" %>
+              <%= link_to "edit pass and mail", edit_user_registration_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
