@@ -1,4 +1,4 @@
-<div id="wrapper">
+
 <br>
   <h1>Prot Pickup!</h1>
 
@@ -7,7 +7,7 @@
     <br>
     <% @prots.each do |prot| %>
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <%= prot.user.nick_name %>
+        <%= link_to prot.user.nick_name, prot.user, class: "text-dark" %>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
           <div class="card-body">
             <%= link_to prot.title, prot , class: "text-dark" %>
@@ -18,8 +18,5 @@
     <br>
   </div>
 
-</div>
-
-<div class="halfCircle">
-
-</div>
+<br><br><br><br><br><br>
+<div class="halfCircle"></div>
