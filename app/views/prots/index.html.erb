@@ -10,7 +10,23 @@
         <%= link_to prot.user.nick_name, prot.user, class: "text-dark" %>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
           <div class="card-body">
-            <%= link_to prot.title, prot , class: "text-dark" %>
+            <%= link_to prot.title, prot , class: "text-dark" %> <%= fa_icon "comments" if prot.accepts_review %>
+            <br>
+            <%= fa_icon "heart" %> <%= prot.hearts.length %>
+            <% if prot.genres.present? %>
+            <br>
+               【ジャンル: <% prot.genres.each do |genre| %>
+                            <%= genre.name %>
+                           <% end %>
+                    】
+            <% end %>
+            <% if prot.media_types.present? %>
+            <br>
+               【メディア: <% prot.media_types.each do |media_type| %>
+                            <%= media_type.name %>
+                          <% end %>
+                    】
+            <% end %>
           </div>
         </div>
       </div>

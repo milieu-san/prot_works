@@ -31,8 +31,13 @@
       <div class="row">
         <% current_user.prots.each do |prot| %>
           <div class="col-lg-3 col-sm-12 col-md-6">
+            <%= fa_icon "lock" if prot.private %>
+            <%= fa_icon "comments" if prot.accepts_review %><br>
+
             <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header"><%= link_to prot.title, prot ,class: "text-secondary" %></div>
+              <div class="card-header">
+                <%= link_to prot.title, prot ,class: "text-secondary" %>
+              </div>
               <div class="card-body">
                   <%= link_to "Edit Prot", edit_prot_path(prot), class: "btn btn-success" %>
                   <%= link_to "Edit Node", prot_nodes_path(prot), class: "btn btn-info" %>

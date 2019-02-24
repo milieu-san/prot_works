@@ -42,6 +42,7 @@
 <% end %>
 
 <% @prot.each do |prot| %>
+  <%= fa_icon "comments" if prot.accepts_review %>
   「<%= link_to prot.title, prot, class: "text-dark" %>」by <%= link_to prot.user.nick_name, user_path(prot.user), class: "text-dark" %> <%= fa_icon "heart" %> <%= prot.hearts.length %>
   <% if prot.genres.present? %>
      　【ジャンル: <% prot.genres.each do |genre| %>
