@@ -8,13 +8,6 @@ class CommentsController < ApplicationController
       redirect_to prot_review_path(Review.find(@comment.review_id).prot_id, @comment.review_id)
       flash[:danger] = "コメントを投稿できませんでした"
     end
-
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private
