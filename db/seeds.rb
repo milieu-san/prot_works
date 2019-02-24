@@ -49,7 +49,7 @@ super_momotaro.genres.create(name: "活劇")
 super_momotaro.media_types.create(name: "絵本")
 
 
-momotaro.nodes.create(title: "桃太郎",
+momonode = momotaro.nodes.create(title: "桃太郎",
                       body: "本文",
                       position: 0)
 
@@ -76,3 +76,27 @@ momoreview = momotaro.reviews.create(title: "hogehogeについて",
 momoreview.comments.create(body: "コメントありがとうございます！
                                   \nたしかに！ と思ったので参考にさせていただきます！",
                           user_id: taro.id)
+
+Node.create(title: "起",
+            body: "おばあさんが川で洗濯をしていると桃が流れてきました。\r\n桃を割ると、中から男の子が現れました。\r\n男の子は自らを桃太郎を名乗りました。",
+            position: 0,
+            parent_id: momonode.id,
+            prot_id: momotaro.id)
+
+Node.create(title: "承",
+            body: "桃太郎は鬼を退治すると言いました。\r\n道中、犬とサルとキジに出会いました。\r\nきびだんごをあげると鬼退治に付き合ってくれました。",
+            position: 1,
+            parent_id: momonode.id,
+            prot_id: momotaro.id)
+
+Node.create(title: "転",
+            body: "鬼ヶ島につきました。\r\nやっとの思いで鬼を倒しました",
+            position: 2,
+            parent_id: momonode.id,
+            prot_id: momotaro.id)
+
+Node.create(title: "結",
+            body: "鬼が盗んだ宝物を村に返しました。\r\nおじいさんとおばあさんと幸せに暮らしました。",
+            position: 3,
+            parent_id: momonode.id,
+            prot_id: momotaro.id)
