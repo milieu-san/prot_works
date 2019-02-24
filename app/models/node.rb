@@ -2,9 +2,6 @@ class Node < ApplicationRecord
   belongs_to :prot
   has_many :nodes, class_name: "Node", foreign_key: "parent_id", dependent: :destroy
 
-  # ルートノードに移動させた場合は、parent_id は "#"になるので、
-  # ルートに移動させる move_to_root メソッドを呼ぶ
-  # 親ノードがある場合は、parent_id を 更新する
   def parent_id=(parent_id)
     if parent_id == '#'
       update(parent_id: nil)

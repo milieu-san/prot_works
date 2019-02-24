@@ -14,6 +14,7 @@ class Prot < ApplicationRecord
   accepts_nested_attributes_for :media_types, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
 
   validates :title, presence: true, length: { maximum: 255 }
+  validates :content, length: { maximum: 65535 }
   validates :private, inclusion: {in: [true, false]}
   validates :accepts_review, inclusion: {in: [true, false]}
 
