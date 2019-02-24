@@ -10,7 +10,7 @@ $ ->
       'state' : { key : "demo2" },
       'data' : {
         'url' : (node) ->
-          return "/prots/#{REGISTRY.prot_id}/nodes.json" # GET /categoris.json を実行する
+          return "/prots/#{REGISTRY.prot_id}/nodes.json"
       }
     },
     "plugins" : [ "dnd", "state" ]
@@ -51,7 +51,7 @@ $ ->
     parent_id     = node.parent
     new_position  = node.position
 
-    # PATCH /categories/id.json
+    # PATCH /nodes/id.json
     $.ajax({
       'type'    : 'PATCH',
       'data'    : { 'node' : { 'parent_id' : parent_id, 'new_position' : new_position } },
@@ -67,7 +67,7 @@ $ ->
     selected = selected[0]
     prot_id = REGISTRY.prot_id
 
-    # POST /categories.json
+    # POST /nodes.json
     $.ajax({
       'type'    : 'POST',
       'data'    : { 'node' : { 'title' : 'New node', 'parent_id' : selected , 'prot_id' : prot_id , 'new_position' : 0 , 'body' : "本文だよ" } },
@@ -93,7 +93,7 @@ $ ->
     id           = obj.node.id
     renamed_name = obj.text
 
-    # PATCH /categories/id.json
+    # PATCH /nodes/id.json
     $.ajax({
       'type'    : 'PATCH',
       'data'    : { 'node' : { 'title' : renamed_name } },
@@ -111,7 +111,7 @@ $ ->
     id = selected
 
     conf = (confirm('*注意！*\nノードを削除すると、子供のノードも全て消えてしまいます！\nそれでもよろしいですか？'))
-    # DELETE /categories/id.json
+    # DELETE /nodes/id.json
     if conf == true
       $.ajax({
         'type'    : 'DELETE',
