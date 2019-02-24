@@ -29,7 +29,7 @@
     <br>
     <div class="container">
       <div class="row">
-        <% current_user.prots.each do |prot| %>
+        <% current_user.prots.includes(:hearts).each do |prot| %>
           <div class="col-lg-3 col-sm-12 col-md-6">
             <%= fa_icon "lock" if prot.private %>
             <%= fa_icon "comments" if prot.accepts_review %><br>
@@ -37,6 +37,9 @@
             <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
               <div class="card-header">
                 <%= link_to prot.title, prot ,class: "text-secondary" %>
+                <div class="text-right text-dark">
+                  <%= fa_icon "heart" %> <%= prot.hearts.length %>
+                </div>
               </div>
               <div class="card-body">
                   <%= link_to "Edit Prot", edit_prot_path(prot), class: "btn btn-success" %>
@@ -56,10 +59,15 @@
     <hr>
     <div class="container">
       <div class="row">
-        <% current_user.reviews.each do |review| %>
+        <% current_user.reviews.includes(:goods).each do |review| %>
           <div class="col-lg-3 col-sm-12 col-md-6">
             <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header"><%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %></div>
+              <div class="card-header">
+                <%= link_to review.title, prot_review_path(review.prot_id, review) ,class: "text-secondary" %>
+                <div class="text-dark text-right">
+                  <%= fa_icon "thumbs-up" %> <%= review.goods.length %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
