@@ -6,7 +6,7 @@ $ ->
   $('#jstree_nodes').jstree({
     'core' : {
       'check_callback' : true,
-      "themes" : { "theme" : "default-dark","icons" : false },
+      "themes" : { "theme" : "default","icons" : false },
       'state' : { key : "demo2" },
       'data' : {
         'url' : (node) ->
