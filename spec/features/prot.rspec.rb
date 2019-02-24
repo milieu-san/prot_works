@@ -3,8 +3,8 @@ require 'rails_helper'
 
 RSpec.feature 'プロット機能', type: :feature do
   background do
-    user = FactoryBot.create(:user)
-    user_2 = FactoryBot.create(:not_john)
+    user = FactoryBot.create(:taro)
+    user_2 = FactoryBot.create(:ziro)
     FactoryBot.create(:prot, user_id: user.id)
   end
 
