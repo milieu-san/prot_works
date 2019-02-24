@@ -6,6 +6,8 @@ ja:
       node: "ノード"
       review: "レビュー"
       comment: "コメント"
+      genre: "ジャンル"
+      media_type: "公開メディア"
     attributes:
       prot:
         title: "タイトル"
@@ -31,3 +33,8 @@ ja:
         content: "本文"
       comment:
         body: "本文"
+      genre:
+        name: "ジャンル名"
+      media_type:
+        name: "メディア名"
+        
