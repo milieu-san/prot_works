@@ -21,7 +21,6 @@ RSpec.feature 'ユーザー機能', type: :feature do
     fill_in 'パスワード', with: 'subrosubro'
     fill_in '確認用パスワード', with: 'subrosubro'
 
-    # 保留
     expect { click_button 'Sign up' }.to change { ActionMailer::Base.deliveries.size }.by(1)
     expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください'
 
@@ -35,5 +34,14 @@ RSpec.feature 'ユーザー機能', type: :feature do
     fill_in 'メールアドレス', with: 'subro@subro.com'
     fill_in 'パスワード', with: 'subrosubro'
     click_button 'Log in'
+  end
+
+  scenario 'ログインテスト' do
+    visit '/users/sign_in'
+    fill_in 'メールアドレス', with: 'taro@taro.com'
+    fill_in 'パスワード', with: 'tarotarotaro'
+    click_button 'Log in'
+    expect(page).to have_content 'ログインしました。'
+    expect(page).to have_content 'taro'
   end
 end
