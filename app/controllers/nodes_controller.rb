@@ -29,11 +29,10 @@ class NodesController < ApplicationController
   # POST /nodes.json
   def create
     @prot = Prot.find(params[:prot_id])
-    @node = @prot.nodes.build(node_params)
-
+    @node = @prot.nodes.build(title: "ルートノード", body: "本文", position: 0)
     respond_to do |format|
       if @node.save
-        format.html { redirect_to prot_node_path(@prot,@node), notice: 'Node was successfully created.' }
+        format.html { redirect_to prot_nodes_path(@prot), notice: 'ルートノードを作成しました' }
         format.json { render :show, status: :created, location: [@prot, @node] }
       else
         format.html { render :new }
