@@ -17,6 +17,8 @@
         <% else %>
           <%= image_tag current_user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
         <% end %>
+        <br>
+        <%= fa_icon "star" %> <%= current_user.taking_stars.length %>
       </div>
     </div>
   </div>
