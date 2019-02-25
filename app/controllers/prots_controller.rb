@@ -98,7 +98,7 @@ class ProtsController < ApplicationController
   end
 
   def set_prot_builds
-    @prot.genres.build
-    @prot.media_types.build
+    @prot.genres.build if @prot.genres.blank?
+    @prot.media_types.build if @prot.media_types.blank?
   end
 end

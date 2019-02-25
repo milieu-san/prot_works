@@ -30,7 +30,6 @@
       </div>
     <% end %>
   </div>
-  <% if prot.genres.length > 1 %>
     <br>
     現在のジャンル：
     <% prot.genres.each do |genre| %>
@@ -38,7 +37,6 @@
     <% end %>
     <br>
     <br>
-  <% end %>
 
   <div class="field">
     <%= f.fields_for :media_types do |ff| %>
@@ -48,15 +46,13 @@
       </div>
     <% end %>
   </div>
-  <% if prot.media_types.length > 1 %>
     <br>
-    現在のジャンル：
+    現在の公開メディア：
     <% prot.media_types.each do |media_type| %>
       <%= link_to media_type.name, prot_path(media_type_id: media_type.id), method: :delete, data: { confirm: "想定メディアを削除します。\n編集中の項目を先に保存してください。"} if media_type.id.present? %>
     <% end %>
     <br>
     <br>
-  <% end %>
 
   <div class="row">
     <div class="field col-6">
