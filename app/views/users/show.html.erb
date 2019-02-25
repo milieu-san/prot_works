@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="container">
-      <%= paginate @prots %>
+      <%= paginate @prots, param_name: :page_1 %>
     </div>
   </div>
   <br>
@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="container">
-          <%= paginate @reviews %>
+          <%= paginate @reviews, param_name: :page_2 %>
         </div>
       </div>
     <% end %>

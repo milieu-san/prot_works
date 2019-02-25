@@ -6,13 +6,19 @@ class UsersController < ApplicationController
     @prots = @user.prots
                   .includes(:hearts)
                   .where.not(private: true)
-                  .page(params[:page]).per(20)
+                  .page(params[:page_1]).per(20)
     @reviews = @user.reviews
                     .includes(:goods)
-                    .page(params[:page]).per(20)
+                    .page(params[:page_2]).per(20)
   end
 
   def mypage
+    @prots = current_user.prots
+                         .includes(:hearts)
+                         .page(params[:page_1]).per(20)
+    @reviews = current_user.reviews
+                           .includes(:goods)
+                           .page(params[:page_2]).per(20)
   end
 
   def edit
