@@ -12,6 +12,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params) if @comment.user == current_user
+    redirect_to prot_review_path(params[:prot_id], @comment.review.id), notice: "コメントを編集しました"
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy if @comment.user == current_user
+    redirect_to prot_review_path(params[:prot_id], @comment.review.id), notice: "コメントを削除しました"
+  end
+
   private
 
   def comment_params

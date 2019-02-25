@@ -49,7 +49,8 @@
       <% unless comment.body.blank? %>
       <div class="container">
         <div class="row">
-          <div class="offset-1 col-1 align-self-center">
+
+          <div class="offset-1 col-1 align-self-center text-center">
             <% if comment.user.icon.blank? %>
               <%= image_tag("f_f_object_115_s512_f_object_115_0bg.png", height: 70, width: 70, style: "border-radius: 50%;" ) %>
             <% else %>
@@ -60,11 +61,47 @@
 
           <div class="col-9">
             <div class="balloon1-left">
-              <p style="word-wrap: break-word; white-space: pre-wrap;"><%= comment.body %></p>
+              <p style="word-wrap: break-word; white-space: pre-wrap;" id="comment_body_<%= comment.id %>"><%= comment.body %></p>
+              <div id="comment_edit_<%= comment.id %>" style="display: none;">
+                <%= form_with(model: comment, local: true, url: prot_review_comment_path(params[:prot_id], params[:id],comment.id) ) do |f| %>
+                  <% if comment.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(comment.errors.count, "error") %>件のエラーがあります</h2>
+
+                      <ul>
+                      <% comment.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+
+                  <div class="field">
+                    <%= f.text_area :body, class: "form-control" %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.hidden_field :review_id, value: params[:id],class: "form-control" %>
+                  </div>
+                  <br>
+                  <div class="actions">
+                    <%= f.submit class: "btn btn-success", value: "投稿する" %>
+                  </div>
+                <% end %>
+
+              </div>
             </div>
           </div>
-        </div>
 
+          <div class="col-1 align-self-center text-center">
+            <% if comment.user == current_user %>
+              <button type="button" id="comment_edit_form_<%= comment.id %>" value="<%= comment.id %>" class="btn btn-success btn-sm">編集</button>
+              <button type="button" id="comment_cancel_form_<%= comment.id %>" value="<%= comment.id %>" class="btn btn-warning btn-sm" style="display: none;">中止</button>
+              <%= link_to "削除", prot_review_comment_path(params[:prot_id], @review.id, comment.id), method: :delete, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </div>
+
+        </div>
       </div>
       <% end %>
     <% end %>

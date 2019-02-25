@@ -4,6 +4,7 @@
     REGISTRY = { prot_id: "<%= @prot.id %>" }
   </script>
   <h3><%= @prot.title %></h3>
+  <%= link_to "add Root", prot_nodes_path(@prot, @prot.nodes.new), method: :POST, class: "btn btn-outline-success"%>
     <hr>
     <br>
   <div class="row">
@@ -31,7 +32,7 @@
               <%= form_with(model: @node, local: true, url: prot_node_path(@node.id, @prot.id)) do |f| %>
                 <% if @node.errors.any? %>
                   <div id="error_explanation">
-                    <h2><%= pluralize(@node.errors.count, "error") %> prohibited this node from being saved:</h2>
+                    <h2><%= pluralize(@node.errors.count, "error") %> 件のエラーがあります</h2>
 
                     <ul>
                     <% @node.errors.full_messages.each do |message| %>
