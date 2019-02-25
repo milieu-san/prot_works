@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class NodesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_node, only: [:show, :edit, :update, :destroy]
+  before_action :set_node, only: %i[show edit update destroy]
   before_action :author_check
 
   # GET /nodes
@@ -13,8 +15,7 @@ class NodesController < ApplicationController
 
   # GET /nodes/1
   # GET /nodes/1.json
-  def show
-  end
+  def show; end
 
   # GET /nodes/new
   def new
@@ -22,14 +23,13 @@ class NodesController < ApplicationController
   end
 
   # GET /nodes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /nodes
   # POST /nodes.json
   def create
     @prot = Prot.find(params[:prot_id])
-    @node = @prot.nodes.build(title: "ルートノード", body: "本文", position: 0)
+    @node = @prot.nodes.build(title: 'ルートノード', body: '本文', position: 0)
     respond_to do |format|
       if @node.save
         format.html { redirect_to prot_nodes_path(@prot), notice: 'ルートノードを作成しました' }

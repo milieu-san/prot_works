@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Genre < ApplicationRecord
   has_many :prot_genres, dependent: :destroy
   has_many :prots, through: :prot_genres

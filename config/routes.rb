@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'homes/index'
   devise_for :users
 
   unauthenticated do
-     root to: 'homes#index'
+    root to: 'homes#index'
   end
 
   authenticated do
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
   resources :prots do
     resources :nodes
     resources :reviews do
-      resources :comments
+      resources :comments, only: %i[crete update destroy]
     end
   end
 
@@ -29,11 +31,9 @@ Rails.application.routes.draw do
     resources :nodes, only: [:index]
   end
 
-  resources :stars, only: [:create, :destroy]
-  resources :hearts, only: [:create, :destroy]
-  resources :goods, only: [:create, :destroy]
+  resources :stars, only: %i[create destroy]
+  resources :hearts, only: %i[create destroy]
+  resources :goods, only: %i[create destroy]
 
-  if Rails.env.development?
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

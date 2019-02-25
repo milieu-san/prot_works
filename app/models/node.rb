@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Node < ApplicationRecord
   belongs_to :prot
-  has_many :nodes, class_name: "Node", foreign_key: "parent_id", dependent: :destroy
+  has_many :nodes, class_name: 'Node', foreign_key: 'parent_id', dependent: :destroy
 
   def parent_id=(parent_id)
     if parent_id == '#'
