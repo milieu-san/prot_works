@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
 
   def show
     @comment = @review.comments.new(user_id: current_user.id)
+    @comments = @review.comments if @review.comments.length > 1
   end
 
   def new
