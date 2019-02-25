@@ -16,7 +16,6 @@ $ ->
     "plugins" : [ "dnd", "state" ]
   })
 
-
   # editをクリックしたらnodeのjsonデータを持ってくるところまで成功
   $('#edit_node').on 'click', ->
     $('#show_node').hide()
@@ -58,7 +57,6 @@ $ ->
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
     })
 
-
   # 選択されているノードの子として新しいノードを作成する
   $('#make_node').on 'click', ->
     jstree = $('#jstree_nodes').jstree(true)
@@ -77,7 +75,6 @@ $ ->
         jstree.edit(selected) if (selected)
     })
 
-
   # 選択されているノードの名前を変更する
   $('#rename_node').on 'click', ->
     jstree = $('#jstree_nodes').jstree(true)
@@ -86,7 +83,6 @@ $ ->
 
     selected = selected[0]
     jstree.edit(selected);
-
 
   # ノードの名前の変更が確定されたときに呼ばれるイベント
   $('#jstree_nodes').on 'rename_node.jstree', (e, obj) ->
@@ -99,7 +95,6 @@ $ ->
       'data'    : { 'node' : { 'title' : renamed_name } },
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
     })
-
 
   # 選択されているノードを削除する
   $('#delete_node').on 'click', ->
