@@ -61,10 +61,23 @@ class Prot < ApplicationRecord
     end
   }
   scope :heart_order, lambda { |heart|
+  #   if heart == 'ハートが多い順'
+  #     includes(:hearts).order { |prot| -prot.hearts.length }
+  #   elsif heart == 'ハートが少ない順'
+  #     includes(:hearts).order{ |prot| prot.hearts.length }
+  #   else
+  #     order(created_at: :desc)
+  #   end
     if heart == 'ハートが多い順'
-      includes(:hearts).sort_by { |prot| -prot.hearts.length }
+      Prot.select('prots.*', 'count(hearts.id) AS favs')
+          .left_joins(:hearts)
+          .group('prots.id')
+          .order('favs desc')
     elsif heart == 'ハートが少ない順'
-      includes(:hearts).sort_by { |prot| prot.hearts.length }
+      Prot.select('prots.*', 'count(hearts.id) AS favs')
+          .left_joins(:hearts)
+          .group('prots.id')
+          .order('favs asc')
     else
       order(created_at: :desc)
     end
@@ -75,7 +88,7 @@ class Prot < ApplicationRecord
       .genre_search(prot[:genre])
       .media_type_search(prot[:media_type])
       .user_search(prot[:nick_name])
-      .heart_order(prot[:heart])
+      .heart_order(prot[:heart_s])
   end
 
   def self.includes_all
