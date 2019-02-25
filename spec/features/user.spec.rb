@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -8,7 +9,6 @@ RSpec.feature 'ユーザー機能', type: :feature do
     FactoryBot.create(:prot, user_id: user.id)
     FactoryBot.create(:second_prot, user_id: user.id)
     FactoryBot.create(:third_prot, user_id: user_2.id)
-
   end
 
   scenario 'サインアップテスト' do

@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class StarsController < ApplicationController
   before_action :authenticate_user!
   respond_to? :js
 
-
   def create
-    @star = Star.create(give_user_id: current_user.id, take_user_id: params[:take_user_id] )
+    @star = Star.create(give_user_id: current_user.id, take_user_id: params[:take_user_id])
     @user = User.find(params[:take_user_id])
     @user
   end

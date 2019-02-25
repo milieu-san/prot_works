@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProtsController < ApplicationController
   before_action :set_prot, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index]
@@ -11,20 +13,19 @@ class ProtsController < ApplicationController
                  .includes(:hearts).sort_by { |prot| -prot.hearts.length }
   end
 
-  def show
-  end
+  def show; end
 
   def search
-    if params[:prot]
-      @prots = Prot.where(private: false)
-                  .includes_all
-                  .search_order(params[:prot])
-                  .page(params[:page]).per(50)
-    else
-      @prots = Prot.where(private: false)
-                  .includes_all
-                  .page(params[:page]).per(50)
-    end
+    @prots = if params[:prot]
+               Prot.where(private: false)
+                   .includes_all
+                   .search_order(params[:prot])
+                   .page(params[:page]).per(50)
+             else
+               Prot.where(private: false)
+                   .includes_all
+                   .page(params[:page]).per(50)
+             end
     @form_default = params[:prot]
   end
 
@@ -37,9 +38,9 @@ class ProtsController < ApplicationController
     @prot = current_user.prots.new(prot_params)
     if @prot.save
       # 要トランザクション
-      @prot.nodes.create(title: "#{@prot.title}", body: "本文", position: 0)
+      @prot.nodes.create(title: @prot.title.to_s, body: '本文', position: 0)
       redirect_to @prot
-      flash[:success] = "プロットの作成に成功しました"
+      flash[:success] = 'プロットの作成に成功しました'
     else
       render :new
       set_prot_builds
@@ -53,7 +54,7 @@ class ProtsController < ApplicationController
   def update
     if @prot.update(prot_params)
       redirect_to @prot
-      flash[:success] = "プロットの編集に成功しました"
+      flash[:success] = 'プロットの編集に成功しました'
     else
       render :edit
       set_prot_builds
@@ -80,8 +81,8 @@ class ProtsController < ApplicationController
                   :content,
                   :private,
                   :accepts_review,
-                  genres_attributes: [:id, :name],
-                  media_types_attributes: [:id, :name])
+                  genres_attributes: %i[id name],
+                  media_types_attributes: %i[id name])
   end
 
   def correct_user_check

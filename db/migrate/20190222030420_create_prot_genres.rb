@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProtGenres < ActiveRecord::Migration[5.2]
   def change
     create_table :prot_genres do |t|

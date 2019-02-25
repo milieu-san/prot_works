@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProtMediaTypes < ActiveRecord::Migration[5.2]
   def change
     create_table :prot_media_types do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
@@ -21,8 +23,7 @@ class UsersController < ApplicationController
                            .page(params[:page_2]).per(20)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if current_user.update(user_params)

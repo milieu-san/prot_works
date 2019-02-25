@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ReviewsHelper
   def choose_new_or_edit
     if action_name == 'new'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 json.array!(@nodes) do |node|
   json.id     node.id.to_s

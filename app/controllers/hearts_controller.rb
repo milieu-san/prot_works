@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HeartsController < ApplicationController
   before_action :authenticate_user!
   respond_to? :js

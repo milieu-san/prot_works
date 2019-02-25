@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Preview::NodesController < ApplicationController
   before_action :private_protect
   # GET /nodes
@@ -8,7 +10,7 @@ class Preview::NodesController < ApplicationController
   end
 
   private
-  
+
   def private_protect
     prot = Prot.find(params[:prot_id])
     raise StandardError if prot.private == true && prot.user_id != current_user.id
