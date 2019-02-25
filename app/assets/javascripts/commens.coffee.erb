@@ -1,0 +1,14 @@
+$ ->
+  $('[id^=comment_edit_form_]').on 'click', ->
+    comment_id = $(this).val()
+    $('#comment_body_' + comment_id).hide()
+    $('#comment_edit_' + comment_id).show()
+    $('#comment_cancel_form_' + comment_id).show()
+    $(this).hide()
+
+  $('[id^=comment_cancel_form_]').on 'click', ->
+    comment_id = $(this).val()
+    $('#comment_edit_' + comment_id).hide()
+    $('#comment_body_' + comment_id).show()
+    $('#comment_edit_form_' + comment_id).show()
+    $(this).hide()
