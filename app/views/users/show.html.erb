@@ -35,7 +35,7 @@
     <br>
     <div class="container">
       <div class="row">
-        <% @user.prots.includes(:hearts).each do |prot| %>
+        <% @prots.each do |prot| %>
           <% if prot.private == false %>
             <div class="col-lg-3 col-sm-12 col-md-6">
               <%= fa_icon "comments" if prot.accepts_review %><br>
@@ -50,6 +50,9 @@
         <% end %>
       </div>
     </div>
+    <div class="container">
+      <%= paginate @prots %>
+    </div>
   </div>
   <br>
     <% if @user.reviews.present? %>
@@ -59,7 +62,7 @@
         <hr>
         <div class="container">
           <div class="row">
-            <% @user.reviews.includes(:goods).each do |review| %>
+            <% @reviews.each do |review| %>
               <div class="col-lg-3 col-sm-12 col-md-6">
                 <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
                   <div class="card-header">
@@ -72,6 +75,9 @@
               </div>
             <% end %>
           </div>
+        </div>
+        <div class="container">
+          <%= paginate @reviews %>
         </div>
       </div>
     <% end %>
