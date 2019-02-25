@@ -17,6 +17,8 @@
         <% else %>
           <%= image_tag current_user.icon.url, height: 100, width: 100, style: "border-radius: 50%;" %>
         <% end %>
+        <br>
+        <%= fa_icon "star" %> <%= current_user.taking_stars.length %>
       </div>
     </div>
   </div>
@@ -29,7 +31,7 @@
     <br>
     <div class="container">
       <div class="row">
-        <% current_user.prots.includes(:hearts).each do |prot| %>
+        <% @prots.each do |prot| %>
           <div class="col-lg-3 col-sm-12 col-md-6">
             <%= fa_icon "lock" if prot.private %>
             <%= fa_icon "comments" if prot.accepts_review %><br>
@@ -50,6 +52,9 @@
         <% end %>
       </div>
     </div>
+    <div class="container">
+      <%= paginate @prots, param_name: :page_1 %>
+    </div>
   </div>
   <br>
   <% if current_user.reviews.present? %>
@@ -59,7 +64,7 @@
     <hr>
     <div class="container">
       <div class="row">
-        <% current_user.reviews.includes(:goods).each do |review| %>
+        <% @reviews.each do |review| %>
           <div class="col-lg-3 col-sm-12 col-md-6">
             <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
               <div class="card-header">
@@ -72,6 +77,9 @@
           </div>
         <% end %>
       </div>
+    </div>
+    <div class="container">
+      <%= paginate @reviews, param_name: :page_2 %>
     </div>
   </div>
   <% end %>

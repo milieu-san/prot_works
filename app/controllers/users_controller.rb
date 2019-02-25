@@ -3,9 +3,22 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @prots = @user.prots
+                  .includes(:hearts)
+                  .where.not(private: true)
+                  .page(params[:page_1]).per(20)
+    @reviews = @user.reviews
+                    .includes(:goods)
+                    .page(params[:page_2]).per(20)
   end
 
   def mypage
+    @prots = current_user.prots
+                         .includes(:hearts)
+                         .page(params[:page_1]).per(20)
+    @reviews = current_user.reviews
+                           .includes(:goods)
+                           .page(params[:page_2]).per(20)
   end
 
   def edit

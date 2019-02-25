@@ -11,6 +11,10 @@ class ReviewsController < ApplicationController
 
   def show
     @comment = @review.comments.new(user_id: current_user.id)
+    @comments = @review.comments
+                       .includes(:user)
+                       .order(created_at: :desc)
+                       .page(params[:page]).per(20)
   end
 
   def new

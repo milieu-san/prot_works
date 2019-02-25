@@ -16,11 +16,14 @@ class ProtsController < ApplicationController
 
   def search
     if params[:prot]
-      @prot = Prot.where(private: false)
+      @prots = Prot.where(private: false)
                   .includes_all
                   .search_order(params[:prot])
+                  .page(params[:page]).per(50)
     else
-      @prot = Prot.where(private: false).includes_all
+      @prots = Prot.where(private: false)
+                  .includes_all
+                  .page(params[:page]).per(50)
     end
     @form_default = params[:prot]
   end
