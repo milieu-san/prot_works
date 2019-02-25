@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :prots do
     resources :nodes
     resources :reviews do
-      resources :comments
+      resources :comments, only: %i[crete update destroy]
     end
   end
 
