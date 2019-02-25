@@ -22,41 +22,53 @@
   </div>
   <br>
 
-  <div id="field_form">
-    <%= f.fields_for :genres do |ff| %>
-      <div class="genre_form">
-        <%= ff.label :name %>
-        <%= ff.text_field :name %>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="col-2">
+      ジャンル名：
+      <br>
+      <br>
+      <button type="button" id="add_genre_form" class="btn btn-info">フォーム追加</button>
+    </div>
+    <div id="field_genre_form" class="col-4">
+      <%= f.fields_for :genres do |ff| %>
+        <div class="genre_form">
+          <%= ff.text_field :name %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <% if prot.genres.length > 1 %>
-    <br>
-    現在のジャンル：
-    <% prot.genres.each do |genre| %>
-      <%= link_to genre.name, prot_path(genre_id: genre.id), method: :delete, data: { confirm: "ジャンルを削除します。\n編集中の項目を先に保存してください。"} if genre.id.present? %>
-    <% end %>
-    <br>
-    <br>
-  <% end %>
 
-  <div class="field">
-    <%= f.fields_for :media_types do |ff| %>
-      <div class="media_types_form">
-        <%= ff.label "公開想定メディア" %>
-        <%= ff.text_field :name %>
-      </div>
-    <% end %>
-  </div>
-  <% if prot.media_types.length > 1 %>
-    <br>
-    現在のジャンル：
-    <% prot.media_types.each do |media_type| %>
-      <%= link_to media_type.name, prot_path(media_type_id: media_type.id), method: :delete, data: { confirm: "想定メディアを削除します。\n編集中の項目を先に保存してください。"} if media_type.id.present? %>
-    <% end %>
-    <br>
-    <br>
+  <br>
+  現在のジャンル：
+  <% prot.genres.each do |genre| %>
+    <%= link_to genre.name, prot_path(genre_id: genre.id), method: :delete, data: { confirm: "ジャンルを削除します。\n編集中の項目を先に保存してください。"} if genre.id.present? %>
   <% end %>
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-2">
+      公開メディア名：
+      <br>
+      <br>
+      <button type="button" id="add_media_form" class="btn btn-info">フォーム追加</button>
+    </div>
+    <div id="field_media_form" class="col-4">
+      <%= f.fields_for :media_types do |ff| %>
+        <div class="media_form">
+          <%= ff.text_field :name %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <br>
+  現在の公開メディア：
+  <% prot.media_types.each do |media_type| %>
+    <%= link_to media_type.name, prot_path(media_type_id: media_type.id), method: :delete, data: { confirm: "想定メディアを削除します。\n編集中の項目を先に保存してください。"} if media_type.id.present? %>
+  <% end %>
+  <br>
+  <br>
 
   <div class="row">
     <div class="field col-6">

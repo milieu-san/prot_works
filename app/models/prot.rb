@@ -61,13 +61,6 @@ class Prot < ApplicationRecord
     end
   }
   scope :heart_order, lambda { |heart|
-  #   if heart == 'ハートが多い順'
-  #     includes(:hearts).order { |prot| -prot.hearts.length }
-  #   elsif heart == 'ハートが少ない順'
-  #     includes(:hearts).order{ |prot| prot.hearts.length }
-  #   else
-  #     order(created_at: :desc)
-  #   end
     if heart == 'ハートが多い順'
       Prot.select('prots.*', 'count(hearts.id) AS favs')
           .left_joins(:hearts)

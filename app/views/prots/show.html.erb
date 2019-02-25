@@ -51,12 +51,22 @@
     </div>
   <% end %>
 
-    <hr>
   <% if @prot.user_id == current_user.id %>
-    <p>private: <%= @prot.private %></p>
-    <p>reveiw: <%= @prot.accepts_review %></p>
-    <hr>
+    <% unless @prot.private == false && @prot.accepts_review == false %>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <%= fa_icon "lock", class: "fa-2x" if @prot.private %>
+          </div>
+          <div class="col-6">
+            <%= fa_icon "comments", class: "fa-2x" if @prot.accepts_review %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
+  <hr>
   <%= link_to "Node閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %>
   <%= link_to "Node編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %>
   <br><br>
