@@ -40,12 +40,12 @@
   <br>
 </div>
 <br><br>
-<% if @comments.length > 1 %>
+<% if @comments %>
   <div class="circle text-light">
   <br>
     <h5>　　コメント</h5>
     <hr>
-    <% @comments.includes(:user).each do |comment| %>
+    <% @comments.each do |comment| %>
       <% unless comment.body.blank? %>
       <div class="container">
         <div class="row">
@@ -105,6 +105,10 @@
       </div>
       <% end %>
     <% end %>
+    <br><br>
+    <div class="container text-center">
+      <%= paginate @comments %>
+    </div>
   </div>
 <% end %>
 
