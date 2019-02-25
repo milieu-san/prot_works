@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'ユーザー機能', type: :feature do
   background do
+    ActionMailer::Base.deliveries.clear
     user = FactoryBot.create(:taro)
     user_2 = FactoryBot.create(:ziro)
     FactoryBot.create(:prot, user_id: user.id)
@@ -11,7 +12,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
     FactoryBot.create(:third_prot, user_id: user_2.id)
   end
 
-  scenario 'サインアップテスト' do
+  scenario 'サインアップテスト(sign_up mail confirmable login)' do
     visit '/users/sign_up'
 
     fill_in '名前', with: 'さぶろう'
@@ -21,9 +22,18 @@ RSpec.feature 'ユーザー機能', type: :feature do
     fill_in '確認用パスワード', with: 'subrosubro'
 
     # 保留
-    # click_button 'Sign up'
-    # visit confirmation_url
-    #
-    # expect(page).to have_content 'アカウントを登録しました'
+    expect { click_button 'Sign up' }.to change { ActionMailer::Base.deliveries.size }.by(1)
+    expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください'
+
+    mail = ActionMailer::Base.deliveries.last
+    body = mail.body.encoded
+    url = body[/http[^"]+/]
+    visit url
+
+    expect(page).to have_content 'アカウントを登録しました。'
+
+    fill_in 'メールアドレス', with: 'subro@subro.com'
+    fill_in 'パスワード', with: 'subrosubro'
+    click_button 'Log in'
   end
 end
