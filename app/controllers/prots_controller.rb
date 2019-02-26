@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProtsController < ApplicationController
-  before_action :set_prot, only: %i[show edit update destroy]
+  before_action :set_prot, only: %i[show edit update destroy children]
   before_action :authenticate_user!, except: %i[index]
   before_action :correct_user_check, only: %i[edit update destroy]
   before_action :private_prot_protect, only: %i[show edit update destroy]
@@ -62,20 +62,9 @@ class ProtsController < ApplicationController
   end
 
   def destroy
-    if params[:genre_id]
-      @prot.prot_genres.find_by(genre_id: params[:genre_id]).destroy
-      flash[:success] = 'ジャンルの削除に成功しました'
-      redirect_to edit_prot_path
-
-    elsif params[:media_type_id]
-      @prot.prot_media_types.find_by(media_type_id: params[:media_type_id]).destroy
-      flash[:success] = 'メディアの削除に成功しました'
-      redirect_to edit_prot_path
-    else
-      @prot.destroy
-      flash[:success] = 'プロットの削除に成功しました'
-      redirect_to root_path
-    end
+    @prot.destroy
+    flash[:success] = 'プロットの削除に成功しました'
+    redirect_to root_path
   end
 
   private

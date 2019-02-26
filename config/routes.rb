@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     resources :nodes, only: [:index]
   end
 
+  resources :prot_genres, only: [:destroy]
+
   resources :stars, only: %i[create destroy]
   resources :hearts, only: %i[create destroy]
   resources :goods, only: %i[create destroy]
