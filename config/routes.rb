@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :prot_genres, only: [:destroy]
+  resources :prot_media_types, only: [:destroy]
 
   resources :stars, only: %i[create destroy]
   resources :hearts, only: %i[create destroy]

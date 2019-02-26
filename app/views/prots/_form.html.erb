@@ -65,7 +65,7 @@
   <br>
   現在の公開メディア：
   <% prot.media_types.each do |media_type| %>
-    <%= link_to media_type.name, prot_path(media_type_id: media_type.id), method: :delete, data: { confirm: "想定メディアを削除します。\n編集中の項目を先に保存してください。"} if media_type.id.present? %>
+    <%= link_to media_type.name, prot_media_type_path(media_type_id: media_type.id), method: :delete, data: { confirm: "想定メディアを削除します。\n編集中の項目を先に保存してください。"} if media_type.id.present? %>
   <% end %>
   <br>
   <br>
