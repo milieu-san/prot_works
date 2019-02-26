@@ -67,8 +67,8 @@
     <% end %>
   <% end %>
   <hr>
-  <%= link_to "Node閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %>
-  <%= link_to "Node編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %>
+  <%= link_to "内容閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %>
+  <%= link_to "内容編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %>
   <br><br>
   <% if @prot.user_id == current_user.id %>
     <div class="text-right">

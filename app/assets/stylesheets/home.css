@@ -1,0 +1,25 @@
+.whats_prot_top {
+ background-color: #353a3f;
+ color: white;
+ width: 100%;
+ height: 200px;
+ border-radius: 45px;
+}
+
+.whats_prot_top h3 {
+  padding-top: 60px;
+}
+
+.whats_prot_about {
+  background-color: #e4dec6;
+  color: #3c4220;
+  border-radius: 45px;
+  width: 74%;
+  margin-left: 13%;
+  margin-right: 13%;
+  height: 50px;
+}
+
+.whats_prot_about h5 {
+  padding: 15px 0px;
+}
