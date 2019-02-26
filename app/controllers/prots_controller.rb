@@ -66,6 +66,11 @@ class ProtsController < ApplicationController
       @prot.prot_genres.find_by(genre_id: params[:genre_id]).destroy
       flash[:success] = 'ジャンルの削除に成功しました'
       redirect_to edit_prot_path
+
+    elsif params[:media_type_id]
+      @prot.prot_media_types.find_by(media_type_id: params[:media_type_id]).destroy
+      flash[:success] = 'メディアの削除に成功しました'
+      redirect_to edit_prot_path
     else
       @prot.destroy
       flash[:success] = 'プロットの削除に成功しました'
