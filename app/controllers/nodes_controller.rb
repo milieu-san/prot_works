@@ -30,7 +30,7 @@ class NodesController < ApplicationController
   def create
     @prot = Prot.find(params[:prot_id])
     if @prot.nodes.length.zero?
-      @node = @prot.nodes.build(title: 'ルートノード', body: '本文', position: 0, parent_id: nil)
+      @node = @prot.nodes.build(title: 'new title', body: '本文', position: 0, parent_id: nil)
     else
       @node = Node.new(node_params)
     end
@@ -52,7 +52,7 @@ class NodesController < ApplicationController
     @prot = Prot.find(params[:prot_id])
     respond_to do |format|
       if @node.update(node_params)
-        format.html { redirect_to prot_nodes_path(@prot), notice: 'ノードの編集に成功しました！' }
+        format.html { redirect_to prot_nodes_path(@prot), notice: '本文の編集に成功しました！' }
         format.json { render :show, status: :ok, location: [@prot, @node] }
       else
         format.html { render :index }
