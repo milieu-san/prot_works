@@ -71,6 +71,7 @@ $ ->
       'data'    : { 'node' : { 'title' : 'New node', 'parent_id' : selected , 'prot_id' : prot_id , 'new_position' : 0 , 'body' : "本文" } },
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes.json",
       'success' : (res) ->
+        res.data = "本文"
         selected = jstree.create_node(selected, res)
         jstree.edit(selected) if (selected)
     })
