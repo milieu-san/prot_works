@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProtsController < ApplicationController
-  before_action :set_prot, only: %i[show edit update destroy children]
+  before_action :set_prot, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index]
   before_action :correct_user_check, only: %i[edit update destroy]
   before_action :private_prot_protect, only: %i[show edit update destroy]
