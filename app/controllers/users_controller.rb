@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update
     if current_user.update(user_params)
       bypass_sign_in(current_user)
-      redirect_to mypage_path
+      redirect_to mypage_path, notice: "プロフィールの編集に成功しました"
     else
       render :edit
     end
