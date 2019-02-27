@@ -10,7 +10,7 @@
     </div>
     <br>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div>現在右記のメールアドレスへの変更を確認中です: <%= resource.unconfirmed_email %></div>
     <% end %>
 
     <div class="field">
@@ -25,21 +25,22 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
     </div>
-
+    <br>
     <div class="field">
       <%= f.label :current_password %> <i>(変更権限確認用)</i><br />
       <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control" %>
     </div>
     <br>
+    <br>
     <div class="actions">
-      <%= f.submit "更新" %>
+      <%= f.submit "更新", class: "btn btn-success" %>
     </div>
   <% end %>
 
   <div class="text-right">
-    <p><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？\nあなたが書いたプロット、レビュー、コメントは二度と復元できません！" }, method: :delete %></p>
+    <p><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？\nあなたが書いたプロット、レビュー、コメントは二度と復元できません！" }, method: :delete, class: "btn btn-danger" %></p>
   </div>
 
-  <%= link_to "Back", :back %>
+  <%= link_to "戻る", :back , class: "btn btn-primary"%>
 
 </div>

@@ -32,7 +32,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %><br>
+    <%= f.label :password %>(変更権限確認用)<br>
     <%= f.password_field :password, class: "form-control" %>
   </div>
 <br>
@@ -40,3 +40,10 @@
     <%= f.submit %>
   </div>
 <% end %>
+<br>
+<br>
+
+<%= link_to "戻る", root_path, class: "btn btn-primary" %>
+<br>
+<br>
+<br>
