@@ -23,6 +23,7 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+        icon: "アイコン"
       node:
         title: "タイトル"
         body: "本文"
@@ -37,4 +38,3 @@ ja:
         name: "ジャンル名"
       media_type:
         name: "メディア名"
-        

@@ -76,7 +76,6 @@ RSpec.feature 'ユーザー機能', type: :feature do
       fill_in '名前', with: 'なまーえ'
       fill_in '表示名', with: 'namee'
       fill_in 'プロフィール', with: 'プロフィールですよ'
-      fill_in 'パスワード', with: 'tarotarotaro'
       click_button '更新する'
 
       expect(page).to have_content 'なまーえ'
@@ -91,7 +90,6 @@ RSpec.feature 'ユーザー機能', type: :feature do
       click_on 'プロフィール編集'
       fill_in '名前', with: ''
       fill_in '表示名', with: 'ziro'
-      fill_in 'パスワード', with: 'tarotarotaro'
       click_button '更新する'
 
       expect(page).to have_content '名前を入力してください'
@@ -99,15 +97,39 @@ RSpec.feature 'ユーザー機能', type: :feature do
 
       fill_in '名前', with: ''
       fill_in '表示名', with: ''
-      fill_in 'パスワード', with: 'tarotarotaro'
 
       click_button '更新する'
       expect(page).to have_content '名前を入力してください'
       expect(page).to have_content '表示名を入力してください'
     end
 
-    scenario 'Eメール・パスワード変更' do
+    scenario 'Eメール・パスワード変更(not complited yet)' do
       click_on 'edit pass and mail'
+    end
+
+    scenario 'ログアウトテスト' do
+      click_on 'Logout'
+      expect(page).to have_content 'ログアウトしました'
+      visit mypage_path
+      expect(page).to have_content 'アカウント登録もしくはログインしてください'
+    end
+
+    scenario 'アカウント削除テスト' do
+      click_on 'edit pass and mail'
+      click_button 'アカウントを削除する'
+      expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
+
+      visit mypage_path
+      expect(page).to have_content 'アカウント登録もしくはログインしてください'
+
+      visit '/users/sign_in'
+      fill_in 'メールアドレス', with: 'taro@taro.com'
+      fill_in 'パスワード', with: 'tarotarotaro'
+      click_button 'Log in'
+
+      expect(page).to_not have_content 'ログインしました。'
+      expect(page).to_not have_content 'taro'
+      expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
     end
   end
 end
