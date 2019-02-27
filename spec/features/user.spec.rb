@@ -106,8 +106,24 @@ RSpec.feature 'ユーザー機能', type: :feature do
       expect(page).to have_content '表示名を入力してください'
     end
 
-    scenario 'Eメール・パスワード変更' do
+    scenario 'Eメール・パスワード変更(not complited yet)' do
       click_on 'edit pass and mail'
+    end
+
+    scenario 'ログアウトテスト' do
+      click_on 'Logout'
+      expect(page).to have_content 'ログアウトしました'
+      visit mypage_path
+      expect(page).to have_content 'アカウント登録もしくはログインしてください'
+    end
+
+    scenario 'アカウント削除テスト' do
+      click_on 'edit pass and mail'
+      click_button 'アカウントを削除する'
+      expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
+
+      visit mypage_path
+      expect(page).to have_content 'アカウント登録もしくはログインしてください'
     end
   end
 end
