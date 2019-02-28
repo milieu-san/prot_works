@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
     var input =
         '<div class="media_form">'
         +'<label for="media_types_attributes_'+ i +'_name"></label>'
-        +'<input type="text" name="prot[media_types_attributes]['+ i +'][name]" id="media_types_attributes_'+ i +'_name">'
+        +'<input type="text" name="prot[media_types_attributes]['+ i +'][name]" id="prot_media_types_attributes_'+ i +'_name">'
         +'</div>'
     $('#field_media_form').append(input);
     i ++ ;
