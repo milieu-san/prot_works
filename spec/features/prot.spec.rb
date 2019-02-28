@@ -7,6 +7,7 @@ RSpec.feature 'プロット機能', type: :feature do
     user = FactoryBot.create(:taro)
     user_2 = FactoryBot.create(:ziro)
     FactoryBot.create(:prot, user_id: user.id)
+    FactoryBot.create(:second_prot, user_id: user_2.id)
     visit '/users/sign_in'
     fill_in 'メールアドレス', with: 'taro@taro.com'
     fill_in 'パスワード', with: 'tarotarotaro'
@@ -90,6 +91,14 @@ RSpec.feature 'プロット機能', type: :feature do
 
     visit prot_search_path
     expect(page).to have_content '公開プロット'
+  end
+
+  scenario '他人の公開・非公開を閲覧できないかテスト' do
+    visit prots_path
+    expect(page).to_not have_content '他人の非公開'
+
+    visit prot_search_path
+    expect(page).to_not have_content '他人の非公開'
   end
 
   #   expect(all(:css, '.task_content')[0]).to have_content 'コンテント３'
