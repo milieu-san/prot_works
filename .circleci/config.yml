@@ -79,6 +79,10 @@ jobs: # a collection of steps
           command: bundle install
 
       - run:
+          name: bundle doctor
+          command: bundle doctor
+
+      - run:
           name: run tests
           command: |
             mkdir -p /tmp/test-results
