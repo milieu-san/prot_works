@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'turbolinks:load', ->
   $('#tree_about_prot_works').jstree({
     'core' : {
       'check_callback' : true,
@@ -8,7 +8,7 @@ $ ->
     "plugins" : [ "dnd" ]
   })
 
-
+$(document).on 'turbolinks:load', ->
   $('#tree_about_prot_works2').jstree({
     'core' : {
       'check_callback' : true,
