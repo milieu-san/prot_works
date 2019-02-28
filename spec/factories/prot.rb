@@ -12,7 +12,7 @@ FactoryBot.define do
   end
 
   factory :second_prot, class: Prot do
-    title { 'タイトル2' }
+    title { '他人の非公開' }
     content { 'コンテント2' }
 
     private { true }
@@ -27,5 +27,14 @@ FactoryBot.define do
     private { false }
 
     accepts_review { false }
+  end
+
+  factory :forth_prot, class: Prot do
+    title { 'タイトル4' }
+    content { 'コンテント4' }
+
+    private { false }
+
+    accepts_review { true }
   end
 end

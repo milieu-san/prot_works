@@ -114,7 +114,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
       expect(page).to have_content 'アカウント登録もしくはログインしてください'
     end
 
-    scenario 'アカウント削除テスト' do
+    scenario 'アカウント削除テスト(prot_exist?)' do
       click_on 'edit pass and mail'
       click_button 'アカウントを削除する'
       expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
@@ -130,6 +130,16 @@ RSpec.feature 'ユーザー機能', type: :feature do
       expect(page).to_not have_content 'ログインしました。'
       expect(page).to_not have_content 'taro'
       expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
+
+      visit '/users/sign_in'
+      fill_in 'メールアドレス', with: 'ziro@ziro.com'
+      fill_in 'パスワード', with: 'ziroziroziro'
+      click_button 'Log in'
+      expect(page).to have_content 'ログインしました。'
+      expect(page).to have_content 'ziro'
+
+      visit prots_path
+      expect(page).to_not have_content 'タイトル1'
     end
   end
 end
