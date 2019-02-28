@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'turbolinks:load', ->
   $('#jstree_nodes_preview').jstree({
     'core' : {
       'check_callback' : true,

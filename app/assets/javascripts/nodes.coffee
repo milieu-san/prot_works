@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
+$(document).on 'turbolinks:load', ->
   $('#jstree_nodes').jstree({
     'core' : {
       'check_callback' : true,

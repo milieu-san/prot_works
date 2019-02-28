@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   var i = $('.media_form').length;
   $('#add_media_form').on('click', function() {
     var input =

@@ -1,4 +1,5 @@
-$ ->
+$(document).on 'turbolinks:load', ->
+
   $('[id^=comment_edit_form_]').on 'click', ->
     comment_id = $(this).val()
     $('#comment_body_' + comment_id).hide()
