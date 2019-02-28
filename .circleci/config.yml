@@ -76,11 +76,7 @@ jobs: # a collection of steps
 
       - run:
           name: bundle install
-          command: bundle install
-
-      - run:
-          name: bundle doctor
-          command: bundle doctor
+          command: bundle install --path vendor/bundle
 
       - run:
           name: run tests
