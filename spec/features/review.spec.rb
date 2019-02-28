@@ -43,19 +43,22 @@ RSpec.feature 'レビュー機能', type: :feature do
 
   feature 'レビュー作成後' do
     background do
+      visit prots_path
+      click_on 'タイトル4'
+      click_on 'レビューを書く'
 
-    visit prots_path
-    click_on 'タイトル4'
-    click_on 'レビューを書く'
+      fill_in '議題', with: '新しいレビュー'
+      fill_in '本文', with: 'とってもいいですね！'
+      click_button '登録する'
 
-    fill_in '議題', with: '新しいレビュー'
-    fill_in '本文', with: 'とってもいいですね！'
-    click_button '登録する'
-
-    expect(page).to have_content 'レビューの投稿に成功しました'
-    expect(page).to have_content 'タイトル4'
-    expect(page).to have_content '新しいレビュー'
-    expect(page).to have_content 'とってもいいですね！'
+      expect(page).to have_content 'レビューの投稿に成功しました'
+      expect(page).to have_content 'タイトル4'
+      expect(page).to have_content '新しいレビュー'
+      expect(page).to have_content 'とってもいいですね！'
+      find(:css, '#comment_body').set('コメント111')
+      click_on '投稿する'
+      expect(page).to have_content 'コメントを投稿しました'
+      expect(page).to have_content 'コメント111'
     end
 
     scenario 'レビュー編集' do
@@ -74,8 +77,20 @@ RSpec.feature 'レビュー機能', type: :feature do
       click_on 'レビュー削除'
       expect(page).to have_content 'レビューの削除に成功しました'
       expect(page).to have_content 'タイトル4'
-
       expect(page).to_not have_content '新しいレビュー'
+    end
+
+    scenario 'コメント投稿' do
+      find(:css, '#comment_body').set('コメントしてみました')
+      click_on '投稿する'
+      expect(page).to have_content 'コメントを投稿しました'
+      expect(page).to have_content 'コメントしてみました'
+    end
+
+    scenario 'コメント削除' do
+      click_on '削除'
+      expect(page).to have_content 'コメントを削除しました'
+      expect(page).to_not have_content 'コメント111'
     end
   end
 end
