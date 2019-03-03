@@ -79,6 +79,10 @@ jobs: # a collection of steps
           command: bundle install --path vendor/bundle
 
       - run:
+          name: bundle install
+          command: bundle install 
+
+      - run:
           name: run tests
           command: |
             mkdir -p /tmp/test-results
