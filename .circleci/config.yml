@@ -79,8 +79,8 @@ jobs: # a collection of steps
           command: bundle install --path vendor/bundle
 
       - run:
-          name: bundle install
-          command: bundle install 
+          name: install rspec_junit_formatter
+          command: gem install rspec_junit_formatter
 
       - run:
           name: run tests
