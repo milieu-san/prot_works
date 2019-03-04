@@ -42,9 +42,11 @@
                   </div>
                 <% end %>
                 <div class="actions">
-                  <%= f.submit class: "btn btn-outline-primary", value: "save"%>
+                  <%= f.submit class: "btn btn-outline-primary" %>
                 </div>
                 <br>
+
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
                 <div class="id_field">
                   <%= f.hidden_field :id %>
