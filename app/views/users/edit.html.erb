@@ -11,9 +11,17 @@
     </div>
   <% end %>
 <br>
+  <div class="icon-preview">
+    <% if current_user.icon.blank? %>
+      <%= image_tag("f_f_object_115_s512_f_object_115_0bg.png", height: 100, width: 100, style: "border-radius: 50%;", id: "preview_icon" ) %>
+    <% else %>
+      <%= image_tag current_user.icon.url, height: 100, width: 100, style: "border-radius: 50%;", id: "preview_icon" %>
+    <% end %>
+  </div>
+
   <div class="field">
     <%= f.label :icon %><br>
-    <%= f.file_field :icon %>
+    <%= f.file_field :icon, id: "icon_input"%>
   </div>
 
   <div class="field">
