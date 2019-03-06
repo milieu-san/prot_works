@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage'
   get 'mypage/edit', to: 'users#edit'
   patch 'mypage/update', to: 'users#update'
-
+  get 'users/name', to: 'users#name'
   resources :users, only: [:show]
 
   resources :prots do
