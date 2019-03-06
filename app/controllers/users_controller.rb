@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:name]
 
   def show
     @user = User.find(params[:id])
@@ -32,6 +32,20 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def name
+    raise unless params[:query]
+
+    result = nil
+    if User.find_by(nick_name: params[:query])
+        result = "findUser"
+    else
+        result = "notFind"
+    end
+
+    render :json => { :result => result }
+    return true
   end
 
   private

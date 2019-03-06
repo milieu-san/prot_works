@@ -16,7 +16,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
     visit '/users/sign_up'
 
     fill_in '名前', with: 'さぶろう'
-    fill_in '表示名', with: 'subro'
+    find(:css, '#nameId').set ('subro')
     fill_in 'メールアドレス', with: 'subro@subro.com'
     fill_in 'パスワード', with: 'subrosubro'
     fill_in '確認用パスワード', with: 'subrosubro'
