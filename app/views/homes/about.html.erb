@@ -1,81 +1,56 @@
-<div class="whats_prot_top text-center align-self-center">
-  <h3>ProtWorksとは？</h3>
-  <div class="whats_prot_about text-center ">
-    <h5>自作の物語のプロットを保存、共有、評価しあえるアプリです！</h5>
+<div class="container-fluid">
+  <div class="row">
+    <div class="offset-2 col-8">
+      <br><br><br><br>
+      <h5>ProtWorksは表現する力の源が構成力であると信じています。</h5>
+      <br><br>
+      <p>
+        あなたが使えるのは
+        シンプルなツリービューエディタと、
+        シンプルなチャットフィールドです。
+      </p>
+      <br>
+      <br>
+
+      <div class="container">
+        <h5>ツリービューエディタ</h5>
+        <br>
+        <p>
+          プロットを木構造で管理し、細かいシーケンス(節・章)に分けて管理することで構成を可視化する手助けをします。
+        </p>
+        <p>
+          また、他者と同じフォームを使うことで、他人の構成力を読み解き易くします。
+        </p>
+        <br>
+        <br>
+        <h5>チャットフィールド</h5>
+        <br>
+        <p>
+          あなたが他人のプロットを読んで感じたことを、
+          レビューを書いて伝えてみましょう。
+        </p>
+        <p>
+          あなたの書いたレビューで
+          刺激を受けた不特定のユーザーがコメントを残すかもしれません。
+        </p>
+        <p>
+          その場にいる全員にとって
+          自らの表現する力を伸ばす有意義な時間にしましょう。
+        </p>
+      </div>
+
+    </div>
   </div>
 </div>
-<br>
-  <div id="tree_about_prot_works" class="box2">
-    <ul>
-      <li>
-        プロット執筆
-          <ul>
-            <li>
-              専用のエディタ搭載
-                <ul>
-                  <li>
-                    ツリービュー管理
-                  </li>
-                  <li>
-                    直感的なシーンの差し替え・追加
-                  </li>
-                  <li>
-                    物語の構造が一目でわかる
-                  </li>
-                </ul>
-            </li>
-          </ul>
-      </li>
-    </ul>
-  </div>
 
-  <div id="tree_about_prot_works2" class="box2">
-    <ul>
-      <li>
-        レビュー機能
-          <ul>
-            <li>
-              プロットを公開
-              <ul>
-                <li>
-                  レビューをもらう
-                    <ul>
-                      <li>
-                        みんなで議論
-                      </li>
-                    </ul>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              プロットを検索
-                <ul>
-                  <li>
-                    レビューを書く
-                      <ul>
-                        <li>
-                          みんなで議論
-                        </li>
-                      </ul>
-                  </li>
-                </ul>
-            </li>
-          </ul>
-      </li>
-    </ul>
-  </div>
-  ↑
-  <%= fa_icon "caret-right" %>  をクリック！
-
-  <br>
+<br><br><br>
   <div class="container">
     <div class="row">
       <div class="offset-4 col-2">
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-success" %>
       </div>
       <div class="col-2">
-        <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-info" %>
+        <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-outline-info" %>
       </div>
 
     </div>
