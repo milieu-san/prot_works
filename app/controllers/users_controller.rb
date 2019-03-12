@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     end
 
     render :json => { :result => result }
-    return true
+    true
   end
 
   private

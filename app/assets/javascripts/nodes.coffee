@@ -16,7 +16,7 @@ $(document).on 'turbolinks:load', ->
     "plugins" : [ "dnd", "state" ]
   })
 
-  # editをクリックしたらnodeのjsonデータを持ってくるところまで成功
+  # editをクリックしたらnodeのjsonデータを持ってくる
   $('#edit_node').on 'click', ->
     $('#show_node').hide()
     jstree = $('#jstree_nodes').jstree(true)
