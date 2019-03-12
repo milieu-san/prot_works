@@ -35,7 +35,7 @@ $(document).on 'turbolinks:load', ->
     if $('#saving').html() == '同期中...'
       $('#saving').html('保存しました！')
       $('#saving').css('color', '#00BB00')
-    else if $('#saving').html() == '待機中...'
+    else if $('#saving').html() == '待機中...(保存されるまで入力操作以外行わないでください)'
       $('#saving').html('[!]待機中にノードを変更されました')
       $('#saving').css('color', 'red')
     else if $('#saving').html() == '[!]待機中にノードを変更されました'
@@ -132,18 +132,21 @@ $(document).on 'turbolinks:load', ->
     selected = jstree.get_selected(true)
     id = selected[0].id
 
-    $.ajax({
-      'type'    : 'PATCH',
-      'data'    : { 'node' : { 'body' : nodeBody } },
-      'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
-    'success' : (res) ->
-      $('#saving').html('同期中...')
-      $('#saving').css('color', '#00BB00')
-      jstree.refresh()
-    })
+    if $('#saving').html() == '[!]待機中にノードを変更されました'
+      $('#saving').html('保存が正常に行われませんでした(リロード推奨)')
+    else
+      $.ajax({
+        'type'    : 'PATCH',
+        'data'    : { 'node' : { 'body' : nodeBody } },
+        'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
+      'success' : (res) ->
+        $('#saving').html('同期中...')
+        $('#saving').css('color', '#00BB00')
+        jstree.refresh()
+      })
 
   $('#nodeBodyFrom').on 'input', ->
-    $('#saving').html("待機中...")
+    $('#saving').html("待機中...(保存されるまで入力操作以外行わないでください)")
     $('#saving').css('color', 'black')
 
   $('#nodeBodyFrom').on('input', _.debounce( autoSave, 1000 ))
