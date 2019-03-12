@@ -16,21 +16,19 @@ $(document).on 'turbolinks:load', ->
     "plugins" : [ "dnd", "state" ]
   })
 
-  # editをクリックしたらnodeのjsonデータを持ってくる
   $('#edit_node').on 'click', ->
     $('#show_node').hide()
-    jstree = $('#jstree_nodes').jstree(true)
-    selected = jstree.get_selected(true)
-    data  = selected[0].data
     $('#edit_form').show()
     $('#edit_node').hide()
     $('#view_node').show()
+    $('#saving').html('')
 
   $('#view_node').on 'click', ->
     $('#edit_form').hide()
     $('#show_node').show()
     $('#view_node').hide()
     $('#edit_node').show()
+    $('#saving').html('')
 
   # nodeがselectされたときにタイトルと本文を出力する。
   $('#jstree_nodes').on "select_node.jstree", (e, node) ->
@@ -40,10 +38,9 @@ $(document).on 'turbolinks:load', ->
 
     $("#edit_form form").attr('action', "/prots/#{prot_id}/nodes/#{id}")
     $("#show_node").text("#{body}")
-    $(".body_field textarea").val("#{body}")
-    $(".id_field input").val("#{id}")
+    $("#nodeBodyFrom").val("#{body}")
 
-  # カテゴリを移動させたときに呼ばれるイベント
+  # ノードを移動させたときに呼ばれるイベント
   $('#jstree_nodes').on "move_node.jstree", (e, node) ->
 
     id            = node.node.id
@@ -117,3 +114,27 @@ $(document).on 'turbolinks:load', ->
       })
     else
       return "/prots/#{REGISTRY.prot_id}/nodes.json"
+
+
+  # bodyのオートセーブ
+  autoSave = ->
+    nodeBody = $('#nodeBodyFrom').val()
+    jstree = $('#jstree_nodes').jstree(true)
+    selected = jstree.get_selected(true)
+    id = selected[0].id
+
+    $.ajax({
+      'type'    : 'PATCH',
+      'data'    : { 'node' : { 'body' : nodeBody } },
+      'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
+    'success' : (res) ->
+      $('#saving').html('保存しました')
+      $('#saving').css('color', '#00BB00')
+      jstree.refresh()
+    })
+
+  $('#nodeBodyFrom').on 'input', ->
+    $('#saving').html("待機中...")
+    $('#saving').css('color', 'black')
+
+  $('#nodeBodyFrom').on('input', _.debounce( autoSave, 1000 ))

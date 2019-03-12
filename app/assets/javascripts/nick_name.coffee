@@ -14,12 +14,9 @@ $(document).on 'turbolinks:load', ->
           $('#nickname_valid').html("その表示名は使われていません")
           $('#nickname_valid').css('color', '#00BB00')
     })
-    return
 
   $('#nameId').on 'input', ->
     $('#nickname_valid').html("検索中...")
     $('#nickname_valid').css('color', 'black')
 
   $('#nameId').on('input', _.debounce( name_check, 1000 ))
-
-

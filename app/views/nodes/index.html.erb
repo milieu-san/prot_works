@@ -27,38 +27,11 @@
           <div id="show_node" class="box11" style="word-wrap: break-word; white-space: pre-wrap; min-height: 50px;"></div>
           <!-- 本文の編集 -->
           <div id="edit_form" style="display: none;">
-            <!-- jsTreeからその都度ノードデータをフォームのバリューに与えたあげられれば完成 -->
-            <% if @node %>
-              <%= form_with(model: @node, local: true, url: prot_node_path(@node.id, @prot.id)) do |f| %>
-                <% if @node.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@node.errors.count, "error") %> 件のエラーがあります</h2>
-
-                    <ul>
-                    <% @node.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-                <div class="actions">
-                  <%= f.submit class: "btn btn-outline-primary" %>
-                </div>
-                <br>
-
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-                <div class="id_field">
-                  <%= f.hidden_field :id %>
-                </div>
-
-                <div class="body_field">
-                  <%= f.text_area :body, cols: 70, rows: 30, class: "form-control" %>
-                </div>
-
-                <% end %>
-                <br>
-              <% end %>
+            <input type="hidden" value="" id="nodeIdHidden">
+            <div id="saving">
+              　
+            </div>
+            <textarea id="nodeBodyFrom" class="form-control" rows="80" cols="80"></textarea>
           </div>
         </div>
 
