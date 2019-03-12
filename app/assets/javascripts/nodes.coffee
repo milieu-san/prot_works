@@ -32,17 +32,26 @@ $(document).on 'turbolinks:load', ->
 
   # nodeがselectされたときにタイトルと本文を出力する。
   $('#jstree_nodes').on "select_node.jstree", (e, node) ->
-    body = node.node.data
-    id   = node.node.id
-    prot_id = REGISTRY.prot_id
+    if $('#saving').html() == '同期中...'
+      $('#saving').html('保存しました！')
+      $('#saving').css('color', '#00BB00')
+    else if $('#saving').html() == '待機中...'
+      $('#saving').html('[!]待機中にノードを変更されました')
+      $('#saving').css('color', 'red')
+    else if $('#saving').html() == '[!]待機中にノードを変更されました'
+      return
+    else
+      $('#saving').html('')
+      body = node.node.data
+      id   = node.node.id
+      prot_id = REGISTRY.prot_id
 
-    $("#edit_form form").attr('action', "/prots/#{prot_id}/nodes/#{id}")
-    $("#show_node").text("#{body}")
-    $("#nodeBodyFrom").val("#{body}")
+      $("#edit_form form").attr('action', "/prots/#{prot_id}/nodes/#{id}")
+      $("#show_node").text("#{body}")
+      $("#nodeBodyFrom").val("#{body}")
 
   # ノードを移動させたときに呼ばれるイベント
   $('#jstree_nodes').on "move_node.jstree", (e, node) ->
-
     id            = node.node.id
     parent_id     = node.parent
     new_position  = node.position
@@ -128,7 +137,7 @@ $(document).on 'turbolinks:load', ->
       'data'    : { 'node' : { 'body' : nodeBody } },
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
     'success' : (res) ->
-      $('#saving').html('保存しました')
+      $('#saving').html('同期中...')
       $('#saving').css('color', '#00BB00')
       jstree.refresh()
     })
