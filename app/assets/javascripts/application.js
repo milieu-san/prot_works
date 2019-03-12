@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require popper
 
+//= require lodash
 //= require jstree.min
 //= require rails-ujs
 //= require activestorage
