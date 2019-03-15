@@ -124,22 +124,24 @@ $(document).on 'turbolinks:load', ->
     else
       return "/prots/#{REGISTRY.prot_id}/nodes.json"
 
-
   # bodyのオートセーブ
   autoSave = ->
-    nodeBody = $('#nodeBodyFrom').val()
     jstree = $('#jstree_nodes').jstree(true)
-    selected = jstree.get_selected(true)
-    id = selected[0].id
-
     if $('#saving').html() == '[!]待機中にノードを変更されました'
-      $('#saving').html('保存が正常に行われませんでした(リロード推奨)')
+      $('#saving').html('保存が正常に行われませんでした')
+      #前回クエリを送ったノードのidをselectedする
+      jstree.select_node(pastChanged)
     else
+      nodeBody = $('#nodeBodyFrom').val()
+      selected = jstree.get_selected(true)
+      id = selected[0].id
+
       $.ajax({
         'type'    : 'PATCH',
         'data'    : { 'node' : { 'body' : nodeBody } },
         'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
       'success' : (res) ->
+        pastChanged = res
         $('#saving').html('同期中...')
         $('#saving').css('color', '#00BB00')
         jstree.refresh()
