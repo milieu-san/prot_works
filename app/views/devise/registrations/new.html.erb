@@ -1,49 +1,50 @@
-<div class="text-center">
-  <br><br><br>
-  <h2>Sign up</h2>
+<div class="container">
+  <div class="text-center">
+    <br><br><br>
+    <h2>サインアップ</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-    <div class="field">
-      <%= f.label :name %><br> * ２０文字以内 <br />
-      <%= f.text_field :name,class: "form-control offset-2 col-8" %>
-    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="field">
+        <%= f.label :name %><br> * ２０文字以内 <br />
+        <%= f.text_field :name,class: "form-control offset-2 col-8" %>
+      </div>
+      <br>
+
+      <div class="field">
+        <%= f.label :nick_name %><br> * アルファベットと数字のみ ３０文字以内 <br />
+        <%= f.text_field :nick_name,class: "form-control offset-2 col-8", id: "nameId" %>
+      </div>
+      <p id="nickname_valid"></p>
+      <br>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control offset-2 col-8" %>
+      </div>
+      <br>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password",class: "form-control offset-2 col-8" %>
+      </div>
+      <br>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control offset-2 col-8" %>
+      </div>
+      <br>
+
+      <div class="actions">
+        <%= f.submit "サインアップ", class: "btn btn-primary" %>
+      </div>
+    <% end %>
     <br>
-
-    <div class="field">
-      <%= f.label :nick_name %><br> * アルファベットと数字のみ ３０文字以内 <br />
-      <%= f.text_field :nick_name,class: "form-control offset-2 col-8", id: "nameId" %>
-    </div>
-    <p id="nickname_valid"></p>
     <br>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control offset-2 col-8" %>
-    </div>
-    <br>
-
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password",class: "form-control offset-2 col-8" %>
-    </div>
-    <br>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control offset-2 col-8" %>
-    </div>
-    <br>
-
-    <div class="actions">
-      <%= f.submit "Sign up", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-  <br><br>
-
-  <%= render "devise/shared/links" %>
-
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

@@ -68,7 +68,7 @@
 <section class="page-section bg-secondary text-light text-center">
   <div class="container">
     <h2>二つの機能<h2>
-    <hr class="divider text-light">
+    <hr class="divider">
     <br>
     <div class="row">
       <div class="col-6">
@@ -100,11 +100,20 @@
 </section>
 
 <section class="page-section bg-dark text-center text-light">
-  <h5>みんなと一緒に力をのばしましょう！</h5>
-    <br>
-    <br>
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-success" %>
-    <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-outline-info" %>
+  <h5>まずは思いのままにプロットを書いてみましょう！</h5>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="offset-3 col-3">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-3">
+      <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-info" %>
+    </div>
+  </div>
 
-
+  <br>
+  <br>
+  <br>
 </section>
