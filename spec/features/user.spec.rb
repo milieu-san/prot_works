@@ -21,7 +21,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
     fill_in 'パスワード', with: 'subrosubro'
     fill_in '確認用パスワード', with: 'subrosubro'
 
-    expect { click_button 'Sign up' }.to change { ActionMailer::Base.deliveries.size }.by(1)
+    expect { click_button 'サインアップ' }.to change { ActionMailer::Base.deliveries.size }.by(1)
     expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください'
 
     mail = ActionMailer::Base.deliveries.last
@@ -33,12 +33,12 @@ RSpec.feature 'ユーザー機能', type: :feature do
 
     fill_in 'メールアドレス', with: 'subro@subro.com'
     fill_in 'パスワード', with: 'subrosubro'
-    click_button 'Log in'
+    click_button 'ログイン'
   end
 
   scenario 'サインアップテスト(validation)' do
     visit '/users/sign_up'
-    click_button 'Sign up'
+    click_button 'サインアップ'
     expect(page).to have_content 'メールアドレスを入力してください'
     expect(page).to have_content 'パスワードを入力してください'
     expect(page).to have_content '名前を入力してください'
@@ -50,14 +50,14 @@ RSpec.feature 'ユーザー機能', type: :feature do
     visit '/users/sign_in'
     fill_in 'メールアドレス', with: 'taro@taro.com'
     fill_in 'パスワード', with: 'tarotarotaro'
-    click_button 'Log in'
+    click_button 'ログイン'
     expect(page).to have_content 'ログインしました。'
     expect(page).to have_content 'taro'
   end
 
   scenario 'ログインテスト(validation)' do
     visit '/users/sign_in'
-    click_button 'Log in'
+    click_button 'ログイン'
     expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
   end
 
@@ -66,7 +66,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
       visit '/users/sign_in'
       fill_in 'メールアドレス', with: 'taro@taro.com'
       fill_in 'パスワード', with: 'tarotarotaro'
-      click_button 'Log in'
+      click_button 'ログイン'
       expect(page).to have_content 'ログインしました。'
       expect(page).to have_content 'taro'
     end
@@ -125,7 +125,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
       visit '/users/sign_in'
       fill_in 'メールアドレス', with: 'taro@taro.com'
       fill_in 'パスワード', with: 'tarotarotaro'
-      click_button 'Log in'
+      click_button 'ログイン'
 
       expect(page).to_not have_content 'ログインしました。'
       expect(page).to_not have_content 'taro'
@@ -134,7 +134,7 @@ RSpec.feature 'ユーザー機能', type: :feature do
       visit '/users/sign_in'
       fill_in 'メールアドレス', with: 'ziro@ziro.com'
       fill_in 'パスワード', with: 'ziroziroziro'
-      click_button 'Log in'
+      click_button 'ログイン'
       expect(page).to have_content 'ログインしました。'
       expect(page).to have_content 'ziro'
 

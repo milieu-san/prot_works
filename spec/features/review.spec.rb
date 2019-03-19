@@ -13,7 +13,7 @@ RSpec.feature 'レビュー機能', type: :feature do
     visit '/users/sign_in'
     fill_in 'メールアドレス', with: 'taro@taro.com'
     fill_in 'パスワード', with: 'tarotarotaro'
-    click_button 'Log in'
+    click_button 'ログイン'
     expect(page).to have_content 'ログインしました。'
     expect(page).to have_content 'taro'
   end
