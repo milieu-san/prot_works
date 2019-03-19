@@ -11,7 +11,7 @@ RSpec.feature 'プロット機能', type: :feature do
     visit '/users/sign_in'
     fill_in 'メールアドレス', with: 'taro@taro.com'
     fill_in 'パスワード', with: 'tarotarotaro'
-    click_button 'Log in'
+    click_button 'ログイン'
     expect(page).to have_content 'ログインしました。'
     expect(page).to have_content 'taro'
   end
@@ -100,11 +100,4 @@ RSpec.feature 'プロット機能', type: :feature do
     visit prot_search_path
     expect(page).to_not have_content '他人の非公開'
   end
-
-  #   expect(all(:css, '.task_content')[0]).to have_content 'コンテント３'
-  #   expect(all(:css, '.task_content')[1]).to have_content 'コンテント１'
-  #   expect(all(:css, '.task_content')[2]).to have_content 'コンテント４'
-  #   expect(all(:css, '.task_content')[3]).to have_content 'コンテント２'
-  #   expect(all(:css, '.task_content')[4]).to have_content 'コンテント５'
-  # end
 end

@@ -1,107 +1,109 @@
-<div class="halfCircleBottom text-light text-center">
-  <br>
-  <div class="row">
-    <div class="col-3" id="heart_form">
-      <%= render 'heart_form', prot: @prot %>
-    </div>
+<div class="container">
+  <div class="halfCircleBottom text-light text-center">
+    <br>
+    <div class="row">
+      <div class="col-3" id="heart_form">
+        <%= render 'heart_form', prot: @prot %>
+      </div>
 
-    <div class="col-6">
-      <h3><%= @prot.title %></h3>
-    </div>
+      <div class="col-6">
+        <h3><%= @prot.title %></h3>
+      </div>
 
-    <div class="col-3" id="heart_counter">
-      <%= render 'heart_counter', prot: @prot %>
-    </div>
-  </div>
-  <br>
-  <% unless @prot.content.blank? %>
-    <div class="container">
-      <div class="row text-left">
-        <div class="offset-2 col-9">
-          <p style="word-wrap: break-word; white-space: pre-wrap;"><%= @prot.content %></p>
-        </div>
+      <div class="col-3" id="heart_counter">
+        <%= render 'heart_counter', prot: @prot %>
       </div>
     </div>
-  <% end %>
-  <% if @prot.genres.present? %>
-    <hr>
-    <div class="container">
-        <div class="row">
-          <div class="offset-2">
-            ジャンル:　
-            <% @prot.genres.each do |genre| %>
-              <%= genre.name %>　
-            <% end %>
-          </div>
-        </div>
-    </div>
-  <% end %>
-
-  <% if @prot.media_types.present? %>
-    <hr>
-    <div class="container">
-        <div class="row">
-          <div class="offset-2">
-            メディア:　
-            <% @prot.media_types.each do |media_type| %>
-              <%= media_type.name %>　
-            <% end %>
-          </div>
-        </div>
-    </div>
-  <% end %>
-
-  <% if @prot.user_id == current_user.id %>
-    <% unless @prot.private == false && @prot.accepts_review == false %>
-      <hr>
+    <br>
+    <% unless @prot.content.blank? %>
       <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <%= fa_icon "lock", class: "fa-2x" if @prot.private %>
-          </div>
-          <div class="col-6">
-            <%= fa_icon "comments", class: "fa-2x" if @prot.accepts_review %>
+        <div class="row text-left">
+          <div class="offset-2 col-9">
+            <p style="word-wrap: break-word; white-space: pre-wrap;"><%= @prot.content %></p>
           </div>
         </div>
       </div>
     <% end %>
-  <% end %>
-  <hr>
-  <%= link_to "内容閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %>
-  <%= link_to "内容編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %>
-  <br><br>
-  <% if @prot.user_id == current_user.id %>
-    <div class="text-right">
-      <%= link_to "プロット編集", edit_prot_path(@prot), class: "btn btn-success" %>
-      <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %> 　　
-    </div>
-    <br>
-  <% end %>
-  writed by <%=link_to @prot.user.nick_name, @prot.user, class: "text-light" %>
-  <br>
-</div>
-
-<br>
-<div class="text-left">
-  <%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
-</div>
-<% if @prot.reviews.present? %>
-  <div class="circle text-light text-center">
-    <br>
-    <h2>review一覧</h2>
-    <hr>
-    <div class="container">
-      <div class="row">
-        <% @prot.reviews.includes(:user).each do |review| %>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <%= review.user.nick_name %>
-            <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header"><%= link_to review.title, prot_review_path(@prot, review),class: "text-secondary" %></div>
+    <% if @prot.genres.present? %>
+      <hr>
+      <div class="container">
+          <div class="row">
+            <div class="offset-2">
+              ジャンル:　
+              <% @prot.genres.each do |genre| %>
+                <%= genre.name %>　
+              <% end %>
             </div>
           </div>
-        <% end %>
       </div>
-    </div>
+    <% end %>
+
+    <% if @prot.media_types.present? %>
+      <hr>
+      <div class="container">
+          <div class="row">
+            <div class="offset-2">
+              メディア:　
+              <% @prot.media_types.each do |media_type| %>
+                <%= media_type.name %>　
+              <% end %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+
+    <% if @prot.user_id == current_user.id %>
+      <% unless @prot.private == false && @prot.accepts_review == false %>
+        <hr>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <%= fa_icon "lock", class: "fa-2x" if @prot.private %>
+            </div>
+            <div class="col-6">
+              <%= fa_icon "comments", class: "fa-2x" if @prot.accepts_review %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <hr>
+    <%= link_to "内容閲覧", preview_nodes_path(prot_id: @prot.id), class: "btn btn-secondary" %>
+    <%= link_to "内容編集", prot_nodes_path(@prot), class: "btn btn-success" if @prot.user_id == current_user.id %>
+    <br><br>
+    <% if @prot.user_id == current_user.id %>
+      <div class="text-right">
+        <%= link_to "プロット編集", edit_prot_path(@prot), class: "btn btn-success" %>
+        <%= link_to "プロット削除", prot_path(@prot), method: :delete, class: "btn btn-danger", data: { confirm: "よろしいですか？"} %> 　　
+      </div>
+      <br>
+    <% end %>
+    writed by <%=link_to @prot.user.nick_name, @prot.user, class: "text-light" %>
     <br>
   </div>
-<% end %>
+
+  <br>
+  <div class="text-left">
+    <%= link_to "レビューを書く", new_prot_review_path(@prot), class: "btn btn-success" if @prot.user_id != current_user.id && @prot.accepts_review == true %>
+  </div>
+  <% if @prot.reviews.present? %>
+    <div class="circle text-light text-center">
+      <br>
+      <h2>review一覧</h2>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <% @prot.reviews.includes(:user).each do |review| %>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <%= review.user.nick_name %>
+              <div class="card text-white border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header"><%= link_to review.title, prot_review_path(@prot, review),class: "text-secondary" %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    </div>
+  <% end %>
+</div>

@@ -187,6 +187,7 @@ ul {
 
 .alert {
   margin-bottom: 0px !important;
+  position: fixed;
 }
 
 #error_explanation {
@@ -194,4 +195,78 @@ ul {
   background-color: #f8d7da;
   border-color: #f5c6cb;
   border-radius: 10px;
+}
+
+#top-box{
+  height: 100vh;
+  width: 100vw;
+}
+#top-image{
+  background-image: url("<%= asset_url("typewriter-407695_1920.jpg") %>");
+  height: 100%;
+  width: 100%;
+  position: static;
+}
+
+#top-image h1 {
+  position: relative;
+  top: 40%;
+  left: 20%;
+  font-family: Charter;
+  font-size:40px;
+  font-weight:bold;
+  letter-spacing:5px;
+  color:#fff;
+  display: inline;
+}
+
+#top-image p {
+  position: relative;
+  top: 43%;
+  left: 20%;
+  font-family:Charter;
+  font-size: 15px;
+  font-weight:bold;
+  letter-spacing:3px;
+  color:#fff;
+  display: inline;
+
+}
+
+#top-image h5 {
+  position: relative;
+  top: 48%;
+  left: 20%;
+  font-family:serif;
+  font-size: 20px;
+  letter-spacing:1px;
+  color:#fff;
+  display: inline;
+}
+
+.headerArea {
+  position: fixed !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+  opacity: 0.9;
+}
+
+.headerArea2 {
+  position: fixed !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+  background-color: rgba( 255, 255, 255, 0 )!important;;
+}
+
+.text-comment{
+  color: #e3e5e6 !important;
+  font-size: 14px;
 }

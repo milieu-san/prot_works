@@ -1,67 +1,119 @@
-<div class="container-fluid">
-  <div class="row">
-      <div class="offset-2 col-4">
-        <br><br><br><br><br><br><br><br>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top headerArea" id="top-navbar2" style="display: none;">
+  <div class="container">
+    <%= link_to "ProtWorks", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse navboar-right" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-        <h1>ProtWorks</h1>
-        <p>be professional for plot</p>
-        <p>by working with someone</p>
-      </div>
-      <div class="col-4">
-        <br><br><br><br><br><br><br><br><br><br>
-        <h5>すべての人を物語るプロに</h5>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top headerArea2">
+  <div class="container">
+    <%= link_to "ProtWorks", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse navboar-right" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="top-box">
+  <div class="container-fluid" id="top-image">
+    <h1>ProtWorks</h1><br>
+    <p>be professional for plot</p><br>
+    <h5>すべての人を物語るプロフェッショナルに</h5>
   </div>
 </div>
-<br><br><br><br><br><br><br><br>
 
-<div class="container">
-  <div class="offset-1">
-    <h5>
-      ProtWorksはあなたの「表現する力」を成長させるプラットフォームです。
-    </h5>
-<br>
-    <p>あなたが誰かに伝えたい思い</p>
+<section class="page-section">
+  <div class="container">
+    <div class="offset-1">
+      <h5>
+        ProtWorksはあなたの「物語る力」を成長させるプラットフォームです。
+      </h5>
+      <br>
+      <p>あなたが誰かに伝えたい思い</p>
 
-    <p>
-      気持ち・感動・夢・わくわくする企み
-    </p>
-    <p>
-    そのまま表現できるようになりたくありませんか？
-    </p>
-<br>
-
-    <h5>表現する力</h5>
-<br>
-    <div class="container">
-      <h6>伝える力</h6>
       <p>
-        文章・プレゼン・演説・ブログ
+        気持ち・感動・夢・わくわくする企み
+      </p>
+      <p>
+      そのまま伝えられるようになりたくありませんか？
       </p>
       <br>
-      <h6>物語る力</h6>
-      <p>
-      映画・ドラマ・演劇・小説・漫画・アニメ・あらゆる脚本
-      </p>
-
-
     </div>
-    <br>
-    <br>
-    <p>
-      皆んなと一緒に力を伸ばしましょう。
-    </p>
-
-    <p>まずは思いのままプロットを作成してみましょう！</p>
   </div>
-</div>
-<br><br><br>
-<div class="text-center">
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-success" %>
-  <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-outline-info" %>
-  <br>
-  <br>
-  <%= link_to "ProtWorksで出来ること", about_path %>
-</div>
+</section>
 
-<br><br><br><br>
+<section class="page-section bg-secondary text-light text-center">
+  <div class="container">
+    <h2>二つの機能<h2>
+    <hr class="divider">
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <%= fa_icon "edit", class: "fa-3x" %>
+        <h4>ツリービューエディタ</h4>
+        <br>
+        <p class="text-comment">
+          プロットを細かいシーン(章・節)で分け、木構造で管理します。
+        </p>
+        <p class="text-comment">
+          シーンの差し替えが直感的に行え、物語の構造を一目で把握することができます。
+        </p>
+
+      </div>
+      <div class="col-6">
+        <%= fa_icon "comments", class: "fa-3x"  %>
+        <h4>チャットフィールド</h4>
+        <br>
+        <p class="text-comment">
+          公開したプロットを元にユーザー間で評価を出し合えます。
+        </p>
+        <p class="text-comment">
+          不特定のユーザーと有意義な議論を繰り広げましょう。
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="page-section bg-dark text-center text-light">
+  <h5>まずは思いのままにプロットを書いてみましょう！</h5>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="offset-3 col-3">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-3">
+      <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-info" %>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+</section>
