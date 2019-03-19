@@ -1,19 +1,27 @@
-<div class="container-fluid">
-  <div class="row">
-      <div class="offset-2 col-4">
-        <br><br><br><br><br><br><br><br>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top headerArea">
+  <%= link_to "ProtWorks", root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse navboar-right" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-        <h1>ProtWorks</h1>
-        <p>be professional for plot</p>
-        <p>by working with someone</p>
-      </div>
-      <div class="col-4">
-        <br><br><br><br><br><br><br><br><br><br>
-        <h5>すべての人を物語るプロに</h5>
-      </div>
+<div id="top-box">
+  <div class="container-fluid" id="top-image">
+    <h1>ProtWorks</h1><br>
+    <p>be professional for plot</p><br>
+    <h5>すべての人を物語るプロフェッショナルに</h5>
   </div>
 </div>
-<br><br><br><br><br><br><br><br>
 
 <div class="container">
   <div class="offset-1">
