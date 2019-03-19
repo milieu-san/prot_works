@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   get 'homes/index'
-  get 'about', to: 'homes#about'
   devise_for :users
 
   unauthenticated do
