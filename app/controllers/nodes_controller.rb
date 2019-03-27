@@ -5,28 +5,20 @@ class NodesController < ApplicationController
   before_action :set_node, only: %i[show edit update destroy]
   before_action :author_check
 
-  # GET /nodes
-  # GET /nodes.json
   def index
     @prot = Prot.find(params[:prot_id])
     @nodes = @prot.nodes.all.order(position: :asc)
     @node = @prot.nodes.first
   end
 
-  # GET /nodes/1
-  # GET /nodes/1.json
   def show; end
 
-  # GET /nodes/new
   def new
     @node = Node.new
   end
 
-  # GET /nodes/1/edit
   def edit; end
 
-  # POST /nodes
-  # POST /nodes.json
   def create
     @prot = Prot.find(params[:prot_id])
     if @prot.nodes.length.zero?
@@ -46,8 +38,6 @@ class NodesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /nodes/1
-  # PATCH/PUT /nodes/1.json
   def update
     @prot = Prot.find(params[:prot_id])
     respond_to do |format|
@@ -61,8 +51,6 @@ class NodesController < ApplicationController
     end
   end
 
-  # DELETE /nodes/1
-  # DELETE /nodes/1.json
   def destroy
     @node.destroy
     respond_to do |format|
