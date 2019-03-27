@@ -67,6 +67,7 @@ class NodesController < ApplicationController
   end
 
   def author_check
+    # current_user.prot.findでいい
     raise StandardError if Prot.find(params[:prot_id]).user_id != current_user.id
   end
 
