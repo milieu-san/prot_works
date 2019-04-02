@@ -36,12 +36,13 @@ $(document).on 'turbolinks:load', ->
 
   # nodeがselectされたときにタイトルと本文を出力する。
   $('#jstree_nodes').on "select_node.jstree", (e, node) ->
-    body = node.node.data
+    title = node.node.text
     id   = node.node.id
     prot_id = REGISTRY.prot_id
 
     $(".node-form-invisible").hide()
     $("#nodeBodyFrom_#{id}").show()
+    $("#nodeTitle").html("「#{title}」")
     $("#nodeBodyFrom_#{id}").on 'input', ->
       $('#saving').html("待機中...")
       $('#saving').css('color', 'gray')
@@ -104,6 +105,8 @@ $(document).on 'turbolinks:load', ->
       'type'    : 'PATCH',
       'data'    : { 'node' : { 'title' : renamed_name } },
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
+      'success' : (res) ->
+        $("#nodeTitle").html("「#{renamed_name}」")
     })
 
   # 選択されているノードを削除する

@@ -52,6 +52,9 @@
         <div id="saving">
           　
         </div>
+        <div id="nodeTitle">
+          　
+        </div>
         <% @prot.nodes.each do |node| %>
           <textarea id="nodeBodyFrom_<%= node.id %>" class="form-control node-form-invisible" style="display: none;" rows="80" cols="80"><%= node.body %></textarea>
         <% end %>
