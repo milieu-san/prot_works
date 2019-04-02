@@ -3,30 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-  # bodyのオートセーブ
-  autoSave = (id)->
-    selectorId = id.target.id
-    nodeId = selectorId.replace("nodeBodyFrom_", "")
-    jstree = $('#jstree_nodes').jstree(true)
-    if $('#saving').html() == '[!]待機中にノードを変更されました'
-      $('#saving').html('保存が正常に行われませんでした')
-      #前回クエリを送ったノードのidをselectedする
-      jstree.select_node(pastChanged)
-    else
-      nodeBody = $("#nodeBodyFrom_#{nodeId}").val()
-      selected = jstree.get_selected(true)
-
-      $.ajax({
-        'type'    : 'PATCH',
-        'data'    : { 'node' : { 'body' : nodeBody } },
-        'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{nodeId}.json"
-      'success' : (res) ->
-        pastChanged = res
-        $('#saving').html('同期中...')
-        $('#saving').css('color', '#00BB00')
-        jstree.refresh()
-      })
-
   $('#jstree_nodes').jstree({
     'core' : {
       'check_callback' : true,
@@ -39,6 +15,24 @@ $(document).on 'turbolinks:load', ->
     },
     "plugins" : [ "dnd", "state" ]
   })
+
+  # bodyのオートセーブ
+  autoSave = (id)->
+    jstree = $('#jstree_nodes').jstree(true)
+    selectorId = id.target.id
+    nodeId = selectorId.replace("nodeBodyFrom_", "")
+    nodeBody = $("#nodeBodyFrom_#{nodeId}").val()
+
+    $.ajax({
+      'type'    : 'PATCH',
+      'data'    : { 'node' : { 'body' : nodeBody } },
+      'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{nodeId}.json"
+    'success' : (res) ->
+      $('#saving').html('保存終了 同期中...')
+      $('#saving').css('color', '#00BB00')
+      jstree.refresh()
+      # もしjstree.selected_nodeがなかったらresをget_selectする
+    })
 
   $('#edit_node').on 'click', ->
     $('#show_node').hide()
@@ -56,27 +50,24 @@ $(document).on 'turbolinks:load', ->
 
   # nodeがselectされたときにタイトルと本文を出力する。
   $('#jstree_nodes').on "select_node.jstree", (e, node) ->
-    if $('#saving').html() == '同期中...'
-      $('#saving').html('保存しました！')
-      $('#saving').css('color', '#00BB00')
-    else if $('#saving').html() == '待機中...(保存されるまで入力操作以外行わないでください)'
-      $('#saving').html('[!]待機中にノードを変更されました')
-      $('#saving').css('color', 'red')
-    else if $('#saving').html() == '[!]待機中にノードを変更されました'
+    if $('#saving').html() == '保存終了 同期中...'
+      console.log ("同期")
+      $('#saving').html('同期しました！')
+    else if $('#saving').html() == "待機中...(同期されるまで入力操作以外行わないでください)"
+      console.log ("待機")
       return
     else
-      $('#saving').html('')
+      console.log ("selected")
       body = node.node.data
       id   = node.node.id
       prot_id = REGISTRY.prot_id
 
-      # $("#edit_form form").attr('action', "/prots/#{prot_id}/nodes/#{id}")
       $("#show_node").text("#{body}")
       $("#nodeBodyFrom_#{id}").val("#{body}")
       $(".node-form-invisible").hide()
       $("#nodeBodyFrom_#{id}").show()
       $("#nodeBodyFrom_#{id}").on 'input', ->
-        $('#saving').html("待機中...(保存されるまで入力操作以外行わないでください)")
+        $('#saving').html("待機中...(同期されるまで入力操作以外行わないでください)")
         $('#saving').css('color', 'black')
 
       $("#nodeBodyFrom_#{id}").on('input', _.debounce( autoSave, 1000 ))
