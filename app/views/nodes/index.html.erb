@@ -9,33 +9,26 @@
     <br>
   <div class="row">
 
-        <div class="col-6">
-          <button type="button" id="make_node" class="btn btn-success">create</button>
-          <button type="button" id="rename_node" class="btn btn-warning">rename</button>
-          <button type="button" id="delete_node" class="btn btn-danger">delete</button>
-          <button type="button" id="edit_node" class="btn btn-info">edit</button>
-          <button type="button" id="view_node" class="btn btn-info" style="display: none;">show</button>
-          <br>
-          <br>
+    <div class="col-6">
+      <button type="button" id="make_node" class="btn btn-success">create</button>
+      <button type="button" id="rename_node" class="btn btn-warning">rename</button>
+      <button type="button" id="delete_node" class="btn btn-danger">delete</button>
+      <br>
+      <br>
+      <div id="jstree_nodes" style="overflow: scroll;"></div>
+      <br>
+    </div>
 
-          <div id="jstree_nodes" style="overflow: scroll;"></div>
-          <br>
+    <div class="col-6">
+      <div id="edit_form">
+        <input type="hidden" value="" id="nodeIdHidden">
+        <div id="saving">
+          　
         </div>
-
-        <div class="col-6">
-          <!-- 本文の閲覧 -->
-          <div id="show_node" class="box11" style="word-wrap: break-word; white-space: pre-wrap; min-height: 50px;"></div>
-          <!-- 本文の編集 -->
-          <div id="edit_form" style="display: none;">
-            <input type="hidden" value="" id="nodeIdHidden">
-            <div id="saving">
-              　
-            </div>
-            <% @prot.nodes.each do |node| %>
-              <textarea id="nodeBodyFrom_<%= node.id %>" class="form-control node-form-invisible" style="display: node;" rows="80" cols="80"></textarea>
-            <% end %>
-          </div>
-        </div>
-
+        <% @prot.nodes.each do |node| %>
+          <textarea id="nodeBodyFrom_<%= node.id %>" class="form-control node-form-invisible" style="display: node;" rows="80" cols="80"><%= node.body %></textarea>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
