@@ -106,7 +106,10 @@ $(document).on 'turbolinks:load', ->
       'data'    : { 'node' : { 'title' : renamed_name } },
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json"
       'success' : (res) ->
-        $("#nodeTitle").html("「#{renamed_name}」")
+        jstree = $('#jstree_nodes').jstree(true)
+        selected = jstree.get_selected()
+        if id == selected[0]
+          $("#nodeTitle").html("「#{renamed_name}」")
     })
 
   # 選択されているノードを削除する
