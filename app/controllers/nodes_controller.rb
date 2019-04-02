@@ -6,7 +6,7 @@ class NodesController < ApplicationController
   before_action :author_check
 
   def index
-    @prot = Prot.find(params[:prot_id])
+    @prot = current_user.prots.find(params[:prot_id])
     @nodes = @prot.nodes.all.order(position: :asc)
     @node = @prot.nodes.first
   end
@@ -20,7 +20,7 @@ class NodesController < ApplicationController
   def edit; end
 
   def create
-    @prot = Prot.find(params[:prot_id])
+    @prot = current_user.prots.find(params[:prot_id])
     if @prot.nodes.length.zero?
       @node = @prot.nodes.build(title: 'new title', body: '本文', position: 0, parent_id: nil)
     else
@@ -39,7 +39,7 @@ class NodesController < ApplicationController
   end
 
   def update
-    @prot = Prot.find(params[:prot_id])
+    @prot = current_user.prots.find(params[:prot_id])
     respond_to do |format|
       if @node.update(node_params)
         format.html { redirect_to prot_nodes_path(@prot), notice: '本文の編集に成功しました！' }
@@ -62,7 +62,7 @@ class NodesController < ApplicationController
   private
 
   def set_node
-    @prot = Prot.find(params[:prot_id])
+    @prot = current_user.prots.find(params[:prot_id])
     @node = @prot.nodes.find(params[:id])
   end
 

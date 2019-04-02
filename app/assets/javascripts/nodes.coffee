@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
+
   $('#jstree_nodes').jstree({
     'core' : {
       'check_callback' : true,
@@ -118,6 +119,7 @@ $(document).on 'turbolinks:load', ->
         'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{id}.json",
         'success' : ->
           jstree.delete_node(selected)
+          $("#nodeBodyFrom_#{id}").remove()
       })
     else
       return "/prots/#{REGISTRY.prot_id}/nodes.json"
