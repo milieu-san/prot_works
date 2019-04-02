@@ -7,25 +7,53 @@
   <%= link_to "add Root", prot_nodes_path(@prot, @prot.nodes.new), method: :POST, class: "btn btn-outline-success" if @prot.nodes.length.zero? %>
     <hr>
     <br>
-  <div class="row">
+  <button class="btn-sm btn-secondary" data-toggle="collapse" data-target="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu">
+    Menu
+  </button>
+  <div class="collapse" id="collapseMenu">
+    <div class="col-12 card">
+      <br>
+      <div class="row">
+        <div class="col-4">
+          フォントサイズ：
+          <button type="button" class="btn-sm btn-secondary" id="fontSizeLarger"><%= fa_icon "plus" %></button>
+          <button type="button" class="btn-sm btn-secondary" id="fontSizeSmaller"><%= fa_icon "minus" %></button>
+        </div>
+        <div class="col-4">
+          フォームサイズ：
+          <button type="button" class="btn-sm btn-secondary" id="boardResizeLeft"><%= fa_icon "arrow-left" %></button>
+          <button type="button" class="btn-sm btn-secondary" id="boardResizeRight"><%= fa_icon "arrow-right" %></button>
+        </div>
+        <div class="col-4">
+          ダークテーマ：
+          <button type="button" class="btn-sm btn-secondary" id="nightVeiwSwitch"><%= fa_icon "power-off" %></button>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
 
-    <div class="col-6">
-      <button type="button" id="make_node" class="btn btn-success">create</button>
-      <button type="button" id="rename_node" class="btn btn-warning">rename</button>
-      <button type="button" id="delete_node" class="btn btn-danger">delete</button>
+
+  <div class="row">
+    <div class="col-5" id="treeViewBoard">
+      <br>
+      <button type="button" id="make_node" class="btn-sm btn-success">create</button>
+      <button type="button" id="rename_node" class="btn-sm btn-warning">rename</button>
+      <button type="button" id="delete_node" class="btn-sm btn-danger">delete</button>
       <br>
       <br>
       <div id="jstree_nodes" style="overflow: scroll;"></div>
       <br>
     </div>
 
-    <div class="col-6">
+    <div class="col-7" id="nodeEditBoard">
+      <br>
       <div id="edit_form">
         <div id="saving">
           　
         </div>
         <% @prot.nodes.each do |node| %>
-          <textarea id="nodeBodyFrom_<%= node.id %>" class="form-control node-form-invisible" style="display: node;" rows="80" cols="80"><%= node.body %></textarea>
+          <textarea id="nodeBodyFrom_<%= node.id %>" class="form-control node-form-invisible" style="display: none;" rows="80" cols="80"><%= node.body %></textarea>
         <% end %>
       </div>
     </div>

@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
+  nightView = false
 
   $('#jstree_nodes').jstree({
     'core' : {
@@ -29,8 +30,8 @@ $(document).on 'turbolinks:load', ->
       'data'    : { 'node' : { 'body' : nodeBody } },
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes/#{nodeId}.json"
     'success' : (res) ->
-      $('#saving').html('保存終了')
-      $('#saving').css('color', '#00BB00')
+      $('#saving').html('保存完了')
+      $('#saving').css('color', '#64aa64')
     })
 
   # nodeがselectされたときにタイトルと本文を出力する。
@@ -43,7 +44,7 @@ $(document).on 'turbolinks:load', ->
     $("#nodeBodyFrom_#{id}").show()
     $("#nodeBodyFrom_#{id}").on 'input', ->
       $('#saving').html("待機中...")
-      $('#saving').css('color', 'black')
+      $('#saving').css('color', 'gray')
 
     $("#nodeBodyFrom_#{id}").on('input', _.debounce( autoSave, 1000 ))
 
@@ -75,8 +76,11 @@ $(document).on 'turbolinks:load', ->
       'url'     : "/prots/#{REGISTRY.prot_id}/nodes.json",
       'success' : (res) ->
         res.data = "本文"
-        new_node_form = '<textarea id="nodeBodyFrom_'+ "#{res.id}" +'" class="form-control node-form-invisible" style="display: node;" rows="80" cols="80"></textarea>'
+        new_node_form = '<textarea id="nodeBodyFrom_'+ "#{res.id}" +'" class="form-control node-form-invisible" style="display: node;" rows="80" cols="80">本文</textarea>'
         $('#edit_form').append(new_node_form)
+        if nightView
+          $("#nodeBodyFrom_#{res.id}").css('background-color', '#3c3c3c')
+          $("#nodeBodyFrom_#{res.id}").css('color', '#afafaf')
         selected = jstree.create_node(selected, res)
         jstree.edit(selected) if (selected)
     })
@@ -123,3 +127,60 @@ $(document).on 'turbolinks:load', ->
       })
     else
       return "/prots/#{REGISTRY.prot_id}/nodes.json"
+
+  $("#edit_form").resizable({});
+
+  fontSize = 1.0
+  $('#fontSizeLarger').on 'click', ->
+    if fontSize < 2.0
+      fontSize += 0.1
+      $('.form-control').css('font-size', "#{fontSize}rem")
+    else
+      return
+
+  $('#fontSizeSmaller').on 'click', ->
+    if fontSize > 0.5
+      fontSize -= 0.1
+      $('.form-control').css('font-size', "#{fontSize}rem")
+    else
+      return
+
+  treeViewSize = 5
+  textAreaSize = 7
+  $('#boardResizeLeft').on 'click', ->
+    if treeViewSize > 3
+      $('#treeViewBoard').removeClass("col-#{treeViewSize}")
+      treeViewSize -= 1
+      $('#treeViewBoard').addClass("col-#{treeViewSize}")
+      $('#nodeEditBoard').removeClass("col-#{textAreaSize}")
+      textAreaSize += 1
+      $('#nodeEditBoard').addClass("col-#{textAreaSize}")
+    else
+      return
+
+  $('#boardResizeRight').on 'click', ->
+    if textAreaSize > 3
+      $('#treeViewBoard').removeClass("col-#{treeViewSize}")
+      treeViewSize += 1
+      $('#treeViewBoard').addClass("col-#{treeViewSize}")
+      $('#nodeEditBoard').removeClass("col-#{textAreaSize}")
+      textAreaSize -= 1
+      $('#nodeEditBoard').addClass("col-#{textAreaSize}")
+    else
+      return
+
+  $('#nightVeiwSwitch').on 'click', ->
+    if nightView == false
+      $('body').css('background-color', '#3c3c3c')
+      $('body').css('color', '#afafaf')
+      $('.form-control').css('background-color', '#3c3c3c')
+      $('.form-control').css('color', '#afafaf')
+      $('.card').css('background-color', '#3c3c3c')
+      nightView = true
+    else
+      $('body').animate({'background-color', 'white'}, 2000)
+      $('body').css('color', '#212529')
+      $('.form-control').animate({'background-color', 'white'}, 2000)
+      $('.form-control').css('color', '#212529')
+      $('.card').animate({'background-color', 'white'}, 2000)
+      nightView = false
