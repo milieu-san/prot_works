@@ -196,6 +196,7 @@ ul {
 #top-box{
   height: 100vh;
   width: 100vw;
+  max-height: 1280px;
 }
 #top-image{
   background-image: url("<%= asset_url("typewriter-407695_1920.jpg") %>");
@@ -240,12 +241,19 @@ ul {
   display: inline;
 }
 
+ #topIntroduction h5 {
+ }
+
+ #topIntroduction .row {
+   width: 100%;
+ }
+
 .headerArea {
   position: fixed !important;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 70px;
   z-index: 1000;
   opacity: 0.9;
@@ -256,7 +264,7 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 70px;
   z-index: 1000;
   background-color: rgba( 255, 255, 255, 0 )!important;;

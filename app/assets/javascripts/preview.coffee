@@ -18,3 +18,5 @@ $(document).on 'turbolinks:load', ->
     prot_id = REGISTRY.prot_id
 
     $("#show_node_preview").text("#{body}")
+
+  
