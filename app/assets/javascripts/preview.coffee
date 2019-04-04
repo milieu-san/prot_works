@@ -19,4 +19,4 @@ $(document).on 'turbolinks:load', ->
 
     $("#show_node_preview").text("#{body}")
 
-  
+  $("#show_node_preview").draggable()
