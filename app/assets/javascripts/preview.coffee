@@ -1,5 +1,4 @@
 $(document).on 'turbolinks:load', ->
-  nightView = false
 
   $('#jstree_nodes_preview').jstree({
     'core' : {
@@ -15,11 +14,14 @@ $(document).on 'turbolinks:load', ->
   })
 
   $('#jstree_nodes_preview').on "select_node.jstree", (e, node) ->
+    title = node.node.text
     body = node.node.data
     id   = node.node.id
     prot_id = REGISTRY.prot_id
 
     $("#show_node_preview").text("#{body}")
+    $(".nodeTitle").html("- #{title} -")
+
 
   fontSize = 1.0
   $('#fontSizeLargerPreview').on 'click', ->
@@ -60,6 +62,7 @@ $(document).on 'turbolinks:load', ->
     else
       return
 
+  nightView = false
   $('#nightVeiwSwitchPreview').on 'click', ->
     if nightView == false
       nightView = true

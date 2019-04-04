@@ -42,7 +42,7 @@ $(document).on 'turbolinks:load', ->
 
     $(".node-form-invisible").hide()
     $("#nodeBodyFrom_#{id}").show()
-    $("#nodeTitle").html("「#{title}」")
+    $(".nodeTitle").html("「#{title}」")
     $("#nodeBodyFrom_#{id}").on 'input', ->
       $('#saving').html("待機中...")
       $('#saving').css('color', 'gray')
