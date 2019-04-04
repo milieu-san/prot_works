@@ -5,14 +5,40 @@
   </script>
 
   <h3><%= @prot.title %></h3>
-
+  <br>
+  <button class="btn-sm btn-secondary" data-toggle="collapse" data-target="#collapseMenuPreview" aria-expanded="false" aria-controls="collapseMenuPreview">
+    Menu
+  </button>
+  <div class="collapse" id="collapseMenuPreview">
+    <div class="col-12 card">
+      <br>
+      <div class="row">
+        <div class="col-4">
+          フォントサイズ：
+          <button type="button" class="btn-sm btn-secondary" id="fontSizeLargerPreview"><%= fa_icon "plus" %></button>
+          <button type="button" class="btn-sm btn-secondary" id="fontSizeSmallerPreview"><%= fa_icon "minus" %></button>
+        </div>
+        <div class="col-4">
+          カードサイズ：
+          <button type="button" class="btn-sm btn-secondary" id="boardResizeLeftPreview"><%= fa_icon "arrow-left" %></button>
+          <button type="button" class="btn-sm btn-secondary" id="boardResizeRightPreview"><%= fa_icon "arrow-right" %></button>
+        </div>
+        <div class="col-4">
+          ダークテーマ：
+          <button type="button" class="btn-sm btn-secondary" id="nightVeiwSwitchPreview"><%= fa_icon "power-off" %></button>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+  <hr>
   <div class="row">
-    <div class="col-5">
+    <div class="col-5" id="treePreviewBoard">
       <div id="jstree_nodes_preview" style="overflow: scroll;"></div>
       <br>
     </div>
 
-    <div class="col-7">
+    <div class="col-7" id="nodePreviewBoard">
       <div id="show_node_preview" class="box11" style="word-wrap: break-word; white-space: pre-wrap; min-height: 50px;"></div>
     </div>
   </div>
