@@ -42,7 +42,7 @@ $(document).on 'turbolinks:load', ->
 
     $(".node-form-invisible").hide()
     $("#nodeBodyFrom_#{id}").show()
-    $("#nodeTitle").html("「#{title}」")
+    $(".nodeTitle").html("「#{title}」")
     $("#nodeBodyFrom_#{id}").on 'input', ->
       $('#saving').html("待機中...")
       $('#saving').css('color', 'gray')
@@ -177,16 +177,16 @@ $(document).on 'turbolinks:load', ->
 
   $('#nightVeiwSwitch').on 'click', ->
     if nightView == false
+      nightView = true
       $('body').css('background-color', '#3c3c3c')
       $('body').css('color', '#afafaf')
       $('.form-control').css('background-color', '#3c3c3c')
       $('.form-control').css('color', '#afafaf')
       $('.card').css('background-color', '#3c3c3c')
-      nightView = true
     else
+      nightView = false
       $('body').animate({'background-color', 'white'}, 2000)
       $('body').css('color', '#212529')
       $('.form-control').animate({'background-color', 'white'}, 2000)
       $('.form-control').css('color', '#212529')
       $('.card').animate({'background-color', 'white'}, 2000)
-      nightView = false
