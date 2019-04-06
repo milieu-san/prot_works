@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'lodash-rails'
 gem 'mini_magick'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
@@ -23,7 +24,6 @@ gem 'rails-i18n'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'lodash-rails'
 
 group :development, :test do
   gem 'bullet'
@@ -50,8 +50,8 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
   gem 'database_rewinder'
-  gem 'selenium-webdriver'
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
