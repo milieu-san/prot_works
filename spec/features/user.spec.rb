@@ -104,18 +104,18 @@ RSpec.feature 'ユーザー機能', type: :feature do
     end
 
     scenario 'Eメール・パスワード変更(not complited yet)' do
-      click_on 'edit pass and mail'
+      click_on 'アカウント編集'
     end
 
     scenario 'ログアウトテスト' do
-      click_on 'Logout'
+      click_on 'ログアウト'
       expect(page).to have_content 'ログアウトしました'
       visit mypage_path
       expect(page).to have_content 'アカウント登録もしくはログインしてください'
     end
 
     scenario 'アカウント削除テスト(prot_exist?)' do
-      click_on 'edit pass and mail'
+      click_on 'アカウント編集'
       click_button 'アカウントを削除する'
       expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
 
