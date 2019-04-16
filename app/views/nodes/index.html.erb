@@ -4,6 +4,7 @@
     REGISTRY = { prot_id: "<%= @prot.id %>" }
   </script>
   <h3><%= @prot.title %></h3>
+  <%= link_to "csv出力",prot_nodes_path(format: :csv), class: "btn-sm btn-secondary" %>
   <%= link_to "add Root", prot_nodes_path(@prot, @prot.nodes.new), method: :POST, class: "btn btn-outline-success" if @prot.nodes.length.zero? %>
     <hr>
     <br>
