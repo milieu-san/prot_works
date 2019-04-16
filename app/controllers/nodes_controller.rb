@@ -7,8 +7,15 @@ class NodesController < ApplicationController
 
   def index
     @prot = current_user.prots.find(params[:prot_id])
-    @nodes = @prot.nodes.all.order(position: :asc)
+    @nodes = @prot.nodes.all.order({ parent_id: :asc }, { position: :asc })
     @node = @prot.nodes.first
+    respond_to do |format|
+      format.html
+      format.json { render :index }
+      format.csv do
+        send_data render_to_string, filename: "#{@prot.title}.csv", type: :csv
+      end
+    end
   end
 
   def show; end
