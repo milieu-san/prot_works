@@ -10,8 +10,8 @@
 
 ## version
 
-* Ruby 2.5.3
-* Rails 5.2.2
+* Ruby 2.6.4
+* Rails 6.0.0
 * postgresql
 
 ## 機能一覧
