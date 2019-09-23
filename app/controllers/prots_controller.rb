@@ -64,7 +64,7 @@ class ProtsController < ApplicationController
   def destroy
     @prot.destroy
     flash[:success] = 'プロットの削除に成功しました'
-    redirect_to root_path
+    redirect_to '/'
   end
 
   private
